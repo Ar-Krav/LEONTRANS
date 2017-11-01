@@ -26,16 +26,11 @@ public class UserProfileFragment extends Fragment {
     private int userID = 101; //TODO change this parametr to Variable sending from external part of program.
 
     View fragmentLayout;
-    WebView loaderGIF;
     ScrollView mainLayoutScrolView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentLayout = inflater.inflate(R.layout.fragment_user_profile, container, false);
-
-        loaderGIF = (WebView) fragmentLayout.findViewById(R.id.loaderGIF);
-        loaderGIF.setBackgroundColor(Color.TRANSPARENT);
-        loaderGIF.loadUrl("file:///android_asset/gif_html.html");
 
         mainLayoutScrolView = (ScrollView) fragmentLayout.findViewById(R.id.InfoScrollView);
         mainLayoutScrolView.setVisibility(View.GONE);
@@ -45,7 +40,7 @@ public class UserProfileFragment extends Fragment {
         return fragmentLayout;
     }
 
-    class LoadFragmentData extends SiteDataListener{
+    private class LoadFragmentData extends SiteDataListener{
 
         public LoadFragmentData(String urlAddress) {
             super(urlAddress);
@@ -89,7 +84,7 @@ public class UserProfileFragment extends Fragment {
                 TV_register_date_value.setText(dataJson.getString("date_registry"));
                 TV_last_online_value.setText(dataJson.getString("date_last_action"));
 
-                loaderGIF.setVisibility(View.GONE);
+                ((WebView) getActivity().findViewById(R.id.loaderView)).setVisibility(View.GONE);
                 mainLayoutScrolView.setVisibility(View.VISIBLE);
 
             } catch (JSONException e) {

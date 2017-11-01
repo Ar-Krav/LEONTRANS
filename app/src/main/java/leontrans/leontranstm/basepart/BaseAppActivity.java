@@ -2,6 +2,7 @@ package leontrans.leontranstm.basepart;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +33,7 @@ public class BaseAppActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private MenuItem filterStartMenuItem;
+    WebView loaderView;
 
 
     private Drawer.Result mainNavigationDrawer;
@@ -52,6 +54,10 @@ public class BaseAppActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        loaderView = (WebView) findViewById(R.id.loaderView);
+        loaderView.setBackgroundColor(Color.TRANSPARENT);
+        loaderView.setVisibility(View.GONE);
 
         mainNavigationDrawer =  getMainNavigationDrawer();
         idSelectedDrawerItem = NAVMENU_CARDS;
@@ -85,28 +91,7 @@ public class BaseAppActivity extends AppCompatActivity {
 
                     @Override
                     public void onDrawerClosed(View drawerView) {
-                        switch (selectedDrawerItem.getIdentifier()){
-                            case NAVMENU_PROFILE: {
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new UserProfileFragment()).commit();
-                                break;
-                            }
-
-                            case NAVMENU_CARDS: {
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new CardsFragment()).commit();
-                                filterStartMenuItem.setVisible(true);
-                                break;
-                            }
-
-                            case NAVMENU_FILTER_SETTINGS: {
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new FilterSettingsFragment()).commit();
-                                break;
-                            }
-
-                            case NAVMENU_FAQ: {
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new FAQFragment()).commit();
-                                break;
-                            }
-                        }
+                        if (selectedDrawerItem != null) new Async().execute();
                     }
                 })
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -119,7 +104,7 @@ public class BaseAppActivity extends AppCompatActivity {
                         idSelectedDrawerItem = drawerItem.getIdentifier();
                         selectedDrawerItem = drawerItem;
 
-
+                        loaderView.setVisibility(View.VISIBLE);
                     }
                 })
                 .build();
@@ -153,6 +138,57 @@ public class BaseAppActivity extends AppCompatActivity {
         }
         else{
             super.onBackPressed();
+        }
+    }
+
+    private class Async extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loaderView.setVisibility(View.VISIBLE);
+            loaderView.loadUrl("file:///android_asset/gif_html.html");
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            switch (selectedDrawerItem.getIdentifier()){
+                case NAVMENU_PROFILE: {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new UserProfileFragment()).commit();
+                    break;
+                }
+
+                case NAVMENU_CARDS: {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new CardsFragment()).commit();
+                    break;
+                }
+
+                case NAVMENU_FILTER_SETTINGS: {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new FilterSettingsFragment()).commit();
+                    break;
+                }
+
+                case NAVMENU_FAQ: {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new FAQFragment()).commit();
+                    break;
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+
+            loaderView.setVisibility(View.VISIBLE);
+            loaderView.loadUrl("file:///android_asset/gif_html.html");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (selectedDrawerItem.getIdentifier() == NAVMENU_CARDS) filterStartMenuItem.setVisible(true);
         }
     }
 }

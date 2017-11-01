@@ -15,6 +15,12 @@
         android:paddingTop="@dimen/tool_bar_top_padding">
     </android.support.v7.widget.Toolbar>
 
+    <WebView
+        android:id="@+id/loaderView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+    </WebView>
+
     <FrameLayout
         android:id="@+id/fragment_area"
         android:layout_width="match_parent"
