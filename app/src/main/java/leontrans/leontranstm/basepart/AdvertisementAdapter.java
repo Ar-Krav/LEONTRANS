@@ -13,11 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
+import leontrans.leontranstm.R;
+
+
+public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<AdvertisementInfo> advertisementInfoList;
-    AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
+
+    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
         super(context, resource, advertisementInfoList);
         this.advertisementInfoList = advertisementInfoList;
         this.context = context;
@@ -29,7 +33,7 @@ class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         View view = convertView;
         if (view == null){
-            view = inflater.inflate(R.layout.advertisement, parent, false);
+            view = inflater.inflate(R.layout.list_item_layout, parent, false);
         }
 
         TextView trans_type = (TextView) view.findViewById(R.id.trans_type);

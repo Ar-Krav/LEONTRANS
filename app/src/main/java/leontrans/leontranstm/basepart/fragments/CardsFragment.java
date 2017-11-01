@@ -3,20 +3,32 @@ package leontrans.leontranstm.basepart.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.AdvertisementAdapter;
+import leontrans.leontranstm.basepart.AdvertisementInfo;
+import leontrans.leontranstm.utils.MakeObjects;
 
 
 public class CardsFragment extends Fragment {
@@ -25,6 +37,17 @@ public class CardsFragment extends Fragment {
     private NavigationView navView;
     private ArrayList<MenuItem> navMenuItemList= new ArrayList<>();
     private Context context;
+
+    ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
+    ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
+    public static String LOG_TAG = "my";
+    int numbOfAdvertisement = 10;
+
+    ListView advertisementListView;
+    FloatingActionButton btToBottom;
+    FloatingActionButton btToTop;
+    AdvertisementAdapter adapter;
+    String advertisementJson = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +62,84 @@ public class CardsFragment extends Fragment {
             navMenuItemList.add(navView.getMenu().getItem(i));
         }
         setMenuItemSwitcherAction();
+
+        advertisementListView = (ListView) view.findViewById(R.id.listView);
+        adapter = new AdvertisementAdapter(getActivity(),R.layout.list_item_layout,arrayListAdvertisement);
+        advertisementListView.setAdapter(adapter);
+        btToBottom = (FloatingActionButton) view.findViewById(R.id.btToBottom);
+        btToTop = (FloatingActionButton) view.findViewById(R.id.btToTop);
+
+        try {
+
+            arrayListJsonObjectAdvertisement = new MakeObjects().connectParseTask("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
+            Log.d(LOG_TAG,advertisementJson+"");
+
+            for(int i = 0 ; i < numbOfAdvertisement ; i ++){
+                arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),
+                        arrayListJsonObjectAdvertisement.get(i).getString("trans_type"),makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_from")),makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_to"))
+                        ,arrayListJsonObjectAdvertisement.get(i).getString("country_from_ru")
+                        ,arrayListJsonObjectAdvertisement.get(i).getString("country_to_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_from_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_to_ru")
+                        ,arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
+            }
+
+
+            adapter.notifyDataSetChanged();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        advertisementListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                final int lastItem = firstVisibleItem + visibleItemCount;
+
+                if(lastItem >= totalItemCount-1){
+                    btToBottom.setVisibility(View.VISIBLE);
+                    btToTop.setVisibility(View.VISIBLE);
+
+                }else{
+                    btToBottom.setVisibility(View.INVISIBLE);
+                    btToTop.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+
+        btToBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                adapter.notifyDataSetChanged();
+                numbOfAdvertisement = numbOfAdvertisement + 10 ;
+                arrayListJsonObjectAdvertisement = new MakeObjects().connectParseTask("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
+                try {
+                    for(int i = numbOfAdvertisement/2 ; i < numbOfAdvertisement  ; i ++){
+                        arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),arrayListJsonObjectAdvertisement.get(i).getString("trans_type")
+                                ,makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_from")),makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_to"))
+                                ,arrayListJsonObjectAdvertisement.get(i).getString("country_from_ru")
+                                ,arrayListJsonObjectAdvertisement.get(i).getString("country_to_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_from_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_to_ru")
+                                ,arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
+                    }
+                    adapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        btToTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                advertisementListView.setSelectionAfterHeaderView();
+            }
+        });
 
         return view;
     }
@@ -123,5 +224,15 @@ public class CardsFragment extends Fragment {
                 return true;
             }
         };
+    }
+
+    private String makeDate(String date){
+        long dv;
+        Date df;
+        String dateFrom;
+        dv = Long.valueOf(date) * 1000;
+        df = new java.util.Date(dv);
+        dateFrom = new SimpleDateFormat("MM.dd.yy").format(df);
+        return dateFrom;
     }
 }
