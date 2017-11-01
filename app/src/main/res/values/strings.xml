@@ -24,4 +24,13 @@
     <string name="TV_register_date">Дата реєстрації</string>
     <string name="TV_last_online">Останнє в мережі</string>
 
+    <string name="date_to">date_to</string>
+    <string name="date_from">date_from</string>
+    <string name="type">type</string>
+    <string name="city_from_ru">city_from_ru</string>
+    <string name="city_to_ru">city_to_ru</string>
+    <string name="country_to_ru">country_to_ru</string>
+    <string name="country_from_ru">country_from_ru</string>
+    <string name="userid_creator">id</string>
+
 </resources>
