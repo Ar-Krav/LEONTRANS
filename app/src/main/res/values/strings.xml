@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">LeonTransTM</string>
+
+    <string name="logo_of_leontrans_tm_hint">logo of leontrans_TM</string>
+    <string name="login_hello_TV">Увійдіть в Аккаунт</string>
+    <string name="login_input_field_hint">login</string>
+    <string name="password_input_field_hint">password</string>
+    <string name="signIn_btn">Увійти</string>
+
+
+    <string name="test_text_card_view_activity">Card View</string>
+    <string name="menu_item_title">showFilterNavigationDrawer</string>
+
+    <string name="TV_name">Ім\'я</string>
+    <string name="TV_city">Місто</string>
+    <string name="TV_email">Email</string>
+    <string name="TV_telephone">Телефон</string>
+    <string name="TV_skype">Skype</string>
+    <string name="TV_icq">ICQ</string>
+    <string name="TV_website">Веб сайт</string>
+    <string name="TV_occupation">Рід діяльності</string>
+    <string name="TV_occupation_type">Вид діяльності</string>
+    <string name="TV_occupation_description">Опис діяльності</string>
+    <string name="TV_register_date">Дата реєстрації</string>
+    <string name="TV_last_online">Останнє в мережі</string>
+
+</resources>
