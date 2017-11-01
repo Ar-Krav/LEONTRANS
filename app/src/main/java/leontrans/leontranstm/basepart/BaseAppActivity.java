@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -146,6 +147,7 @@ public class BaseAppActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            loaderView = (WebView) findViewById(R.id.loaderView);
             loaderView.setVisibility(View.VISIBLE);
             loaderView.loadUrl("file:///android_asset/gif_html.html");
         }
@@ -154,7 +156,12 @@ public class BaseAppActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             switch (selectedDrawerItem.getIdentifier()){
                 case NAVMENU_PROFILE: {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new UserProfileFragment()).commit();
+                    Bundle bundle = new Bundle();
+                        bundle.putInt("userID", getIntent().getIntExtra("userID",-1));
+                    Fragment userProfileFragment = new UserProfileFragment();
+                        userProfileFragment.setArguments(bundle);
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, userProfileFragment).commit();
                     break;
                 }
 
