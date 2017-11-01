@@ -3,9 +3,11 @@ package leontrans.leontranstm.utils;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class SiteDataParseUtils {
@@ -88,6 +90,28 @@ public class SiteDataParseUtils {
                 userSkype, userICQ, userWebSite,
                 userOccupation, userOccupationType, userOccupationDescription,
                 userRegistrationDate, userLastOnline, userAvatarCode);
+    }
+
+
+    public ArrayList<JSONObject> getGetCardsDetailInformation(String url , int numOfRequests){
+        JSONObject dataJsonObj = null;
+        JSONArray dataJsonArr = null ;
+        ArrayList<JSONObject> names = new ArrayList<>();
+
+        String resJson = getJsonString(url+numOfRequests);
+
+        try{
+            dataJsonArr = new JSONArray(resJson);
+            for(int i = 0 ; i < numOfRequests ; i++){
+                dataJsonObj = dataJsonArr.getJSONObject(i);
+                names.add(dataJsonObj);
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return names;
     }
 
     private String getJsonString(String urlRequest){

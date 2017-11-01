@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +27,7 @@ import java.util.Date;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.AdvertisementAdapter;
 import leontrans.leontranstm.basepart.AdvertisementInfo;
-import leontrans.leontranstm.utils.MakeObjects;
+import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 
 public class CardsFragment extends Fragment {
@@ -37,22 +36,23 @@ public class CardsFragment extends Fragment {
     private NavigationView navView;
     private ArrayList<MenuItem> navMenuItemList= new ArrayList<>();
     private Context context;
+    private SiteDataParseUtils siteDataUtils;
 
-    ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
-    ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
-    public static String LOG_TAG = "my";
-    int numbOfAdvertisement = 10;
+    private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
+    private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
+    private int numbOfAdvertisement = 10;
 
-    ListView advertisementListView;
-    FloatingActionButton btToBottom;
-    FloatingActionButton btToTop;
-    AdvertisementAdapter adapter;
-    String advertisementJson = "";
+    private ListView advertisementListView;
+    private FloatingActionButton btToBottom;
+    private FloatingActionButton btToTop;
+    private AdvertisementAdapter adapter;
+    private String advertisementJson = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cards, container, false);
         context = getContext();
+        siteDataUtils = new SiteDataParseUtils();
 
         drawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
         navView = (NavigationView) view.findViewById(R.id.nvView);
@@ -71,8 +71,7 @@ public class CardsFragment extends Fragment {
 
         try {
 
-            arrayListJsonObjectAdvertisement = new MakeObjects().connectParseTask("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
-            Log.d(LOG_TAG,advertisementJson+"");
+            arrayListJsonObjectAdvertisement = siteDataUtils.getGetCardsDetailInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=", numbOfAdvertisement);
 
             for(int i = 0 ; i < numbOfAdvertisement ; i ++){
                 arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),
@@ -118,7 +117,7 @@ public class CardsFragment extends Fragment {
 
                 adapter.notifyDataSetChanged();
                 numbOfAdvertisement = numbOfAdvertisement + 10 ;
-                arrayListJsonObjectAdvertisement = new MakeObjects().connectParseTask("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
+                arrayListJsonObjectAdvertisement = siteDataUtils.getGetCardsDetailInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
                 try {
                     for(int i = numbOfAdvertisement/2 ; i < numbOfAdvertisement  ; i ++){
                         arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),arrayListJsonObjectAdvertisement.get(i).getString("trans_type")

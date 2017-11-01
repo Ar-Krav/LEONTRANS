@@ -11,7 +11,7 @@ public class MakeObjectUserInfo {
     String resJson = "";
     public ArrayList<JSONObject> connectParseTask(String url){
         try {
-            resJson = new ParseTask(url).execute().get();
+            resJson = new SiteDataListener(url).execute().get();
             dataJsonArr = new JSONObject(resJson);
             names.add(dataJsonArr);
         } catch (JSONException e) {
