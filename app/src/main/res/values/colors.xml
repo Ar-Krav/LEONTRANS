@@ -5,4 +5,5 @@
     <color name="colorAccent">#edd24374</color>
     <color name="colorBackground">#DEDEDE</color>
     <color name="color">#40a630</color>
+    <color name="dark">#000000</color>
 </resources>

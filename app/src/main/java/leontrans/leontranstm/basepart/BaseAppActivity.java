@@ -64,6 +64,7 @@ public class BaseAppActivity extends AppCompatActivity {
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggle(true)
                 .withHeader(R.layout.drawer_main_header)
+                .withHeaderDivider(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Мій профіль").withIcon(FontAwesome.Icon.faw_user).withIdentifier(NAVMENU_PROFILE),
                         new PrimaryDrawerItem().withName("Список оголошень").withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(NAVMENU_CARDS),
