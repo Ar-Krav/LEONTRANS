@@ -33,8 +33,6 @@ public class BaseAppActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private MenuItem filterStartMenuItem;
 
-    private WebView loaderView;
-
 
     private Drawer.Result mainNavigationDrawer;
     private IDrawerItem selectedDrawerItem;
@@ -50,10 +48,6 @@ public class BaseAppActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_base_app);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new CardsFragment()).commit();
-
-        loaderView = (WebView) findViewById(R.id.loaderView);
-        loaderView.setBackgroundColor(Color.TRANSPARENT);
-        loaderView.loadUrl("file:///android_asset/gif_html.html");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
