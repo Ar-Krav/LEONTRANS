@@ -46,7 +46,6 @@ public class CardsFragment extends Fragment {
     private FloatingActionButton btToBottom;
     private FloatingActionButton btToTop;
     private AdvertisementAdapter adapter;
-    private String advertisementJson = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +70,7 @@ public class CardsFragment extends Fragment {
 
         try {
 
-            arrayListJsonObjectAdvertisement = siteDataUtils.getGetCardsDetailInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=", numbOfAdvertisement);
+            arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=", numbOfAdvertisement);
 
             for(int i = 0 ; i < numbOfAdvertisement ; i ++){
                 arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),
@@ -117,7 +116,7 @@ public class CardsFragment extends Fragment {
 
                 adapter.notifyDataSetChanged();
                 numbOfAdvertisement = numbOfAdvertisement + 10 ;
-                arrayListJsonObjectAdvertisement = siteDataUtils.getGetCardsDetailInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
+                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
                 try {
                     for(int i = numbOfAdvertisement/2 ; i < numbOfAdvertisement  ; i ++){
                         arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),arrayListJsonObjectAdvertisement.get(i).getString("trans_type")

@@ -5,28 +5,28 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import leontrans.leontranstm.utils.MakeObjectUserInfo;
+import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class AdvertisementInfo {
-    String trans_type;
-    String date_from;
-    String date_to;
-    String country_from_ru;
-    String country_to_ru;
-    String city_from_ru;
-    String city_to_ru;
-    String userid_creator;
-    String pay_type;
-    String pay_price;
-    String pay_currency;
-    String goods;
-    String goods_load_type;
-    String trans_weight;
-    String trans_capacity;
-    String telephone;
-    String person_type;
-    String full_name;
-    String nomination;
+    private String trans_type;
+    private String date_from;
+    private String date_to;
+    private String country_from_ru;
+    private String country_to_ru;
+    private String city_from_ru;
+    private String city_to_ru;
+    private String userid_creator;
+    private String pay_type;
+    private String pay_price;
+    private String pay_currency;
+    private String goods;
+    private String goods_load_type;
+    private String trans_weight;
+    private String trans_capacity;
+    private String telephone;
+    private String person_type;
+    private String full_name;
+    private String nomination;
     private ArrayList<JSONObject> arrayListJsonObjectUsers;
 
     public AdvertisementInfo(String trans_capacity, String trans_weight, String goods_load_type, String goods, String pay_currency, String pay_price, String pay_type, String trans_type, String date_from, String date_to, String country_from_ru, String country_to_ru, String city_from_ru, String city_to_ru, String userid_creator) throws JSONException {
@@ -69,7 +69,7 @@ public class AdvertisementInfo {
     }
 
     private ArrayList<JSONObject> makeTunell(String id){
-        arrayListJsonObjectUsers = new MakeObjectUserInfo().connectParseTask("https://leon-trans.com/api/ver1/login.php?action=get_user&id="+id);
+        arrayListJsonObjectUsers = new SiteDataParseUtils().getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="+id);
         return arrayListJsonObjectUsers;
     }
     public String getTrans_capacity() {

@@ -48,55 +48,10 @@ public class SiteDataParseUtils {
         return null;
     }
 
-    public UserDetailInfo getuserDetailInfo(int userID){
-        String jsonStr = getJsonString("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID);
-
-        String userName;
-        String userCity;
-        String userEmail;
-        String userPhone;
-        String userSkype;
-        String userICQ;
-        String userWebSite;
-        String userOccupation;
-        String userOccupationType;
-        String userOccupationDescription;
-        String userRegistrationDate;
-        String userLastOnline;
-        String userAvatarCode;
-
-        try {
-            JSONObject dataJson = new JSONObject(jsonStr);
-            userName = dataJson.getString("full_name");
-            userCity = dataJson.getString("location_city");
-            userEmail = dataJson.getString("email");
-            userPhone = dataJson.getString("phones");
-            userSkype = dataJson.getString("skype");
-            userICQ = dataJson.getString("icq");
-            userWebSite = dataJson.getString("website");
-            userOccupation = dataJson.getString("metier_type");
-            userOccupationType = dataJson.getString("activity_kind");
-            userOccupationDescription = dataJson.getString("activity_desc");
-            userRegistrationDate = dataJson.getString("date_registry");
-            userLastOnline = dataJson.getString("date_last_action");
-            userAvatarCode = dataJson.getString("avatar");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return new UserDetailInfo(userName,userCity, userEmail, userPhone,
-                userSkype, userICQ, userWebSite,
-                userOccupation, userOccupationType, userOccupationDescription,
-                userRegistrationDate, userLastOnline, userAvatarCode);
-    }
-
-
-    public ArrayList<JSONObject> getGetCardsDetailInformation(String url , int numOfRequests){
+    public ArrayList<JSONObject> getCardsInformation(String url , int numOfRequests){
         JSONObject dataJsonObj = null;
         JSONArray dataJsonArr = null ;
-        ArrayList<JSONObject> names = new ArrayList<>();
+        ArrayList<JSONObject> resultArray = new ArrayList<>();
 
         String resJson = getJsonString(url+numOfRequests);
 
@@ -104,14 +59,31 @@ public class SiteDataParseUtils {
             dataJsonArr = new JSONArray(resJson);
             for(int i = 0 ; i < numOfRequests ; i++){
                 dataJsonObj = dataJsonArr.getJSONObject(i);
-                names.add(dataJsonObj);
+                resultArray.add(dataJsonObj);
             }
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return names;
+        return resultArray;
+    }
+
+    public ArrayList<JSONObject> getCardUserId(String url){
+        JSONObject dataJsonArr = null;
+        ArrayList<JSONObject> resultArray = new ArrayList<>();
+
+        String resJson = getJsonString(url);
+
+        try {
+            dataJsonArr = new JSONObject(resJson);
+            resultArray.add(dataJsonArr);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return resultArray;
     }
 
     private String getJsonString(String urlRequest){
