@@ -81,14 +81,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
 
         Button name = (Button) view.findViewById(R.id.name);
-
-
-        if(advertisementInfoList.get(position).getPerson_type().equals("individual")){
-            name.setText(advertisementInfoList.get(position).getFull_name());
-        }else if(advertisementInfoList.get(position).getPerson_type().equals("fop") || (advertisementInfoList.get(position).getPerson_type().equals("entity"))){
-            name.setText(advertisementInfoList.get(position).getNomination());
-        }
-
+        name.setText(advertisementInfoList.get(position).getFull_name());
 
 
         return view;

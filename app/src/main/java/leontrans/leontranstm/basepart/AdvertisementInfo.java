@@ -3,7 +3,9 @@ package leontrans.leontranstm.basepart;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
@@ -26,42 +28,61 @@ public class AdvertisementInfo {
     private String telephone;
     private String person_type;
     private String full_name;
-    private String nomination;
     private ArrayList<JSONObject> arrayListJsonObjectUsers;
 
-    public AdvertisementInfo(String trans_capacity, String trans_weight, String goods_load_type, String goods, String pay_currency, String pay_price, String pay_type, String trans_type, String date_from, String date_to, String country_from_ru, String country_to_ru, String city_from_ru, String city_to_ru, String userid_creator) throws JSONException {
-        this.trans_type = trans_type;
-        this.date_from = date_from;
-        this.date_to = date_to;
-        this.country_from_ru = country_from_ru;
-        this.country_to_ru = country_to_ru;
-        this.city_from_ru = city_from_ru;
-        this.city_to_ru = city_to_ru;
-        this.userid_creator = userid_creator;
-        this.pay_type = pay_type;
-        this.pay_price = pay_price;
-        this.pay_currency = pay_currency;
-        this.goods = goods;
-        this.goods_load_type = goods_load_type;
-        this.trans_weight = trans_weight ;
-        this.trans_capacity = trans_capacity;
-        this.arrayListJsonObjectUsers = makeTunell(userid_creator);
+    public AdvertisementInfo(JSONObject list) throws JSONException {
+        this.trans_type = list.getString("trans_type");
+        this.date_from = makeDate(list.getString("date_from"));
+        this.date_to = makeDate(list.getString("date_to"));
+        this.country_from_ru = list.getString("country_from_ru");
+        this.country_to_ru = list.getString("country_to_ru");
+        this.city_from_ru = list.getString("city_from_ru");
+        this.city_to_ru = list.getString("city_to_ru");
+
+        this.userid_creator = list.getString("userid_creator");
+        this.pay_type = list.getString("pay_type");
+        this.pay_price = list.getString("pay_price");
+        this.pay_currency = list.getString("pay_currency");
+        this.goods = list.getString("goods");
+        this.goods_load_type = list.getString("goods_load_type");
+        this.trans_weight = list.getString("trans_weight");
+        this.trans_capacity = list.getString("trans_capacity");
+        this.arrayListJsonObjectUsers = makeTunell(list.getString("userid_creator"));
         this.telephone = arrayListJsonObjectUsers.get(0).getString("phones");
         this.person_type = arrayListJsonObjectUsers.get(0).getString("person_type");
-        this.full_name = arrayListJsonObjectUsers.get(0).getString("full_name");
-        this.nomination = arrayListJsonObjectUsers.get(0).getString("nomination_prefix") + " " +arrayListJsonObjectUsers.get(0).getString("nomination_name");
+        this.full_name = getEmloyee(arrayListJsonObjectUsers.get(0).getString("person_type"));
     }
+    public String getEmloyee(String person_type) throws JSONException {
+        ArrayList<JSONObject> arrayListJsonObjectEmploee;
+        String result = "";
 
+        switch (person_type){
+            case "individual":{
+                result = getArrayListJsonObjectUsers().get(0).getString("full_name");
+                break;
+            }
+            case "entity":{
+                result = arrayListJsonObjectUsers.get(0).getString("nomination_prefix") + " " +arrayListJsonObjectUsers.get(0).getString("nomination_name");
+                break;
+            }
+            case "fop":{
+                result = arrayListJsonObjectUsers.get(0).getString("nomination_prefix") + " " +arrayListJsonObjectUsers.get(0).getString("nomination_name");
+                break;
+            }
+            case "employee":{
+                arrayListJsonObjectEmploee = makeTunell(arrayListJsonObjectUsers.get(0).getString("employee_owner"));
+                result = arrayListJsonObjectEmploee.get(0).getString("nomination_prefix")+ " " +arrayListJsonObjectEmploee.get(0).getString("nomination_name");
+                break;
+            }
+        }
+        return result;
+    }
     public String getPerson_type() {
         return person_type;
     }
 
     public String getFull_name() {
         return full_name;
-    }
-
-    public String getNomination() {
-        return nomination;
     }
 
     public String getTelephone() {
@@ -72,6 +93,11 @@ public class AdvertisementInfo {
         arrayListJsonObjectUsers = new SiteDataParseUtils().getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="+id);
         return arrayListJsonObjectUsers;
     }
+
+    public ArrayList<JSONObject> getArrayListJsonObjectUsers() {
+        return arrayListJsonObjectUsers;
+    }
+
     public String getTrans_capacity() {
         return trans_capacity;
     }
@@ -158,5 +184,14 @@ public class AdvertisementInfo {
 
     public void setUserid_creator(String userid_creator) {
         this.userid_creator = userid_creator;
+    }
+    private String makeDate(String date){
+        long dv;
+        Date df;
+        String dateFrom;
+        dv = Long.valueOf(date) * 1000;
+        df = new java.util.Date(dv);
+        dateFrom = new SimpleDateFormat("MM.dd.yy").format(df);
+        return dateFrom;
     }
 }
