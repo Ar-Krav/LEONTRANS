@@ -1,6 +1,7 @@
 package leontrans.leontranstm.basepart;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -10,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +29,6 @@ import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.fragments.CardsFragment;
 import leontrans.leontranstm.basepart.fragments.FAQFragment;
 import leontrans.leontranstm.basepart.fragments.FilterSettingsFragment;
-import leontrans.leontranstm.basepart.fragments.UserProfileFragment;
 
 public class BaseAppActivity extends AppCompatActivity {
 
@@ -173,12 +172,9 @@ public class BaseAppActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             switch (selectedDrawerItem.getIdentifier()){
                 case NAVMENU_PROFILE: {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("userID", getIntent().getIntExtra("userID",-1));
-                    Fragment userProfileFragment = new UserProfileFragment();
-                    userProfileFragment.setArguments(bundle);
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, userProfileFragment).commit();
+                    Intent intent = new Intent(BaseAppActivity.this, UserProfileActivity.class);
+                        intent.putExtra("userID",getIntent().getIntExtra("userID",-1));
+                        startActivity(intent);
                     break;
                 }
 
