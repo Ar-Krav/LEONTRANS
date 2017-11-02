@@ -107,11 +107,11 @@ public class NavigationDrawerMain {
                 case NAVMENU_PROFILE: {
                     Intent intent = new Intent(activity, UserProfileActivity.class);
 
-                    SharedPreferences userPasswordSharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
+                    /*SharedPreferences userPasswordSharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
                     String userPassword = userPasswordSharedPreferences.getString("userPassword","");
-                    int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
+                    int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);*/
 
-                    intent.putExtra("userID", userID);
+                    intent.putExtra("userID", 101); //TODO strange bug with shared preferences extras.
                     activity.startActivity(intent);
                     break;
                 }
