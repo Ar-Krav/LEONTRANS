@@ -1,6 +1,7 @@
 package leontrans.leontranstm.basepart;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.fragments.UserProfileFragment;
 
 
 public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
@@ -21,15 +23,20 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
     private LayoutInflater inflater;
     private ArrayList<AdvertisementInfo> advertisementInfoList;
 
-    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
+    BaseAppActivity baseAppActivity;
+
+    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList, BaseAppActivity baseAppActivity) {
         super(context, resource, advertisementInfoList);
         this.advertisementInfoList = advertisementInfoList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
+
+        this.baseAppActivity = baseAppActivity;
+        Log.d("TR_LOG","baseApp" + baseAppActivity);
     }
 
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         View view = convertView;
         if (view == null){
@@ -80,7 +87,22 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         city_to_ru.setText(advertisementInfoList.get(position).getCity_to_ru());
 
 
-        TextView name = (TextView) view.findViewById(R.id.name);
+        Button name = (Button) view.findViewById(R.id.name);
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                    bundle.putInt("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
+                UserProfileFragment userProfileFragment = new UserProfileFragment();
+                    userProfileFragment.setArguments(bundle);
+
+                Log.d("TR_LOG","iserProfile" + userProfileFragment);
+                Log.d("TR_LOG","userID" + Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
+
+                baseAppActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, userProfileFragment).commit();
+                Log.d("TR_LOG","baseApp" + userProfileFragment);
+            }
+        });
 
 
         if(advertisementInfoList.get(position).getPerson_type().equals("individual")){

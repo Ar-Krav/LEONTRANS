@@ -1,6 +1,7 @@
 package leontrans.leontranstm.basepart;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,8 @@ import leontrans.leontranstm.basepart.fragments.UserProfileFragment;
 
 public class BaseAppActivity extends AppCompatActivity {
 
+    public static BaseAppActivity baseAppActivity;
+
     private Toolbar toolbar;
     private MenuItem filterStartMenuItem;
     WebView loaderView;
@@ -45,9 +48,12 @@ public class BaseAppActivity extends AppCompatActivity {
     private final int NAVMENU_CARDS = 1;
     private final int NAVMENU_FILTER_SETTINGS = 2;
     private final int NAVMENU_FAQ = 3;
+    private final int NAVMENU_ADMIN = 4; //TODO admin exit button. Developing part only!
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        baseAppActivity = this;
 
         setContentView(R.layout.activity_base_app);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new CardsFragment()).commit();
@@ -79,7 +85,8 @@ public class BaseAppActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName("F.A.Q.").withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(NAVMENU_FAQ),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("Про програму").withIcon(FontAwesome.Icon. faw_info_circle)
+                        new SecondaryDrawerItem().withName("Про програму").withIcon(FontAwesome.Icon. faw_info_circle),
+                        new PrimaryDrawerItem().withName("admin exit").withIcon(FontAwesome.Icon.faw_medkit).withIdentifier(NAVMENU_ADMIN) //TODO admin exit button. Developing part only!
                 )
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
                     @Override
@@ -98,6 +105,12 @@ public class BaseAppActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+
+                        if (drawerItem.getIdentifier() == NAVMENU_ADMIN) {
+                            SharedPreferences sharedPreferences = getSharedPreferences("hashPassword", MODE_PRIVATE);
+                            sharedPreferences.edit().clear().commit();
+                        } //TODO admin exit button. Developing part only!
+
                         if (drawerItem.getIdentifier() == idSelectedDrawerItem) return;
 
                         filterStartMenuItem.setVisible(false);
@@ -142,6 +155,10 @@ public class BaseAppActivity extends AppCompatActivity {
         }
     }
 
+    public static BaseAppActivity getBaseAppActivity() {
+        return baseAppActivity;
+    }
+
     private class Async extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -157,9 +174,9 @@ public class BaseAppActivity extends AppCompatActivity {
             switch (selectedDrawerItem.getIdentifier()){
                 case NAVMENU_PROFILE: {
                     Bundle bundle = new Bundle();
-                        bundle.putInt("userID", getIntent().getIntExtra("userID",-1));
+                    bundle.putInt("userID", getIntent().getIntExtra("userID",-1));
                     Fragment userProfileFragment = new UserProfileFragment();
-                        userProfileFragment.setArguments(bundle);
+                    userProfileFragment.setArguments(bundle);
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, userProfileFragment).commit();
                     break;

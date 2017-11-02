@@ -83,7 +83,14 @@ public class UserProfileFragment extends Fragment {
                         .load("https://leon-trans.com/uploads/user-avatars/" + dataJson.getString("avatar"))
                         .error(R.drawable.default_avatar)
                         .into(userAvatarImageView);
-                TV_name_value.setText(dataJson.getString("full_name"));
+
+                if (dataJson.getString("person_type").equals("individual")){
+                    TV_name_value.setText(dataJson.getString("full_name"));
+                }
+                else {
+                    TV_name_value.setText(dataJson.getString("nomination_prefix") + dataJson.getString("nomination_name"));
+                }
+
                 TV_city_value.setText(dataJson.getString("location_city"));
                 TV_email_value.setText(dataJson.getString("email"));
                 TV_telephone_value.setText(dataJson.getString("phones"));

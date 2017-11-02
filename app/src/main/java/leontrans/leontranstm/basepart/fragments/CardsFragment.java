@@ -28,6 +28,7 @@ import java.util.Date;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.AdvertisementAdapter;
 import leontrans.leontranstm.basepart.AdvertisementInfo;
+import leontrans.leontranstm.basepart.BaseAppActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 
@@ -66,7 +67,7 @@ public class CardsFragment extends Fragment {
         setMenuItemSwitcherAction();
 
         advertisementListView = (ListView) view.findViewById(R.id.listView);
-        adapter = new AdvertisementAdapter(getActivity(),R.layout.list_item_layout,arrayListAdvertisement);
+        adapter = new AdvertisementAdapter(getActivity(),R.layout.list_item_layout,arrayListAdvertisement, BaseAppActivity.getBaseAppActivity());
         advertisementListView.setAdapter(adapter);
         btToBottom = (FloatingActionButton) view.findViewById(R.id.btToBottom);
         btToTop = (FloatingActionButton) view.findViewById(R.id.btToTop);
@@ -76,7 +77,9 @@ public class CardsFragment extends Fragment {
             arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=", numbOfAdvertisement);
 
             for(int i = 0 ; i < numbOfAdvertisement ; i ++){
-                arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),
+                arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i).getString("trans_capacity"),arrayListJsonObjectAdvertisement.get(i).getString("trans_weight"),
+                        arrayListJsonObjectAdvertisement.get(i).getString("goods_load_type"),arrayListJsonObjectAdvertisement.get(i).getString("goods"),arrayListJsonObjectAdvertisement.get(i).getString("pay_currency"),
+                        arrayListJsonObjectAdvertisement.get(i).getString("pay_price"),arrayListJsonObjectAdvertisement.get(i).getString("pay_type"),
                         arrayListJsonObjectAdvertisement.get(i).getString("trans_type"),makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_from")),makeDate(arrayListJsonObjectAdvertisement.get(i).getString("date_to"))
                         ,arrayListJsonObjectAdvertisement.get(i).getString("country_from_ru")
                         ,arrayListJsonObjectAdvertisement.get(i).getString("country_to_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_from_ru"),arrayListJsonObjectAdvertisement.get(i).getString("city_to_ru")
@@ -117,8 +120,7 @@ public class CardsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                adapter.notifyDataSetChanged();
-                numbOfAdvertisement = numbOfAdvertisement + 10 ;
+                numbOfAdvertisement += 10 ;
                 arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
                 try {
                     for(int i = numbOfAdvertisement/2 ; i < numbOfAdvertisement  ; i ++){

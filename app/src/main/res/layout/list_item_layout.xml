@@ -140,7 +140,6 @@
             android:layout_below="@+id/pay_type"
             android:layout_marginTop="32dp"
             android:background="@drawable/button"
-            android:clickable="false"
             android:text="name"
             android:textAllCaps="false"
             android:textSize="14sp"
