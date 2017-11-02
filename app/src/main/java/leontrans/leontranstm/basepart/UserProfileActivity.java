@@ -51,7 +51,7 @@ public class UserProfileActivity extends AppCompatActivity {
         animationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
         userID = getIntent().getIntExtra("userID",-1);
-        if (userID >= 0) new LoadFragmentData("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID).execute();
+        if (userID > 0) new LoadFragmentData("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID).execute();
     }
 
     private class LoadFragmentData extends SiteDataListener {
