@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -28,7 +27,6 @@ import java.util.Date;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.AdvertisementAdapter;
 import leontrans.leontranstm.basepart.AdvertisementInfo;
-import leontrans.leontranstm.basepart.BaseAppActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 
@@ -51,7 +49,6 @@ public class CardsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((WebView) getActivity().findViewById(R.id.loaderView)).setVisibility(View.GONE);
 
         View view = inflater.inflate(R.layout.fragment_cards, container, false);
         context = getContext();
@@ -67,7 +64,7 @@ public class CardsFragment extends Fragment {
         setMenuItemSwitcherAction();
 
         advertisementListView = (ListView) view.findViewById(R.id.listView);
-        adapter = new AdvertisementAdapter(getActivity(),R.layout.list_item_layout,arrayListAdvertisement, BaseAppActivity.getBaseAppActivity());
+        //adapter = new AdvertisementAdapter(getActivity(),R.layout.list_item_layout,arrayListAdvertisement, BaseAppActivity.getBaseAppActivity());
         advertisementListView.setAdapter(adapter);
         btToBottom = (FloatingActionButton) view.findViewById(R.id.btToBottom);
         btToTop = (FloatingActionButton) view.findViewById(R.id.btToTop);

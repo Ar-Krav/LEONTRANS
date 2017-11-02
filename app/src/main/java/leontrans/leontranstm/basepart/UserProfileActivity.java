@@ -2,8 +2,8 @@ package leontrans.leontranstm.basepart;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.mikepenz.materialdrawer.Drawer;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -20,7 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.SiteDataListener;
+import leontrans.leontranstm.utils.NavigationDrawerMain;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ProgressBar loaderView;
     private ScrollView scrollView;
     private int animationDuration;
+    private Drawer.Result mainNavigationDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class UserProfileActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_PROFILE).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
         scrollView = (ScrollView) findViewById(R.id.infoScrollView);
@@ -137,5 +141,14 @@ public class UserProfileActivity extends AppCompatActivity {
                         loaderView.setVisibility(View.GONE);
                     }
                 });
+    }
+
+    public void onBackPressed(){
+        if(mainNavigationDrawer.isDrawerOpen()){
+            mainNavigationDrawer.closeDrawer();
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }

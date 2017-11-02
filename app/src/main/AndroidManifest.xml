@@ -21,8 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".basepart.BaseAppActivity"></activity>
-        <activity android:name=".basepart.UserProfileActivity"></activity>
+        <activity android:name=".basepart.UserProfileActivity" />
+        <activity android:name=".basepart.CardsActivity" />
+        <activity android:name=".basepart.FAQActivity" />
+        <activity android:name=".basepart.FilterSettingsActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.basepart.BaseAppActivity;
+import leontrans.leontranstm.basepart.CardsActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -37,7 +37,7 @@ public class LauncherActivity extends AppCompatActivity {
     private void checkUserHashPassword(String urlRequest){
         int userID = siteDataUtils.getUserIdByHashpassword(urlRequest);
         if (userID > 0){
-            Intent intent = new Intent(LauncherActivity.this, BaseAppActivity.class);
+            Intent intent = new Intent(LauncherActivity.this, CardsActivity.class);
             intent.putExtra("userID",userID);
             startActivity(intent);
         }

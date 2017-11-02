@@ -21,16 +21,11 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
     private LayoutInflater inflater;
     private ArrayList<AdvertisementInfo> advertisementInfoList;
 
-    BaseAppActivity baseAppActivity;
-
-    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList, BaseAppActivity baseAppActivity) {
+    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
         super(context, resource, advertisementInfoList);
         this.advertisementInfoList = advertisementInfoList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-
-        this.baseAppActivity = baseAppActivity;
-        Log.d("TR_LOG","baseApp" + baseAppActivity);
     }
 
     @Override
@@ -86,21 +81,6 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
 
         Button name = (Button) view.findViewById(R.id.name);
-        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                    bundle.putInt("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
-                UserProfileFragment userProfileFragment = new UserProfileFragment();
-                    userProfileFragment.setArguments(bundle);
-
-                Log.d("TR_LOG","iserProfile" + userProfileFragment);
-                Log.d("TR_LOG","userID" + Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
-
-                baseAppActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, userProfileFragment).commit();
-                Log.d("TR_LOG","baseApp" + userProfileFragment);
-            }
-        });
 
 
         if(advertisementInfoList.get(position).getPerson_type().equals("individual")){
