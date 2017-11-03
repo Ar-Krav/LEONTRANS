@@ -83,8 +83,7 @@ public class CardsActivity extends AppCompatActivity {
         btToBottom = (FloatingActionButton) findViewById(R.id.btToBottom);
         btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
 
-        LoadCards loadCards = new LoadCards();
-        loadCards.doInBackground();
+        new LoadCards().execute();
 
 
         advertisementListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -143,7 +142,8 @@ public class CardsActivity extends AppCompatActivity {
                     arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo));
                 }
 
-                adapter.notifyDataSetChanged();
+                Log.d("CARD_LOG_TAG","finishing background");
+                //adapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -155,6 +155,7 @@ public class CardsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Log.d("CARD_LOG_TAG","onPost");
+            adapter.notifyDataSetChanged();
         }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
