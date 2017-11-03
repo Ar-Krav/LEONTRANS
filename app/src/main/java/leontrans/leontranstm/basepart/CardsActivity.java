@@ -88,28 +88,34 @@ public class CardsActivity extends AppCompatActivity {
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
 
-        advertisementListView = (ListView)findViewById(R.id.listView);
-            advertisementListView.setAdapter(adapter);
-            advertisementListView.setOnScrollListener(getListScrollListener());
-
         loadNewCardsBtn = (FloatingActionButton) findViewById(R.id.btToBottom);
             loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
 
         btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
             btToTop.setOnClickListener(getUpButtonClickListener());
 
-        new LoadCards().execute();
+        advertisementListView = (ListView)findViewById(R.id.listView);
+            advertisementListView.setAdapter(adapter);
+            advertisementListView.setOnScrollListener(getListScrollListener());
+
+        new LoadCards().execute(0);
 
     }
 
-    private class LoadCards extends AsyncTask<Void, Void, Void> {
+    private class LoadCards extends AsyncTask<Integer, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loaderView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
             try {
                 arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement), numbOfAdvertisement);
 
-                for(int i = 0 ; i < arrayListJsonObjectAdvertisement.size() ; i ++){
+                for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
                     JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
 
@@ -126,7 +132,9 @@ public class CardsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             adapter.notifyDataSetChanged();
-            crossfade();
+
+            loaderView.setVisibility(View.GONE);
+            contentArea.setVisibility(View.VISIBLE);
         }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
@@ -187,32 +195,6 @@ public class CardsActivity extends AppCompatActivity {
                 urlConnection.disconnect();
             }
             return resultJson;
-        }
-    }
-
-    private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            adapter.notifyDataSetChanged();
-            numbOfAdvertisement += 10 ;
-            arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=",numbOfAdvertisement);
-            try {
-                for(int i = numbOfAdvertisement/2 ; i < numbOfAdvertisement  ; i ++){
-                    arrayListAdvertisement.add(new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i)));
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            adapter.notifyDataSetChanged();
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
         }
     }
 
@@ -324,8 +306,8 @@ public class CardsActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new LoadByButtonPress().execute();
-                adapter.notifyDataSetChanged();
+                numbOfAdvertisement += 10;
+                new LoadCards().execute(numbOfAdvertisement/2);
             }
         };
     }
@@ -337,26 +319,6 @@ public class CardsActivity extends AppCompatActivity {
                 advertisementListView.setSelectionAfterHeaderView();
             }
         };
-    }
-
-    private void crossfade() {
-        contentArea.setAlpha(0f);
-        contentArea.setVisibility(View.VISIBLE);
-
-        contentArea.animate()
-                .alpha(1f)
-                .setDuration(animationDuration)
-                .setListener(null);
-
-        loaderView.animate()
-                .alpha(0f)
-                .setDuration(animationDuration)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        loaderView.setVisibility(View.GONE);
-                    }
-                });
     }
 
     public void onBackPressed(){

@@ -104,12 +104,6 @@ public class NavigationDrawerMain {
     private class StartActivityInAsync extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            loaderSpinner.setVisibility(View.VISIBLE);
-        }
-
-        @Override
         protected Void doInBackground(Void... voids) {
             Log.d("TEST_TAG_LOG","userID " + selectedDrawerItem.getIdentifier());
 
@@ -146,13 +140,6 @@ public class NavigationDrawerMain {
             }
 
             return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            Log.d("navdrawer", "onPostExecute: navdrawer");
-            loaderSpinner.setVisibility(View.GONE);
         }
     }
 }
