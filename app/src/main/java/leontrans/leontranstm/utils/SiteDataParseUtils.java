@@ -48,15 +48,13 @@ public class SiteDataParseUtils {
         return null;
     }
 
-    public ArrayList<JSONObject> getCardsInformation(String url , int numOfRequests){
+    public ArrayList<JSONObject> getCardsInformation(String jsonResult , int numOfRequests){
         JSONObject dataJsonObj = null;
         JSONArray dataJsonArr = null ;
         ArrayList<JSONObject> resultArray = new ArrayList<>();
 
-        String resJson = getJsonString(url+numOfRequests);
-
         try{
-            dataJsonArr = new JSONArray(resJson);
+            dataJsonArr = new JSONArray(jsonResult);
             for(int i = 0 ; i < numOfRequests ; i++){
                 dataJsonObj = dataJsonArr.getJSONObject(i);
                 resultArray.add(dataJsonObj);
@@ -69,21 +67,17 @@ public class SiteDataParseUtils {
         return resultArray;
     }
 
-    public ArrayList<JSONObject> getCardUserId(String url){
-        JSONObject dataJsonArr = null;
-        ArrayList<JSONObject> resultArray = new ArrayList<>();
-
-        String resJson = getJsonString(url);
+    public JSONObject getCardUserId(String resJson){
+        JSONObject dataJsonObj = null;
 
         try {
-            dataJsonArr = new JSONObject(resJson);
-            resultArray.add(dataJsonArr);
+            dataJsonObj = new JSONObject(resJson);
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return resultArray;
+        return dataJsonObj;
     }
 
     private String getJsonString(String urlRequest){

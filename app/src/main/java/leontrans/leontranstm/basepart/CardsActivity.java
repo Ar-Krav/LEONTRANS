@@ -8,11 +8,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -21,9 +23,15 @@ import com.mikepenz.materialdrawer.Drawer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
@@ -36,6 +44,7 @@ public class CardsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Drawer.Result mainNavigationDrawer;
+    private ProgressBar loaderView;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
@@ -54,6 +63,9 @@ public class CardsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_CARDS).getMainNavigationDrawer();
+
+        loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
+        loaderView.setVisibility(View.GONE);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nvView);
@@ -98,9 +110,10 @@ public class CardsActivity extends AppCompatActivity {
         btToBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadByButtonPress loadByButtonPress = new LoadByButtonPress();
+                /*LoadByButtonPress loadByButtonPress = new LoadByButtonPress();
                 loadByButtonPress.doInBackground();
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();*/
+                Toast.makeText(CardsActivity.this, "BETA", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -117,11 +130,19 @@ public class CardsActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            Log.d("CARD_LOG_TAG","isBack");
             try {
-                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=", numbOfAdvertisement);
-                for(int i = 0 ; i < numbOfAdvertisement ; i ++){
-                    arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i)));
+                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation(getSiteRexuestResult("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement), numbOfAdvertisement);
+
+                Log.d("CARD_LOG_TAG","after request");
+                for(int i = 0 ; i < arrayListJsonObjectAdvertisement.size() ; i ++){
+                    JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId(getSiteRexuestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
+                            +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
+
+                    AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
+                    arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo));
                 }
+
                 adapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -133,12 +154,71 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            Log.d("CARD_LOG_TAG","onPost");
+        }
 
+        private String getSiteRexuestResult(String urlAddress){
+           HttpURLConnection urlConnection = null;
+           BufferedReader reader = null;
+           String resultJson = "";
 
+            try {
+                URL url = new URL(urlAddress);
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                resultJson = buffer.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            return resultJson;
+        }
+
+        private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
+            JSONObject userCreatorEmploeeOwner;
+            String result = "";
+
+            switch (advertisementOwnerInfo.getString("person_type")){
+                case "individual":{
+                    result = advertisementOwnerInfo.getString("full_name");
+                    break;
+                }
+                case "entity":{
+                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    break;
+                }
+                case "fop":{
+                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    break;
+                }
+                case "employee":{
+                    userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
+                    result = userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name");
+                    break;
+                }
+            }
+            return result;
         }
     }
 
-    private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
+    /*private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -162,7 +242,7 @@ public class CardsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
-    }
+    }*/
 
     private void setMenuItemSwitcherAction(){
         MenuItem menuItem;

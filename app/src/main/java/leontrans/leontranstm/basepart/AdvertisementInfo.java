@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class AdvertisementInfo {
@@ -28,9 +29,8 @@ public class AdvertisementInfo {
     private String telephone;
     private String person_type;
     private String full_name;
-    private ArrayList<JSONObject> arrayListJsonObjectUsers;
 
-    public AdvertisementInfo(JSONObject list) throws JSONException {
+    public AdvertisementInfo(JSONObject list, AdvertisementOwnerInfo advertisementOwnerInfo) throws JSONException {
         this.trans_type = list.getString("trans_type");
         this.date_from = makeDate(list.getString("date_from"));
         this.date_to = makeDate(list.getString("date_to"));
@@ -47,87 +47,18 @@ public class AdvertisementInfo {
         this.goods_load_type = list.getString("goods_load_type");
         this.trans_weight = list.getString("trans_weight");
         this.trans_capacity = list.getString("trans_capacity");
-        this.arrayListJsonObjectUsers = makeTunell(list.getString("userid_creator"));
-        this.telephone = arrayListJsonObjectUsers.get(0).getString("phones");
-        this.person_type = arrayListJsonObjectUsers.get(0).getString("person_type");
-        this.full_name = getEmloyee(arrayListJsonObjectUsers.get(0).getString("person_type"));
-    }
-    public String getEmloyee(String person_type) throws JSONException {
-        ArrayList<JSONObject> arrayListJsonObjectEmploee;
-        String result = "";
 
-        switch (person_type){
-            case "individual":{
-                result = getArrayListJsonObjectUsers().get(0).getString("full_name");
-                break;
-            }
-            case "entity":{
-                result = arrayListJsonObjectUsers.get(0).getString("nomination_prefix") + " " +arrayListJsonObjectUsers.get(0).getString("nomination_name");
-                break;
-            }
-            case "fop":{
-                result = arrayListJsonObjectUsers.get(0).getString("nomination_prefix") + " " +arrayListJsonObjectUsers.get(0).getString("nomination_name");
-                break;
-            }
-            case "employee":{
-                arrayListJsonObjectEmploee = makeTunell(arrayListJsonObjectUsers.get(0).getString("employee_owner"));
-                result = arrayListJsonObjectEmploee.get(0).getString("nomination_prefix")+ " " +arrayListJsonObjectEmploee.get(0).getString("nomination_name");
-                break;
-            }
-        }
-        return result;
-    }
-    public String getPerson_type() {
-        return person_type;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    private ArrayList<JSONObject> makeTunell(String id){
-        arrayListJsonObjectUsers = new SiteDataParseUtils().getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="+id);
-        return arrayListJsonObjectUsers;
-    }
-
-    public ArrayList<JSONObject> getArrayListJsonObjectUsers() {
-        return arrayListJsonObjectUsers;
-    }
-
-    public String getTrans_capacity() {
-        return trans_capacity;
-    }
-
-    public String getTrans_weight() {
-        return trans_weight;
-    }
-
-    public String getGoods_load_type() {
-        return goods_load_type;
-    }
-
-    public String getGoods() {
-        return goods;
-    }
-
-    public String getPay_currency() {
-        return pay_currency;
-    }
-
-    public String getPay_price() {
-        return pay_price;
-    }
-
-    public String getPay_type() {
-        return pay_type;
+        this.telephone = advertisementOwnerInfo.getTelephone();
+        this.person_type = advertisementOwnerInfo.getPerson_type();
+        this.full_name = advertisementOwnerInfo.getFull_name();
     }
 
     public String getTrans_type() {
         return trans_type;
+    }
+
+    public void setTrans_type(String trans_type) {
+        this.trans_type = trans_type;
     }
 
     public String getDate_from() {
@@ -185,6 +116,87 @@ public class AdvertisementInfo {
     public void setUserid_creator(String userid_creator) {
         this.userid_creator = userid_creator;
     }
+
+    public String getPay_type() {
+        return pay_type;
+    }
+
+    public void setPay_type(String pay_type) {
+        this.pay_type = pay_type;
+    }
+
+    public String getPay_price() {
+        return pay_price;
+    }
+
+    public void setPay_price(String pay_price) {
+        this.pay_price = pay_price;
+    }
+
+    public String getPay_currency() {
+        return pay_currency;
+    }
+
+    public void setPay_currency(String pay_currency) {
+        this.pay_currency = pay_currency;
+    }
+
+    public String getGoods() {
+        return goods;
+    }
+
+    public void setGoods(String goods) {
+        this.goods = goods;
+    }
+
+    public String getGoods_load_type() {
+        return goods_load_type;
+    }
+
+    public void setGoods_load_type(String goods_load_type) {
+        this.goods_load_type = goods_load_type;
+    }
+
+    public String getTrans_weight() {
+        return trans_weight;
+    }
+
+    public void setTrans_weight(String trans_weight) {
+        this.trans_weight = trans_weight;
+    }
+
+    public String getTrans_capacity() {
+        return trans_capacity;
+    }
+
+    public void setTrans_capacity(String trans_capacity) {
+        this.trans_capacity = trans_capacity;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getPerson_type() {
+        return person_type;
+    }
+
+    public void setPerson_type(String person_type) {
+        this.person_type = person_type;
+    }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
     private String makeDate(String date){
         long dv;
         Date df;

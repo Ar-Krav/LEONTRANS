@@ -1,6 +1,7 @@
 package leontrans.leontranstm.basepart;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -82,7 +83,14 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         Button name = (Button) view.findViewById(R.id.name);
         name.setText(advertisementInfoList.get(position).getFull_name());
-
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,UserProfileActivity.class);
+                intent.putExtra("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }

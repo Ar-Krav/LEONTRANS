@@ -3,6 +3,8 @@ package leontrans.leontranstm.basepart;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -15,6 +17,8 @@ public class FAQActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Drawer.Result mainNavigationDrawer;
 
+    private ProgressBar loaderView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,9 @@ public class FAQActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FAQ).getMainNavigationDrawer();
+
+        loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
+        loaderView.setVisibility(View.GONE);
     }
 
     public void onBackPressed(){

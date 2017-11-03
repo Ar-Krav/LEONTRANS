@@ -5,6 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
-    android:minHeight="?attr/actionBarSize"
-    android:paddingTop="@dimen/tool_bar_top_padding">
+    android:minHeight="?attr/actionBarSize">
 </android.support.v7.widget.Toolbar>

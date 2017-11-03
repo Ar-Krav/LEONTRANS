@@ -1,6 +1,7 @@
 package leontrans.leontranstm.utils;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -49,5 +50,13 @@ public class SiteDataListener extends AsyncTask<Void, Void, String> {
 
         urlConnection.disconnect();
         return resultJson;
+    }
+
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+
+        Log.d("TEST_LOG_TAK", "Url: " + urlAddress);
     }
 }

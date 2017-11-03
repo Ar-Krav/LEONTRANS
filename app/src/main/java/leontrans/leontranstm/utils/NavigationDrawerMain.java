@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -41,10 +42,13 @@ public class NavigationDrawerMain {
     private IDrawerItem selectedDrawerItem;
     private int idSelectedDrawerItem;
 
+    private ProgressBar loaderSpinner;
+
     public NavigationDrawerMain(Activity activity, android.support.v7.widget.Toolbar toolbar, int idSelectedDrawerItem) {
         this.activity = activity;
         this.toolbar = toolbar;
         this.idSelectedDrawerItem = idSelectedDrawerItem;
+        loaderSpinner = activity.findViewById(R.id.loading_spinner);
     }
 
     public Drawer.Result getMainNavigationDrawer(){
@@ -100,6 +104,12 @@ public class NavigationDrawerMain {
     private class StartActivityInAsync extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loaderSpinner.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected Void doInBackground(Void... voids) {
             Log.d("TEST_TAG_LOG","userID " + selectedDrawerItem.getIdentifier());
 
@@ -136,6 +146,12 @@ public class NavigationDrawerMain {
             }
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            loaderSpinner.setVisibility(View.GONE);
         }
     }
 }
