@@ -22,16 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".basepart.UserProfileActivity"
+        <activity android:name=".basepart.userprofile.UserProfileActivity"
                   android:noHistory="true"/>
-        <activity android:name=".basepart.CardsActivity" />
+        <activity android:name=".basepart.cardpart.CardsActivity" />
         <activity android:name=".basepart.FAQActivity"
                   android:noHistory="true"/>
         <activity android:name=".basepart.FilterSettingsActivity"
                   android:noHistory="true">
 
         </activity>
-        <activity android:name=".basepart.UserCardOwenerProfile">
+        <activity android:name=".basepart.userprofile.UserCardOwenerProfile">
 
         </activity>
     </application>

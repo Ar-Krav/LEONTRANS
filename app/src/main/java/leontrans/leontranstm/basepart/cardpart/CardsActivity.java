@@ -1,7 +1,5 @@
-package leontrans.leontranstm.basepart;
+package leontrans.leontranstm.basepart.cardpart;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -11,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;

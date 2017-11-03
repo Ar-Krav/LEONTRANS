@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
-import android.widget.Toolbar;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -19,10 +18,10 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.basepart.CardsActivity;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.basepart.FAQActivity;
 import leontrans.leontranstm.basepart.FilterSettingsActivity;
-import leontrans.leontranstm.basepart.UserProfileActivity;
+import leontrans.leontranstm.basepart.userprofile.UserProfileActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_ADMIN;
@@ -30,10 +29,6 @@ import static leontrans.leontranstm.utils.Constants.NAVMENU_CARDS;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_FAQ;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_FILTER_SETTINGS;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_PROFILE;
-
-/**
- * Created by Ar-Krav on 02.11.2017.
- */
 
 public class NavigationDrawerMain {
 

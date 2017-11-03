@@ -1,4 +1,4 @@
-package leontrans.leontranstm.basepart;
+package leontrans.leontranstm.basepart.userprofile;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,23 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.mikepenz.materialdrawer.Drawer;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.utils.Constants;
-import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataListener;
-
-/**
- * Created by Ar-Krav on 03.11.2017.
- */
 
 public class UserCardOwenerProfile extends AppCompatActivity{
     private int userID;

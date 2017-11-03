@@ -7,7 +7,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.basepart.CardsActivity;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class LauncherActivity extends AppCompatActivity {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A071A8"
-    tools:context="leontrans.leontranstm.basepart.UserProfileActivity">
+    tools:context="leontrans.leontranstm.basepart.userprofile.UserProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
