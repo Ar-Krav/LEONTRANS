@@ -1,7 +1,10 @@
 package leontrans.leontranstm.basepart;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -44,14 +47,18 @@ public class CardsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Drawer.Result mainNavigationDrawer;
+
+
     private ProgressBar loaderView;
+    private ConstraintLayout contentArea;
+    private int animationDuration;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
     private int numbOfAdvertisement = 10;
 
     private ListView advertisementListView;
-    private FloatingActionButton btToBottom;
+    private FloatingActionButton loadNewCardsBtn;
     private FloatingActionButton btToTop;
     private AdvertisementAdapter adapter;
     @Override
@@ -65,7 +72,9 @@ public class CardsActivity extends AppCompatActivity {
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_CARDS).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
-        loaderView.setVisibility(View.GONE);
+        contentArea = (ConstraintLayout) findViewById(R.id.content_area);
+        contentArea.setVisibility(View.GONE);
+        animationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nvView);
@@ -77,51 +86,19 @@ public class CardsActivity extends AppCompatActivity {
         setMenuItemSwitcherAction();
 
         siteDataUtils = new SiteDataParseUtils();
-        advertisementListView = (ListView)findViewById(R.id.listView);
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
-        advertisementListView.setAdapter(adapter);
-        btToBottom = (FloatingActionButton) findViewById(R.id.btToBottom);
+
+        advertisementListView = (ListView)findViewById(R.id.listView);
+            advertisementListView.setAdapter(adapter);
+            advertisementListView.setOnScrollListener(getListScrollListener());
+
+        loadNewCardsBtn = (FloatingActionButton) findViewById(R.id.btToBottom);
+            loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
+
         btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
+            btToTop.setOnClickListener(getUpButtonClickListener());
 
         new LoadCards().execute();
-
-
-        advertisementListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                final int lastItem = firstVisibleItem + visibleItemCount;
-
-                if(lastItem >= totalItemCount-1){
-                    btToBottom.setVisibility(View.VISIBLE);
-                    btToTop.setVisibility(View.VISIBLE);
-
-                }else{
-                    btToBottom.setVisibility(View.INVISIBLE);
-                    btToTop.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        btToBottom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*LoadByButtonPress loadByButtonPress = new LoadByButtonPress();
-                loadByButtonPress.doInBackground();
-                adapter.notifyDataSetChanged();*/
-                Toast.makeText(CardsActivity.this, "BETA", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btToTop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                advertisementListView.setSelectionAfterHeaderView();
-            }
-        });
 
     }
 
@@ -129,33 +106,27 @@ public class CardsActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("CARD_LOG_TAG","isBack");
             try {
-                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation(getSiteRexuestResult("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement), numbOfAdvertisement);
+                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement), numbOfAdvertisement);
 
-                Log.d("CARD_LOG_TAG","after request");
                 for(int i = 0 ; i < arrayListJsonObjectAdvertisement.size() ; i ++){
-                    JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId(getSiteRexuestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
+                    JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
 
                     AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
                     arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo));
                 }
-
-                Log.d("CARD_LOG_TAG","finishing background");
-                //adapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Log.d("CARD_LOG_TAG","onPost");
             adapter.notifyDataSetChanged();
+            crossfade();
         }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
@@ -184,7 +155,7 @@ public class CardsActivity extends AppCompatActivity {
             return result;
         }
 
-        private String getSiteRexuestResult(String urlAddress){
+        private String getSiteRequestResult(String urlAddress){
            HttpURLConnection urlConnection = null;
            BufferedReader reader = null;
            String resultJson = "";
@@ -217,11 +188,9 @@ public class CardsActivity extends AppCompatActivity {
             }
             return resultJson;
         }
-
-
     }
 
-    /*private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
+    private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -245,7 +214,7 @@ public class CardsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
-    }*/
+    }
 
     private void setMenuItemSwitcherAction(){
         MenuItem menuItem;
@@ -327,6 +296,67 @@ public class CardsActivity extends AppCompatActivity {
                 return true;
             }
         };
+    }
+
+    private AbsListView.OnScrollListener getListScrollListener(){
+        return new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                final int lastItem = firstVisibleItem + visibleItemCount;
+
+                if(lastItem >= totalItemCount-1){
+                    loadNewCardsBtn.setVisibility(View.VISIBLE);
+                    btToTop.setVisibility(View.VISIBLE);
+
+                }else{
+                    loadNewCardsBtn.setVisibility(View.INVISIBLE);
+                    btToTop.setVisibility(View.INVISIBLE);
+                }
+            }
+        };
+    }
+
+    private View.OnClickListener getLoadNewCardsBtnListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new LoadByButtonPress().execute();
+                adapter.notifyDataSetChanged();
+            }
+        };
+    }
+
+    private View.OnClickListener getUpButtonClickListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                advertisementListView.setSelectionAfterHeaderView();
+            }
+        };
+    }
+
+    private void crossfade() {
+        contentArea.setAlpha(0f);
+        contentArea.setVisibility(View.VISIBLE);
+
+        contentArea.animate()
+                .alpha(1f)
+                .setDuration(animationDuration)
+                .setListener(null);
+
+        loaderView.animate()
+                .alpha(0f)
+                .setDuration(animationDuration)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        loaderView.setVisibility(View.GONE);
+                    }
+                });
     }
 
     public void onBackPressed(){

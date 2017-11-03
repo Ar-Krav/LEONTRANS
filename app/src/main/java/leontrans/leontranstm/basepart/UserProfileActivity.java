@@ -31,7 +31,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ProgressBar loaderView;
-    private ScrollView scrollView;
+    private ScrollView contentArea;
     private int animationDuration;
     private Drawer.Result mainNavigationDrawer;
 
@@ -46,8 +46,8 @@ public class UserProfileActivity extends AppCompatActivity {
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_PROFILE).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
-        scrollView = (ScrollView) findViewById(R.id.infoScrollView);
-        scrollView.setVisibility(View.GONE);
+        contentArea = (ScrollView) findViewById(R.id.content_area);
+        contentArea.setVisibility(View.GONE);
         animationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
         userID = getIntent().getIntExtra("userID",-1);
@@ -124,10 +124,10 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void crossfade() {
-        scrollView.setAlpha(0f);
-        scrollView.setVisibility(View.VISIBLE);
+        contentArea.setAlpha(0f);
+        contentArea.setVisibility(View.VISIBLE);
 
-        scrollView.animate()
+        contentArea.animate()
                 .alpha(1f)
                 .setDuration(animationDuration)
                 .setListener(null);

@@ -151,6 +151,7 @@ public class NavigationDrawerMain {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            Log.d("navdrawer", "onPostExecute: navdrawer");
             loaderSpinner.setVisibility(View.GONE);
         }
     }
