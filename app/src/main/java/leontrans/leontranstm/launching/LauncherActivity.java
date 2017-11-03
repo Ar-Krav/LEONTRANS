@@ -3,6 +3,7 @@ package leontrans.leontranstm.launching;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 
 import leontrans.leontranstm.R;
@@ -20,6 +21,9 @@ public class LauncherActivity extends AppCompatActivity {
 
         siteDataUtils = new SiteDataParseUtils();
         isUserAlreadySignedin();
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     public void isUserAlreadySignedin(){

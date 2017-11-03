@@ -157,6 +157,32 @@ public class CardsActivity extends AppCompatActivity {
             Log.d("CARD_LOG_TAG","onPost");
         }
 
+        private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
+            JSONObject userCreatorEmploeeOwner;
+            String result = "";
+
+            switch (advertisementOwnerInfo.getString("person_type")){
+                case "individual":{
+                    result = advertisementOwnerInfo.getString("full_name");
+                    break;
+                }
+                case "entity":{
+                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    break;
+                }
+                case "fop":{
+                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    break;
+                }
+                case "employee":{
+                    userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
+                    result = userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name");
+                    break;
+                }
+            }
+            return result;
+        }
+
         private String getSiteRexuestResult(String urlAddress){
            HttpURLConnection urlConnection = null;
            BufferedReader reader = null;
@@ -191,31 +217,7 @@ public class CardsActivity extends AppCompatActivity {
             return resultJson;
         }
 
-        private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
-            JSONObject userCreatorEmploeeOwner;
-            String result = "";
 
-            switch (advertisementOwnerInfo.getString("person_type")){
-                case "individual":{
-                    result = advertisementOwnerInfo.getString("full_name");
-                    break;
-                }
-                case "entity":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "fop":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "employee":{
-                    userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
-                    result = userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name");
-                    break;
-                }
-            }
-            return result;
-        }
     }
 
     /*private class LoadByButtonPress extends AsyncTask<Void, Void, Void>{
