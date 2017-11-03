@@ -307,7 +307,7 @@ public class CardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numbOfAdvertisement += 10;
-                new LoadCards().execute(numbOfAdvertisement/2);
+                new LoadCards().execute(numbOfAdvertisement-10);
             }
         };
     }

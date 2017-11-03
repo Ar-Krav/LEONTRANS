@@ -86,7 +86,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,UserProfileActivity.class);
+                Intent intent = new Intent(context,UserCardOwenerProfile.class);
                 intent.putExtra("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
                 context.startActivity(intent);
             }
