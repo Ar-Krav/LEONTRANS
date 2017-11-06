@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -316,6 +318,24 @@ public class CardsActivity extends AppCompatActivity {
                 advertisementListView.setSelectionAfterHeaderView();
             }
         };
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cards_activity_meny,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerLayout.isDrawerOpen(navView)){
+            drawerLayout.closeDrawer(navView);
+        }
+        else {
+            drawerLayout.openDrawer(navView);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void onBackPressed(){
