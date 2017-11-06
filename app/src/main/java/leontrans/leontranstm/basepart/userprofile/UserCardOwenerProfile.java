@@ -117,7 +117,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
         String dateFrom;
         dv = Long.valueOf(date) * 1000;
         df = new java.util.Date(dv);
-        dateFrom = new SimpleDateFormat("MM.dd.yyyy").format(df);
+        dateFrom = new SimpleDateFormat("dd.MM.yyyy").format(df);
         return dateFrom;
     }
 

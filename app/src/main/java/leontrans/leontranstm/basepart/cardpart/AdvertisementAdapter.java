@@ -68,7 +68,6 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         telephone.setText(advertisementInfoList.get(position).getTelephone());
 
-
         trans_type.setText(advertisementInfoList.get(position).getTrans_type());
         date_from.setText(advertisementInfoList.get(position).getDate_from());
         date_to.setText(advertisementInfoList.get(position).getDate_to());
