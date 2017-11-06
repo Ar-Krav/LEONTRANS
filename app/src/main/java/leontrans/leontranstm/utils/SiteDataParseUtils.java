@@ -82,7 +82,7 @@ public class SiteDataParseUtils {
         return dataJsonObj;
     }
 
-    private String getSiteRequestResult(String urlAddress){
+    public String getSiteRequestResult(String urlAddress){
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";

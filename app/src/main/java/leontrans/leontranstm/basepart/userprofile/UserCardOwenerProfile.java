@@ -2,6 +2,7 @@ package leontrans.leontranstm.basepart.userprofile;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +19,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.utils.SiteDataListener;
+import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class UserCardOwenerProfile extends AppCompatActivity{
     private int userID;
@@ -43,7 +44,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
         animationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
         userID = getIntent().getIntExtra("userID",-1);
-        if (userID > 0) new LoadFragmentData("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID).execute();
+        if (userID > 0) new LoadFragmentData().execute();
     }
 
     @Override
@@ -52,10 +53,11 @@ public class UserCardOwenerProfile extends AppCompatActivity{
         return true;
     }
 
-    private class LoadFragmentData extends SiteDataListener {
+    private class LoadFragmentData extends AsyncTask<Void,Void,String> {
 
-        public LoadFragmentData(String urlAddress) {
-            super(urlAddress);
+        @Override
+        protected String doInBackground(Void... voids) {
+            return new SiteDataParseUtils().getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID);
         }
 
         @Override
