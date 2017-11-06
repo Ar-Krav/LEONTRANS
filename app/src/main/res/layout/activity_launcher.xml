@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2d2d2d"
+    android:background="@drawable/splash_screen_drawable"
     tools:context="leontrans.leontranstm.launching.LauncherActivity">
 
     <FrameLayout
         android:id="@+id/fragment_area"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/logo_volumetric">
+        android:layout_height="match_parent">
 
     </FrameLayout>
 

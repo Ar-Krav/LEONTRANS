@@ -106,30 +106,27 @@ public class NavigationDrawerMain {
                 case NAVMENU_PROFILE: {
                     Intent intent = new Intent(activity, UserProfileActivity.class);
 
-                    /*SharedPreferences userPasswordSharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
+                    SharedPreferences userPasswordSharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
                     String userPassword = userPasswordSharedPreferences.getString("userPassword","");
-                    int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);*/
+                    int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
 
-                    intent.putExtra("userID", 101); //TODO strange bug with shared preferences extras.
+                    intent.putExtra("userID", userID);
                     activity.startActivity(intent);
                     break;
                 }
 
                 case NAVMENU_CARDS: {
                     activity.startActivity(new Intent(activity, CardsActivity.class));
-                    Log.d("TEST_TAG_LOG","second ");
                     break;
                 }
 
                 case NAVMENU_FILTER_SETTINGS: {
                     activity.startActivity(new Intent(activity, FilterSettingsActivity.class));
-                    Log.d("TEST_TAG_LOG","third ");
                     break;
                 }
 
                 case NAVMENU_FAQ: {
                     activity.startActivity(new Intent(activity, FAQActivity.class));
-                    Log.d("TEST_TAG_LOG","four ");
                     break;
                 }
             }

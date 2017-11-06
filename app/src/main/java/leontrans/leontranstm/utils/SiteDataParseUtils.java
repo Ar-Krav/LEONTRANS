@@ -7,6 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -15,11 +20,10 @@ public class SiteDataParseUtils {
     private final String LOG_TAG = "SiteDataParseUtils_log";
 
     public int getUserIdByHashpassword(String urlRequest){
-        String strJson = getJsonString(urlRequest);
         int requestResultID = -1;
 
         try {
-            JSONObject dataJsonObj = new JSONObject(strJson);
+            JSONObject dataJsonObj = new JSONObject(getSiteRequestResult(urlRequest));
             requestResultID = dataJsonObj.getInt("id");
             Log.d(LOG_TAG, "" + requestResultID);
 
@@ -31,10 +35,8 @@ public class SiteDataParseUtils {
     }
 
     public  String getUserHashPassword(String urlRequest){
-        String strJson = getJsonString(urlRequest);
-
         try {
-            JSONObject rootJsonObj = new JSONObject(strJson);
+            JSONObject rootJsonObj = new JSONObject(getSiteRequestResult(urlRequest));
             JSONObject userInfo = rootJsonObj.getJSONObject("id");
 
             if (userInfo.getInt("id") != 0) {
@@ -48,13 +50,13 @@ public class SiteDataParseUtils {
         return null;
     }
 
-    public ArrayList<JSONObject> getCardsInformation(String jsonResult , int numOfRequests){
+    public ArrayList<JSONObject> getCardsInformation(String urlRequest , int numOfRequests){
         JSONObject dataJsonObj = null;
         JSONArray dataJsonArr = null ;
         ArrayList<JSONObject> resultArray = new ArrayList<>();
 
         try{
-            dataJsonArr = new JSONArray(jsonResult);
+            dataJsonArr = new JSONArray(getSiteRequestResult(urlRequest));
             for(int i = 0 ; i < numOfRequests ; i++){
                 dataJsonObj = dataJsonArr.getJSONObject(i);
                 resultArray.add(dataJsonObj);
@@ -67,11 +69,11 @@ public class SiteDataParseUtils {
         return resultArray;
     }
 
-    public JSONObject getCardUserId(String resJson){
+    public JSONObject getCardUserId(String urlRequest){
         JSONObject dataJsonObj = null;
 
         try {
-            dataJsonObj = new JSONObject(resJson);
+            dataJsonObj = new JSONObject(getSiteRequestResult(urlRequest));
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -80,18 +82,38 @@ public class SiteDataParseUtils {
         return dataJsonObj;
     }
 
-    private String getJsonString(String urlRequest){
-        String strJson = "";
+    private String getSiteRequestResult(String urlAddress){
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        String resultJson = "";
 
         try {
-            strJson = new SiteDataListener(urlRequest).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            URL url = new URL(urlAddress);
+
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.connect();
+
+            InputStream inputStream = urlConnection.getInputStream();
+            StringBuffer buffer = new StringBuffer();
+
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line);
+            }
+
+            resultJson = buffer.toString();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return strJson;
+        if (urlConnection != null) {
+            urlConnection.disconnect();
+        }
+        return resultJson;
     }
 
 }

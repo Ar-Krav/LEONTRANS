@@ -110,11 +110,11 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Integer... integers) {
             try {
-                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement), numbOfAdvertisement);
+                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement, numbOfAdvertisement);
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
-                    JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId(getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
-                            +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator")));
+                    JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
+                            +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator"));
 
                     AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
                     arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo));

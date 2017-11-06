@@ -51,12 +51,4 @@ public class SiteDataListener extends AsyncTask<Void, Void, String> {
         urlConnection.disconnect();
         return resultJson;
     }
-
-
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-
-        Log.d("TEST_LOG_TAK", "Url: " + urlAddress);
-    }
 }
