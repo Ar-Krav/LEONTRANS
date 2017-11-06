@@ -233,7 +233,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:lines="3"
-            android:textColor="@color/dark"
+            android:textColor="#0000FF"
             android:text="telephone"
             android:textAlignment="center" />
 

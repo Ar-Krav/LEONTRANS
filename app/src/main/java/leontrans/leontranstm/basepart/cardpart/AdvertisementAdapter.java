@@ -1,7 +1,9 @@
 package leontrans.leontranstm.basepart.cardpart;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.kcode.bottomlib.BottomDialog;
+
 import java.util.ArrayList;
 
 import leontrans.leontranstm.R;
@@ -17,15 +23,15 @@ import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
 
 
 public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
-    private Context context;
+    private CardsActivity activity;
     private LayoutInflater inflater;
     private ArrayList<AdvertisementInfo> advertisementInfoList;
 
-    public AdvertisementAdapter(Context context, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
-        super(context, resource, advertisementInfoList);
+    public AdvertisementAdapter(CardsActivity activity, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
+        super(activity, resource, advertisementInfoList);
         this.advertisementInfoList = advertisementInfoList;
-        this.context = context;
-        this.inflater = LayoutInflater.from(context);
+        this.activity = activity;
+        this.inflater = LayoutInflater.from(activity);
     }
 
     @Override
@@ -38,7 +44,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         TextView trans_type = (TextView) view.findViewById(R.id.trans_type);
         TextView date_from = (TextView) view.findViewById(R.id.date_from);
-        TextView telephone = (TextView) view.findViewById(R.id.telephone);
+        final TextView telephone = (TextView) view.findViewById(R.id.telephone);
         TextView date_to = (TextView) view.findViewById(R.id.date_to);
         Button country_from_ru = (Button) view.findViewById(R.id.country_from_ru);
 
@@ -66,7 +72,9 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
                     +advertisementInfoList.get(position).getTrans_capacity()+"м");
         }
 
-        telephone.setText(advertisementInfoList.get(position).getTelephone());
+        telephone.setText("show telephone");
+        String [] telephoneNumbers = advertisementInfoList.get(position).getTelephone().split(",");
+        telephone.setOnClickListener(getTelephoneFieldListener(telephoneNumbers));
 
         trans_type.setText(advertisementInfoList.get(position).getTrans_type());
         date_from.setText(advertisementInfoList.get(position).getDate_from());
@@ -84,16 +92,33 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,UserCardOwenerProfile.class);
+                Intent intent = new Intent(activity,UserCardOwenerProfile.class);
                 intent.putExtra("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
-                context.startActivity(intent);
+                activity.startActivity(intent);
             }
         });
 
         return view;
     }
 
+    private View.OnClickListener getTelephoneFieldListener(final String [] telephoneNumbers){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                BottomDialog bottomDialog = BottomDialog.newInstance("telephone numbers", "return", telephoneNumbers);
+                bottomDialog.setListener(new BottomDialog.OnClickListener() {
+                    @Override
+                    public void click(int i) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telephoneNumbers[i]));
+                        activity.startActivity(intent);
+                    }
+                });
+
+                bottomDialog.show(activity.getSupportFragmentManager(),"dialogTag");
+            }
+        };
+    }
 
 
 }
