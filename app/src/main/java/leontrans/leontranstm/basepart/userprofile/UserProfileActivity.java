@@ -1,10 +1,12 @@
 package leontrans.leontranstm.basepart.userprofile;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import com.mikepenz.materialdrawer.Drawer;
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 
@@ -26,7 +28,7 @@ public class UserProfileActivity extends UserCardOwenerProfile {
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            super.onBackPressed();
+            startActivity(new Intent(UserProfileActivity.this, CardsActivity.class));
         }
     }
 }

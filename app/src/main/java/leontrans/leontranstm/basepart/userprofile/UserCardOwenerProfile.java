@@ -92,7 +92,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                     userNameInfo.setText(dataJson.getString("full_name") + "\n" + dataJson.getString("login"));
                 }
                 else {
-                    userNameInfo.setText(dataJson.getString("nomination_prefix") + dataJson.getString("nomination_name") +"\n" + dataJson.getString("login"));
+                    userNameInfo.setText(dataJson.getString("nomination_prefix") + " " + dataJson.getString("nomination_name") +"\n" + dataJson.getString("login"));
                 }
 
                 TV_city_value.setText(dataJson.getString("location_city"));
