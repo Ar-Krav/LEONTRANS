@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A071A8"
     tools:context="leontrans.leontranstm.basepart.userprofile.UserProfileActivity">
 
     <LinearLayout
@@ -28,12 +27,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/userAvatarImageView"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp">
+
+                    <FrameLayout
+                        android:id="@+id/frame_image_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="60dp"
+                        android:background="@drawable/image_frame_area_background"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="0dp">
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/underImageInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:paddingTop="10dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:textColor="@color/dark"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@id/userAvatarImageView"
+                        app:layout_constraintBottom_toBottomOf="@id/frame_image_area"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                    <ImageView
+                        android:id="@+id/userAvatarImageView"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/default_avatar"/>
+
+                </android.support.constraint.ConstraintLayout>
+
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -43,362 +82,421 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_name"
-                            android:gravity="center"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_name_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_city"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_city_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_email"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_email_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_telephone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_telephone"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_telephone_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_skype"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_skype"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_skype_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_icq"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_icq"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_icq_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_website"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_website"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_website_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_occupation"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_occupation_type"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation_type_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_occupation_description"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_occupation_description_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_register_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_register_date"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_register_date_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_last_online"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:layout_weight="1"
-                            android:background="#757575"
+                            android:background="#FF303030"
                             android:text="@string/TV_last_online"
-                            android:textSize="23sp" />
+                            android:textSize="18sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/user_contact_info_raw_border"
-                        android:padding="2dp">
+                        android:background="@drawable/user_contact_info_raw_border">
                         <TextView
                             android:id="@+id/TV_last_online_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
-                            android:background="#607D8B"
-                            android:textAlignment="center"
-                            android:textSize="23sp" />
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:background="#AAA"
+                            android:gravity="end"
+                            android:textColor="@color/dark"
+                            android:textSize="20sp" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

@@ -67,6 +67,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 JSONObject dataJson = new JSONObject(jsonStr);
 
                 TextView TV_name_value = (TextView) findViewById(R.id.TV_name_value);
+                TextView userNameInfo = (TextView) findViewById(R.id.underImageInfo);
                 TextView TV_city_value = (TextView) findViewById(R.id.TV_city_value);
                 TextView TV_email_value = (TextView) findViewById(R.id.TV_email_value);
                 TextView TV_telephone_value = (TextView) findViewById(R.id.TV_telephone_value);
@@ -88,9 +89,11 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
                 if (dataJson.getString("person_type").equals("individual")){
                     TV_name_value.setText(dataJson.getString("full_name"));
+                    userNameInfo.setText(dataJson.getString("full_name") + "\n" + dataJson.getString("login"));
                 }
                 else {
                     TV_name_value.setText(dataJson.getString("nomination_prefix") + dataJson.getString("nomination_name"));
+                    userNameInfo.setText(dataJson.getString("nomination_prefix") + dataJson.getString("nomination_name") +"\n" + dataJson.getString("login"));
                 }
 
                 TV_city_value.setText(dataJson.getString("location_city"));
