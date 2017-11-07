@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/color"
-            app:srcCompat="@drawable/icon_car" />
+            app:srcCompat="@drawable/icon_truck" />
 
         <LinearLayout
             android:layout_width="98dp"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/date_from"
-                android:layout_width="98dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
@@ -64,7 +64,7 @@
 
             <TextView
                 android:id="@+id/date_to"
-                android:layout_width="98dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"

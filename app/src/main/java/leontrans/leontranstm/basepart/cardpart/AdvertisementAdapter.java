@@ -3,6 +3,7 @@ package leontrans.leontranstm.basepart.cardpart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +104,17 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             }
         });
 
+        date_from.setBackgroundColor(Color.parseColor("#bb6b6b"));
+        date_to.setBackgroundColor(Color.parseColor("#bb6b6b"));
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+
+        if(advertisementInfoList.get(position).getGoods().isEmpty()){
+            imageView.setBackgroundColor(Color.parseColor("#627ea1"));
+            imageView.setImageResource(R.drawable.icon_truck);
+        }else{
+            imageView.setBackgroundColor(Color.parseColor("#83a84a"));
+            imageView.setImageResource(R.drawable.icon_cargo);
+        }
         return view;
     }
 
@@ -114,8 +127,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
                 bottomDialog.setListener(new BottomDialog.OnClickListener() {
                     @Override
                     public void click(int i) {
-                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telephoneNumbers[i]));
-                        activity.startActivity(intent);
+                        new SystemServicesUtils().startDial(activity, telephoneNumbers[i]);
                     }
                 });
 
