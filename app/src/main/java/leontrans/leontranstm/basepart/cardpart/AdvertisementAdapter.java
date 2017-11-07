@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
+import leontrans.leontranstm.utils.CityCoordinates;
+import leontrans.leontranstm.utils.SystemServicesUtils;
 
 
 public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
@@ -84,7 +86,9 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         country_to_ru.setText(advertisementInfoList.get(position).getCountry_to_ru());
 
         city_from_ru.setText(advertisementInfoList.get(position).getCity_from_ru());
+            city_from_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getCoordinatesCityFrom()));
         city_to_ru.setText(advertisementInfoList.get(position).getCity_to_ru());
+            city_to_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getCoordinatesCityTo()));
 
 
         Button name = (Button) view.findViewById(R.id.name);
@@ -116,6 +120,15 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
                 });
 
                 bottomDialog.show(activity.getSupportFragmentManager(),"dialogTag");
+            }
+        };
+    }
+
+    private View.OnClickListener getCityViewListener(final CityCoordinates cityCoordinates){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SystemServicesUtils().startMaps(activity, cityCoordinates);
             }
         };
     }

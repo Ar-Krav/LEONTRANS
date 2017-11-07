@@ -1,5 +1,7 @@
 package leontrans.leontranstm.basepart.cardpart;
 
+import android.graphics.Point;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
+import leontrans.leontranstm.utils.CityCoordinates;
 
 public class AdvertisementInfo {
     private String trans_type;
@@ -27,6 +30,9 @@ public class AdvertisementInfo {
     private String telephone;
     private String person_type;
     private String full_name;
+
+    private CityCoordinates coordinatesCityFrom;
+    private CityCoordinates coordinatesCityTo;
 
     public AdvertisementInfo(JSONObject list, AdvertisementOwnerInfo advertisementOwnerInfo) throws JSONException {
         this.trans_type = list.getString("trans_type");
@@ -49,6 +55,9 @@ public class AdvertisementInfo {
         this.telephone = advertisementOwnerInfo.getTelephone();
         this.person_type = advertisementOwnerInfo.getPerson_type();
         this.full_name = advertisementOwnerInfo.getFull_name();
+
+        this.coordinatesCityFrom = new CityCoordinates(list.getString("lat_from"), list.getString("lng_from"));
+        this.coordinatesCityTo = new CityCoordinates(list.getString("lat_to"), list.getString("lng_to"));
     }
 
     public String getTrans_type() {
@@ -117,6 +126,14 @@ public class AdvertisementInfo {
 
     public String getFull_name() {
         return full_name;
+    }
+
+    public CityCoordinates getCoordinatesCityFrom() {
+        return coordinatesCityFrom;
+    }
+
+    public CityCoordinates getCoordinatesCityTo() {
+        return coordinatesCityTo;
     }
 
     private String makeDate(String date){

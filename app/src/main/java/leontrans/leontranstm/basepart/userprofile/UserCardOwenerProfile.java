@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
+import leontrans.leontranstm.utils.SystemServicesUtils;
 
 public class UserCardOwenerProfile extends AppCompatActivity{
     private int userID;
@@ -65,14 +66,15 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
             try {
                 JSONObject dataJson = new JSONObject(jsonStr);
+                final SystemServicesUtils systemServicesUtils = new SystemServicesUtils();
 
                 TextView userNameInfo = (TextView) findViewById(R.id.underImageInfo);
-                TextView TV_city_value = (TextView) findViewById(R.id.TV_city_value);
-                TextView TV_email_value = (TextView) findViewById(R.id.TV_email_value);
-                TextView TV_telephone_value = (TextView) findViewById(R.id.TV_telephone_value);
+                final TextView TV_city_value = (TextView) findViewById(R.id.TV_city_value);
+                final TextView TV_email_value = (TextView) findViewById(R.id.TV_email_value);
+                final TextView TV_telephone_value = (TextView) findViewById(R.id.TV_telephone_value);
                 TextView TV_skype_value = (TextView) findViewById(R.id.TV_skype_value);
                 TextView TV_icq_value = (TextView) findViewById(R.id.TV_icq_value);
-                TextView TV_website_value = (TextView) findViewById(R.id.TV_website_value);
+                final TextView TV_website_value = (TextView) findViewById(R.id.TV_website_value);
                 TextView TV_occupation_value = (TextView) findViewById(R.id.TV_occupation_value);
                 TextView TV_occupation_type_value = (TextView) findViewById(R.id.TV_occupation_type_value);
                 TextView TV_occupation_description_value = (TextView) findViewById(R.id.TV_occupation_description_value);
@@ -104,6 +106,38 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 TV_occupation_description_value.setText(dataJson.getString("activity_desc"));
                 TV_register_date_value.setText(makeDate(dataJson.getString("date_registry")));
                 TV_last_online_value.setText(makeDate(dataJson.getString("date_last_action")));
+
+                TV_telephone_value.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        systemServicesUtils.startDial(UserCardOwenerProfile.this, TV_telephone_value.getText().toString());
+                    }
+                });
+
+                TV_email_value.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        systemServicesUtils.startMail(UserCardOwenerProfile.this, TV_email_value.getText().toString());
+                    }
+                });
+
+                TV_website_value.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!TV_website_value.getText().toString().isEmpty()) {
+                            systemServicesUtils.startInternetBrowser(UserCardOwenerProfile.this, TV_website_value.getText().toString());
+                        }
+                    }
+                });
+
+                TV_city_value.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!TV_city_value.getText().toString().isEmpty()) {
+                            systemServicesUtils.startMaps(UserCardOwenerProfile.this, TV_city_value.getText().toString());
+                        }
+                    }
+                });
 
                 crossfade();
 
