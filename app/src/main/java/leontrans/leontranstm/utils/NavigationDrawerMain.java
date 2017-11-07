@@ -55,13 +55,13 @@ public class NavigationDrawerMain {
                 .withHeaderDivider(true)
                 .withSelectedItem(idSelectedDrawerItem)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Мій профіль").withIcon(FontAwesome.Icon.faw_user).withIdentifier(NAVMENU_PROFILE),
-                        new PrimaryDrawerItem().withName("Список оголошень").withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(NAVMENU_CARDS),
-                        new PrimaryDrawerItem().withName("Налаштування фільтрів").withIcon(FontAwesome.Icon.faw_cogs).withIdentifier(NAVMENU_FILTER_SETTINGS),
+                        new PrimaryDrawerItem().withName(R.string.my_profile).withIcon(FontAwesome.Icon.faw_user).withIdentifier(NAVMENU_PROFILE),
+                        new PrimaryDrawerItem().withName(R.string.advertisement_list).withIcon(FontAwesome.Icon.faw_list_alt).withIdentifier(NAVMENU_CARDS),
+                        new PrimaryDrawerItem().withName(R.string.filter_settings).withIcon(FontAwesome.Icon.faw_cogs).withIdentifier(NAVMENU_FILTER_SETTINGS),
                         new PrimaryDrawerItem().withName("F.A.Q.").withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(NAVMENU_FAQ),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("Про програму").withIcon(FontAwesome.Icon. faw_info_circle),
+                        new SecondaryDrawerItem().withName(R.string.app_settings).withIcon(FontAwesome.Icon. faw_info_circle),
                         new PrimaryDrawerItem().withName("admin exit").withIcon(FontAwesome.Icon.faw_medkit).withIdentifier(NAVMENU_ADMIN) //TODO admin exit button. Developing part only!
                 )
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {

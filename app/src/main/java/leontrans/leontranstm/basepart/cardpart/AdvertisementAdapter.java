@@ -1,10 +1,7 @@
 package leontrans.leontranstm.basepart.cardpart;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kcode.bottomlib.BottomDialog;
 
@@ -22,7 +18,7 @@ import java.util.ArrayList;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
-import leontrans.leontranstm.utils.CityCoordinates;
+import leontrans.leontranstm.utils.RoutPointsCoordinates;
 import leontrans.leontranstm.utils.SystemServicesUtils;
 
 
@@ -56,27 +52,39 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         Button city_to_ru = (Button) view.findViewById(R.id.city_to_ru);
 
         Button city_from_ru = (Button) view.findViewById(R.id.city_from_ru);
-
-        Button pay_type = (Button) view.findViewById(R.id.pay_type);
-        if(advertisementInfoList.get(position).getPay_type().equals("request")){
-            pay_type.setText(advertisementInfoList.get(position).getPay_type());
-        }else{
-            pay_type.setText(advertisementInfoList.get(position).getPay_price() + " " + advertisementInfoList.get(position).getPay_currency());
-        }
         Button goods = (Button) view.findViewById(R.id.goods);
-        if((advertisementInfoList.get(position).getGoods().equals("0"))&&(advertisementInfoList.get(position).getTrans_capacity().equals("0"))){
-            goods.setText(advertisementInfoList.get(position).getGoods() + " " + advertisementInfoList.get(position).getGoods_load_type() + " ");
-        }else if(advertisementInfoList.get(position).getTrans_weight().equals("0")){
-            goods.setText(advertisementInfoList.get(position).getGoods() + " " + advertisementInfoList.get(position).getGoods_load_type() + " "
-                    +advertisementInfoList.get(position).getTrans_capacity()+"м");
-        }else if(advertisementInfoList.get(position).getTrans_capacity().equals("0")){
-            goods.setText(advertisementInfoList.get(position).getGoods() + " " + advertisementInfoList.get(position).getGoods_load_type());
-        }else{
-            goods.setText(advertisementInfoList.get(position).getGoods() + " " + advertisementInfoList.get(position).getGoods_load_type() + " "+ advertisementInfoList.get(position).getTrans_weight()+"т"
-                    +advertisementInfoList.get(position).getTrans_capacity()+"м");
+        Button pay_type = (Button) view.findViewById(R.id.pay_type);
+
+        pay_type.setText(advertisementInfoList.get(position).getPay_type() + " "+advertisementInfoList.get(position).getPay_form_moment());
+
+
+
+        if(advertisementInfoList.get(position).getTrans_capacity().equals("0")){
+            goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getGoods()+" "+advertisementInfoList.get(position).getTrans_weight()+"т ");
+        }else if(advertisementInfoList.get(position).getGoods().isEmpty()){
+            goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getTrans_weight()+"т " +advertisementInfoList.get(position).getTrans_capacity()+"м3 ");
+        }else if(advertisementInfoList.get(position).getGoods().isEmpty()&&advertisementInfoList.get(position).getTrans_capacity().equals("0")){
+            goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getTrans_weight()+"т");
+        }
+        else{
+            goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getGoods()+" "+advertisementInfoList.get(position).getTrans_weight()+"т " +advertisementInfoList.get(position).getTrans_capacity()+"м3 ");
         }
 
-        telephone.setText("show telephone");
+        if(!advertisementInfoList.get(position).getTrans_height().equals("0")){
+            goods.setText(goods.getText()+" "+ advertisementInfoList.get(position).getTrans_height()+"м");
+        }
+
+        if(!advertisementInfoList.get(position).getTrans_length().equals("0")){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_length()+"м");
+        }
+        if(!advertisementInfoList.get(position).getTrans_width().equals("0")){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_width()+"м");
+        }
+
+        if(!advertisementInfoList.get(position).getTrans_trailer().isEmpty()){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_trailer());
+        }
+
         String [] telephoneNumbers = advertisementInfoList.get(position).getTelephone().split(",");
         telephone.setOnClickListener(getTelephoneFieldListener(telephoneNumbers));
 
@@ -84,13 +92,13 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         date_from.setText(advertisementInfoList.get(position).getDate_from());
         date_to.setText(advertisementInfoList.get(position).getDate_to());
 
-        country_from_ru.setText(advertisementInfoList.get(position).getCountry_from_ru());
-        country_to_ru.setText(advertisementInfoList.get(position).getCountry_to_ru());
+        country_from_ru.setText(advertisementInfoList.get(position).getCountry_from());
+        country_to_ru.setText(advertisementInfoList.get(position).getCountry_to());
 
-        city_from_ru.setText(advertisementInfoList.get(position).getCity_from_ru());
-            city_from_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getCoordinatesCityFrom()));
-        city_to_ru.setText(advertisementInfoList.get(position).getCity_to_ru());
-            city_to_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getCoordinatesCityTo()));
+        city_from_ru.setText(advertisementInfoList.get(position).getCity_from());
+            city_from_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getRoutPointsCoordinates()));
+        city_to_ru.setText(advertisementInfoList.get(position).getCity_to());
+            city_to_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getRoutPointsCoordinates()));
 
 
         Button name = (Button) view.findViewById(R.id.name);
@@ -123,7 +131,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             @Override
             public void onClick(View v) {
 
-                BottomDialog bottomDialog = BottomDialog.newInstance("telephone numbers", "return", telephoneNumbers);
+                BottomDialog bottomDialog = BottomDialog.newInstance(activity.getResources().getString(R.string.telephone_numbers), activity.getResources().getString(R.string.close_telephone_dialog), telephoneNumbers);
                 bottomDialog.setListener(new BottomDialog.OnClickListener() {
                     @Override
                     public void click(int i) {
@@ -136,11 +144,11 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         };
     }
 
-    private View.OnClickListener getCityViewListener(final CityCoordinates cityCoordinates){
+    private View.OnClickListener getCityViewListener(final RoutPointsCoordinates routPointsCoordinates){
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SystemServicesUtils().startMaps(activity, cityCoordinates);
+                new SystemServicesUtils().startRoutMaps(activity, routPointsCoordinates);
             }
         };
     }

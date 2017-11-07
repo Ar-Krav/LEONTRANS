@@ -35,6 +35,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
@@ -66,10 +67,19 @@ public class CardsActivity extends AppCompatActivity {
     private FloatingActionButton loadNewCardsBtn;
     private FloatingActionButton btToTop;
     private AdvertisementAdapter adapter;
+
+    private Locale locale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cards);
+
+        //en ru uk
+        locale = new Locale("uk");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -138,7 +148,7 @@ public class CardsActivity extends AppCompatActivity {
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator"));
 
                     AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
-                    arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo));
+                    arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo ,getApplicationContext(),locale));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

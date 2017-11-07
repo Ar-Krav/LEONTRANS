@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">LeonTransTM</string>
+
+    <string name="logo_of_leontrans_tm_hint">logo of leontrans_TM</string>
+    <string name="login_hello_TV">Увійдіть в Аккаунт</string>
+    <string name="login_input_field_hint">login</string>
+    <string name="password_input_field_hint">password</string>
+    <string name="signIn_btn">Увійти</string>
+
+
+    <string name="test_text_card_view_activity">Card View</string>
+    <string name="menu_item_title">showFilterNavigationDrawer</string>
+
+    <string name="TV_name">Имя</string>
+    <string name="TV_city">Город</string>
+    <string name="TV_email">Email</string>
+    <string name="TV_telephone">Телефон</string>
+    <string name="TV_skype">Skype</string>
+    <string name="TV_icq">ICQ</string>
+    <string name="TV_website">Веб сайт</string>
+    <string name="TV_occupation">Род деятельности</string>
+    <string name="TV_occupation_type">Вид деятельности</string>
+    <string name="TV_occupation_description">Описание деятельности</string>
+    <string name="TV_register_date">Дата регистрации</string>
+    <string name="TV_last_online">Последнее в сети</string>
+
+    <string name="date_to">date_to</string>
+    <string name="date_from">date_from</string>
+    <string name="type">type</string>
+    <string name="city_from_ru">city_from_ru</string>
+    <string name="city_to_ru">city_to_ru</string>
+    <string name="country_to_ru">country_to_ru</string>
+    <string name="country_from_ru">country_from_ru</string>
+
+
+    <string name="truck">Любая</string>
+    <string name="trailer">Полуприцеп</string>
+    <string name="half_trailer">Сцепка</string>
+
+    <string name="top">верхняя</string>
+    <string name="side">боковая</string>
+    <string name="back">задняя</string>
+    <string name="fulluntent">с полной растентовкой</string>
+    <string name="uncrossbar">со снятием поперечин</string>
+    <string name="unrack">со снятием стоек</string>
+    <string name="ungate">без ворот</string>
+    <string name="gydrobort">гидроборт</string>
+
+    <string name="any">любая</string>
+    <string name="bus">Автобус</string>
+    <string name="avto">Автовоз</string>
+    <string name="fuel_oil">Бензовоз (Масловоз)</string>
+    <string name="concrete">Бетоновоз</string>
+    <string name="gas">Газовоз</string>
+    <string name="hard">Грузовая</string>
+    <string name="grain">Зерновоз</string>
+    <string name="isotherms">Изотерм</string>
+    <string name="containertrans">Контейнеровоз</string>
+    <string name="tap">Кран</string>
+    <string name="closed">Крытая</string>
+    <string name="trees">Лесовоз</string>
+    <string name="microbus">Микроавтобус</string>
+    <string name="oversized">Негабарит</string>
+    <string name="unclosed">Открытая</string>
+    <string name="refrigerator">Рефрижератор</string>
+    <string name="tipper">Самосвал</string>
+    <string name="animaltruck">Скотовоз</string>
+    <string name="awning">Тент</string>
+    <string name="trall">Тралл</string>
+    <string name="avtotipper">Тягач</string>
+    <string name="fullmetal">Цельнометаллическая</string>
+    <string name="fuel_oil_small">Цистерна</string>
+    <string name="evacuator">Эвакуатор</string>
+
+    <string name="request">запрос</string>
+
+    <string name="payform_777">Любая</string>
+    <string name="payform_1">Наличный</string>
+    <string name="payform_3">Безналичный</string>
+    <string name="payform_6">Безналичный с НДС</string>
+    <string name="payform_4">Комбинированная</string>
+    <string name="payform_71">Эл. платеж</string>
+    <string name="payform_72">Карта</string>
+
+
+    <string name="paymoment_52">на загрузке</string>
+    <string name="paymoment_53">на выгрузке</string>
+    <string name="paymoment_6">по оригиналам</string>
+    <string name="paymoment_61">отсрочка платежа</string>
+
+    <string name="telephone_numbers">номера телефонов</string>
+    <string name="close_telephone_dialog">закрыть</string>
+
+    <string name="show_telephones">показать телефоны</string>
+    <string name="my_profile">Мой профиль</string>
+    <string name="advertisement_list">Список объявлений</string>
+    <string name="filter_settings">Настройка фильтров</string>
+    <string name="app_settings">Настройка</string>
+</resources>

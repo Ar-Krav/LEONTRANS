@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">LeonTransTM</string>
+
+    <string name="logo_of_leontrans_tm_hint">logo of leontrans_TM</string>
+    <string name="login_hello_TV">Увійдіть в Аккаунт</string>
+    <string name="login_input_field_hint">login</string>
+    <string name="password_input_field_hint">password</string>
+    <string name="signIn_btn">Увійти</string>
+
+
+    <string name="test_text_card_view_activity">Card View</string>
+    <string name="menu_item_title">showFilterNavigationDrawer</string>
+
+    <string name="TV_name">Ім\'я</string>
+    <string name="TV_city">Місто</string>
+    <string name="TV_email">Email</string>
+    <string name="TV_telephone">Телефон</string>
+    <string name="TV_skype">Skype</string>
+    <string name="TV_icq">ICQ</string>
+    <string name="TV_website">Веб сайт</string>
+    <string name="TV_occupation">Рід діяльності</string>
+    <string name="TV_occupation_type">Вид діяльності</string>
+    <string name="TV_occupation_description">Опис діяльності</string>
+    <string name="TV_register_date">Дата реєстрації</string>
+    <string name="TV_last_online">Останнє в мережі</string>
+
+    <string name="date_to">date_to</string>
+    <string name="date_from">date_from</string>
+    <string name="type">type</string>
+    <string name="city_from_ru">city_from_ru</string>
+    <string name="city_to_ru">city_to_ru</string>
+    <string name="country_to_ru">country_to_ru</string>
+    <string name="country_from_ru">country_from_ru</string>
+    <string name="userid_creator">id</string>
+
+
+
+    <string name="truck">Люба</string>
+    <string name="trailer">Напів-прицеп</string>
+    <string name="half_trailer">Зчепленний</string>
+
+
+    <string name="top">верхня</string>
+    <string name="side">бокова</string>
+    <string name="back">задня</string>
+    <string name="fulluntent">з повним розтентуванням</string>
+    <string name="uncrossbar">зі зняттям поперечин</string>
+    <string name="unrack">зі зніманням стойок</string>
+    <string name="ungate">без ворот</string>
+    <string name="gydrobort">гідроборт</string>
+
+
+    <string name="any">будь-які</string>
+    <string name="bus">Автобус</string>
+    <string name="avto">Автовоз</string>
+    <string name="fuel_oil">Бензовоз (Мазутовоз)</string>
+    <string name="concrete">Бетоновоз</string>
+    <string name="gas">Газовоз</string>
+    <string name="hard">Грузова</string>
+    <string name="grain">Зерновоз</string>
+    <string name="isotherms">Изотерм</string>
+    <string name="containertrans">Контейнеровоз</string>
+    <string name="tap">Кран</string>
+    <string name="closed">Крита</string>
+    <string name="trees">Лісовоз</string>
+    <string name="microbus">Мікроавтобус</string>
+    <string name="oversized">Негабарит</string>
+    <string name="unclosed">Открита</string>
+    <string name="refrigerator">Рефрижератор</string>
+    <string name="tipper">Самоскид</string>
+    <string name="animaltruck">Для тварин</string>
+    <string name="awning">Тент</string>
+    <string name="trall">Тралл</string>
+    <string name="avtotipper">Тягач</string>
+    <string name="fullmetal">Суцільно-металева</string>
+    <string name="fuel_oil_small">Цистерна</string>
+    <string name="evacuator">Эвакуатор</string>
+
+
+    <string name="request">запит</string>
+
+    <string name="payform_777">Люба</string>
+    <string name="payform_1">готівковий</string>
+    <string name="payform_3">безготівковий</string>
+    <string name="payform_6">безготівковий с НДС</string>
+    <string name="payform_4">Комбінований</string>
+    <string name="payform_71">Ел. платіж</string>
+    <string name="payform_72">Карта</string>
+
+
+    <string name="paymoment_52">на завантаженні</string>
+    <string name="paymoment_53">при розвантаженні</string>
+    <string name="paymoment_6">по оригиналам</string>
+    <string name="paymoment_61">отсрочка платежа</string>
+
+    <string name="telephone_numbers">номери телефонів</string>
+    <string name="close_telephone_dialog">закрити</string>
+
+    <string name="show_telephones">показати телефони</string>
+    <string name="my_profile">Мій профіль</string>
+    <string name="advertisement_list">Список оголошень</string>
+    <string name="filter_settings">Налаштування фільтрів</string>
+    <string name="app_settings">Налаштування</string>
+</resources>

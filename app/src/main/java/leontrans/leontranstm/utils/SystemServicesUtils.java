@@ -15,8 +15,9 @@ public class SystemServicesUtils {
         context.startActivity(intent);
     }
 
-    public void startMaps(Context context, CityCoordinates cityCoordinates){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + cityCoordinates.getLat() + ", " + cityCoordinates.getLng()));
+    public void startRoutMaps(Context context, RoutPointsCoordinates routPointsCoordinates){
+        Uri uri = Uri.parse("https://www.google.com/maps/dir/?api=1&origin=" + routPointsCoordinates.getFromLat() + "+" + routPointsCoordinates.getFromLng() + "&destination=" + routPointsCoordinates.getToLat() + "+" + routPointsCoordinates.getToLng() + "&travelmode=car");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         intent.setPackage("com.google.android.apps.maps");
         context.startActivity(intent);
     }
