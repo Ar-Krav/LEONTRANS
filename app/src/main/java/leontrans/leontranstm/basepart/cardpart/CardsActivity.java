@@ -7,8 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
@@ -57,7 +54,6 @@ public class CardsActivity extends AppCompatActivity {
 
     private ProgressBar loaderView;
     private ConstraintLayout contentArea;
-    private int animationDuration;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
@@ -75,7 +71,8 @@ public class CardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cards);
 
         //en ru uk
-        locale = new Locale("uk");
+        String language = getSharedPreferences("app_language", MODE_PRIVATE).getString("language","en");
+        locale = new Locale("" + language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -89,7 +86,6 @@ public class CardsActivity extends AppCompatActivity {
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
         contentArea = (ConstraintLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
-        animationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nvView);

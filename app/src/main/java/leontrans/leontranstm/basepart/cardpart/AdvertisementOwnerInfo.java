@@ -1,4 +1,4 @@
-package leontrans.leontranstm.utils;
+package leontrans.leontranstm.basepart.cardpart;
 
 /**
  * Created by Ar-Krav on 03.11.2017.

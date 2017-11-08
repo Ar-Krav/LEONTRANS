@@ -61,7 +61,7 @@ public class NavigationDrawerMain {
                         new PrimaryDrawerItem().withName("F.A.Q.").withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(NAVMENU_FAQ),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(R.string.app_settings).withIcon(FontAwesome.Icon. faw_info_circle),
+                        new SecondaryDrawerItem().withName(R.string.app_settings).withIcon(FontAwesome.Icon. faw_info_circle).withIdentifier(7),
                         new PrimaryDrawerItem().withName("admin exit").withIcon(FontAwesome.Icon.faw_medkit).withIdentifier(NAVMENU_ADMIN) //TODO admin exit button. Developing part only!
                 )
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
@@ -127,6 +127,10 @@ public class NavigationDrawerMain {
 
                 case NAVMENU_FAQ: {
                     activity.startActivity(new Intent(activity, FAQActivity.class));
+                    break;
+                }
+                case 7:{
+                    activity.startActivity(new Intent(activity, LanguageDialogActivity.class));
                     break;
                 }
             }

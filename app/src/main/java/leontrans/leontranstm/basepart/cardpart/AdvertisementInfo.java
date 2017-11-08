@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.utils.AdvertisementOwnerInfo;
 import leontrans.leontranstm.utils.RoutPointsCoordinates;
 
 public class AdvertisementInfo {

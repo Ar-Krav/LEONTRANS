@@ -44,7 +44,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         TextView trans_type = (TextView) view.findViewById(R.id.trans_type);
         TextView date_from = (TextView) view.findViewById(R.id.date_from);
-        final TextView telephone = (TextView) view.findViewById(R.id.telephone);
+        ImageView telephone = (ImageView) view.findViewById(R.id.telephone);
         TextView date_to = (TextView) view.findViewById(R.id.date_to);
         Button country_from_ru = (Button) view.findViewById(R.id.country_from_ru);
 
@@ -96,9 +96,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         country_to_ru.setText(advertisementInfoList.get(position).getCountry_to());
 
         city_from_ru.setText(advertisementInfoList.get(position).getCity_from());
-            city_from_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getRoutPointsCoordinates()));
         city_to_ru.setText(advertisementInfoList.get(position).getCity_to());
-            city_to_ru.setOnClickListener(getCityViewListener(advertisementInfoList.get(position).getRoutPointsCoordinates()));
 
 
         Button name = (Button) view.findViewById(R.id.name);
@@ -123,6 +121,16 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             imageView.setBackgroundColor(Color.parseColor("#83a84a"));
             imageView.setImageResource(R.drawable.icon_cargo);
         }
+
+
+        ImageView routView = (ImageView) view.findViewById(R.id.routBtn);
+        routView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SystemServicesUtils().startRoutMaps(activity, advertisementInfoList.get(position).getRoutPointsCoordinates());
+            }
+        });
+
         return view;
     }
 
@@ -143,15 +151,5 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             }
         };
     }
-
-    private View.OnClickListener getCityViewListener(final RoutPointsCoordinates routPointsCoordinates){
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SystemServicesUtils().startRoutMaps(activity, routPointsCoordinates);
-            }
-        };
-    }
-
 
 }

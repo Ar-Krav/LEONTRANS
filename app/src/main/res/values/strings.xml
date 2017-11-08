@@ -45,6 +45,7 @@
     <string name="unrack">unrack</string>
     <string name="gydrobort">gydrobort</string>
 
+    <string name="ungate">ungate</string>
 
     <string name="any">any</string>
     <string name="bus">bus</string>
@@ -81,7 +82,6 @@
     <string name="payform_4">Combined</string>
     <string name="payform_71">El. payment</string>
     <string name="payform_72">card</string>
-
 
 
     <string name="paymoment_52">On the loading</string>
