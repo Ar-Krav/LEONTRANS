@@ -60,7 +60,6 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
                     filterStatMap.put("b" + filterNumber, switcher.isChecked() ? "" + 1 : "" + 0);
                 }
 
-
                 //TODO send result to web site
 
                 Intent intent = new Intent(FilterSwitcherDialogActivity.this, CardsActivity.class);

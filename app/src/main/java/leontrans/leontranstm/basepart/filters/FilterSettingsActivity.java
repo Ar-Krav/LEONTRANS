@@ -1,10 +1,11 @@
-package leontrans.leontranstm.basepart;
+package leontrans.leontranstm.basepart.filters;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.mikepenz.materialdrawer.Drawer;
@@ -19,8 +20,6 @@ public class FilterSettingsActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Drawer.Result mainNavigationDrawer;
 
-    private ProgressBar loaderView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +30,13 @@ public class FilterSettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FILTER_SETTINGS).getMainNavigationDrawer();
 
-        loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
-        loaderView.setVisibility(View.GONE);
+        ((Button) findViewById(R.id.filter_1)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FilterSettingsActivity.this, FilterEditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onBackPressed(){

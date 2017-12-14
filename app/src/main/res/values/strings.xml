@@ -112,5 +112,25 @@
 
     <string name="cancel_filter_btn">Cancel</string>
     <string name="save_filter_btn">Save</string>
+    
+    <string name="tir">TIR</string>
+    <string name="cmr">CMR</string>
+    <string name="ekmt">EKMT</string>
+    <string name="t1">T1</string>
+    <string name="mbook">Medical book</string>
+    <string name="customscontrol">The customs control</string>
+    
+    <string name="dangerous">Dangerous</string>
+    <string name="undangerous">Not dangerous</string>
+    <string name="adr1">ADR 1</string>
+    <string name="adr2">ADR 2</string>
+    <string name="adr3">ADR 3</string>
+    <string name="adr4">ADR 4</string>
+    <string name="adr5">ADR 5</string>
+    <string name="adr6">ADR 6</string>
+    <string name="adr7">ADR 7</string>
+    <string name="adr8">ADR 8</string>
+    <string name="adr9">ADR 9</string>
+    <string name="adr10">ADR 10</string>
 
 </resources>

@@ -116,4 +116,24 @@
 
     <string name="cancel_filter_btn">Відмінити</string>
     <string name="save_filter_btn">Зберегти</string>
+
+    <string name="tir">TIR</string>
+    <string name="cmr">CMR</string>
+    <string name="ekmt">EKMT</string>
+    <string name="t1">T1</string>
+    <string name="mbook">Мед. книжка</string>
+    <string name="customscontrol">Митний контроль"</string>
+
+    <string name="dangerous">Небезпечний</string>
+    <string name="undangerous">Безпечний</string>
+    <string name="adr1">ADR 1</string>
+    <string name="adr2">ADR 2</string>
+    <string name="adr3">ADR 3</string>
+    <string name="adr4">ADR 4</string>
+    <string name="adr5">ADR 5</string>
+    <string name="adr6">ADR 6</string>
+    <string name="adr7">ADR 7</string>
+    <string name="adr8">ADR 8</string>
+    <string name="adr9">ADR 9</string>
+    <string name="adr10">ADR 10</string>
 </resources>

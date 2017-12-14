@@ -30,18 +30,16 @@
             android:name=".basepart.FAQActivity"
             android:noHistory="true" />
         <activity
-            android:name=".basepart.FilterSettingsActivity"
+            android:name=".basepart.filters.FilterSettingsActivity"
             android:noHistory="true" />
         <activity android:name=".basepart.userprofile.UserCardOwenerProfile" />
         <activity
             android:name=".utils.LanguageDialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog">
-
-        </activity>
-        <activity android:name=".basepart.filters.FilterSwitcherDialogActivity"
-                  android:theme="@style/Theme.AppCompat.Dialog">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity
+            android:name=".basepart.filters.FilterSwitcherDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity android:name=".basepart.filters.FilterEditActivity"></activity>
     </application>
 
 </manifest>

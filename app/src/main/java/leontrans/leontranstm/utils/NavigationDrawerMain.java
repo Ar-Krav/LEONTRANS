@@ -20,7 +20,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.basepart.FAQActivity;
-import leontrans.leontranstm.basepart.FilterSettingsActivity;
+import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
 import leontrans.leontranstm.basepart.userprofile.UserProfileActivity;
 
 import static android.content.Context.MODE_PRIVATE;
