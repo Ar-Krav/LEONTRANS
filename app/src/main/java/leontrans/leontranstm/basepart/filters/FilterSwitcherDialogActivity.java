@@ -1,5 +1,6 @@
 package leontrans.leontranstm.basepart.filters;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 import leontrans.leontranstm.utils.SystemServicesUtils;
@@ -41,6 +43,7 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
         filterSwitchersList = getSwitcherArrayList();
 
         ((Button) findViewById(R.id.save_button)).setOnClickListener(getSaveBtnClickListener());
+        ((Button) findViewById(R.id.cancel_button)).setOnClickListener(getCancelBtnClickListener());
 
         new LoadUserFiltersInfo().execute();
     }
@@ -60,6 +63,18 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
 
                 //TODO send result to web site
 
+                Intent intent = new Intent(FilterSwitcherDialogActivity.this, CardsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        };
+    }
+
+    private View.OnClickListener getCancelBtnClickListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 FilterSwitcherDialogActivity.this.finish();
             }
         };

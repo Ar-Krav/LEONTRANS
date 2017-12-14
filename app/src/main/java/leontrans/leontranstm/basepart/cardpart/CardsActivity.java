@@ -43,11 +43,7 @@ import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class CardsActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private NavigationView navView;
-    private ArrayList<MenuItem> navMenuItemList= new ArrayList<>();
     private SiteDataParseUtils siteDataUtils;
-    private ActionBarDrawerToggle drawerToggle;
 
 
     private Toolbar toolbar;
@@ -89,14 +85,6 @@ public class CardsActivity extends AppCompatActivity {
         contentArea = (ConstraintLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navView = (NavigationView) findViewById(R.id.nvView);
-        drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,null,R.string.drawer_open,R.string.drawer_close);
-
-        for (int i = 0; i < navView.getMenu().size(); i++){
-            navMenuItemList.add(navView.getMenu().getItem(i));
-        }
-
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
 
@@ -112,18 +100,6 @@ public class CardsActivity extends AppCompatActivity {
 
         new LoadCards().execute(0);
 
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     private class LoadCards extends AsyncTask<Integer, Void, Void> {
@@ -185,40 +161,6 @@ public class CardsActivity extends AppCompatActivity {
                 }
             }
             return result;
-        }
-
-        private String getSiteRequestResult(String urlAddress){
-           HttpURLConnection urlConnection = null;
-           BufferedReader reader = null;
-           String resultJson = "";
-
-            try {
-                URL url = new URL(urlAddress);
-
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.connect();
-
-                InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
-
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-                }
-
-                resultJson = buffer.toString();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            return resultJson;
         }
     }
 
