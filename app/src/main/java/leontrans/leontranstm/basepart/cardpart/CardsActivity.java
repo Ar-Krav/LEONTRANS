@@ -91,13 +91,11 @@ public class CardsActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nvView);
-        navView.setNavigationItemSelectedListener(getNavItemSelectedListener());
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,null,R.string.drawer_open,R.string.drawer_close);
 
         for (int i = 0; i < navView.getMenu().size(); i++){
             navMenuItemList.add(navView.getMenu().getItem(i));
         }
-        setMenuItemSwitcherAction();
 
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
@@ -224,88 +222,6 @@ public class CardsActivity extends AppCompatActivity {
         }
     }
 
-    private void setMenuItemSwitcherAction(){
-        MenuItem menuItem;
-        Switch itemSwitcher;
-
-        for (int i = 0; i < navMenuItemList.size(); i++){
-            menuItem = navMenuItemList.get(i);
-            itemSwitcher = menuItem.getActionView().findViewById(R.id.menuSwitcher);
-            itemSwitcher.setOnCheckedChangeListener(getSwitcherListener(i));
-        }
-    }
-
-    private CompoundButton.OnCheckedChangeListener getSwitcherListener(final int menuItemPosition){
-        return new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                //TODO some actions with filter status
-
-                if (isChecked){
-                    navMenuItemList.get(menuItemPosition).setIcon(getResources().getDrawable(R.drawable.icon_filter_drawer_checked));
-                    Toast.makeText(CardsActivity.this, "" + navMenuItemList.get(menuItemPosition).getTitle() + " activated", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    navMenuItemList.get(menuItemPosition).setIcon(getResources().getDrawable(R.drawable.icon_filter_drawer));
-                    Toast.makeText(CardsActivity.this, "" + navMenuItemList.get(menuItemPosition).getTitle() + " disabled", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-    }
-
-    private NavigationView.OnNavigationItemSelectedListener getNavItemSelectedListener(){
-        return new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.filter1:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter2:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter3:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter4:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter5:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter6:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter7:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter8:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter9:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                    case R.id.filter10:{
-                        //TODO goto filter settings
-                        break;
-                    }
-                }
-
-                return true;
-            }
-        };
-    }
-
     private AbsListView.OnScrollListener getListScrollListener(){
         return new AbsListView.OnScrollListener() {
             @Override
@@ -355,12 +271,6 @@ public class CardsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*if (drawerLayout.isDrawerOpen(navView)){
-            drawerLayout.closeDrawer(navView);
-        }
-        else {
-            drawerLayout.openDrawer(navView, false);
-        }*/
 
         Intent intent = new Intent(CardsActivity.this, FilterSwitcherDialogActivity.class);
         startActivity(intent);

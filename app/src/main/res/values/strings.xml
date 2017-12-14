@@ -99,4 +99,18 @@
     <string name="filter_settings">Filter settings</string>
     <string name="app_settings">Settings</string>
 
+    <string name="filter_1">Filter 1</string>
+    <string name="filter_2">Filter 2</string>
+    <string name="filter_3">Filter 3</string>
+    <string name="filter_4">Filter 4</string>
+    <string name="filter_5">Filter 5</string>
+    <string name="filter_6">Filter 6</string>
+    <string name="filter_7">Filter 7</string>
+    <string name="filter_8">Filter 8</string>
+    <string name="filter_9">Filter 9</string>
+    <string name="filter_10">Filter 10</string>
+
+    <string name="cancel_filter_btn">Cancel</string>
+    <string name="save_filter_btn">Save</string>
+
 </resources>

@@ -97,4 +97,18 @@
     <string name="advertisement_list">Список объявлений</string>
     <string name="filter_settings">Настройка фильтров</string>
     <string name="app_settings">Настройка</string>
+
+    <string name="filter_1">Фильтр 1</string>
+    <string name="filter_2">Фильтр 2</string>
+    <string name="filter_3">Фильтр 3</string>
+    <string name="filter_4">Фильтр 4</string>
+    <string name="filter_5">Фильтр 5</string>
+    <string name="filter_6">Фильтр 6</string>
+    <string name="filter_7">Фильтр 7</string>
+    <string name="filter_8">Фильтр 8</string>
+    <string name="filter_9">Фильтр 9</string>
+    <string name="filter_10">Фильтр 10</string>
+
+    <string name="cancel_filter_btn">Отменить</string>
+    <string name="save_filter_btn">Сохранить</string>
 </resources>
