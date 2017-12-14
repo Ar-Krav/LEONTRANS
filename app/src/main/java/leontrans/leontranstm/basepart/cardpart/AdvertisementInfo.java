@@ -1,6 +1,7 @@
 package leontrans.leontranstm.basepart.cardpart;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -401,9 +402,13 @@ public class AdvertisementInfo {
     }
 
     private String makeDate(String date){
+
+        if (date.isEmpty()) return context.getString(R.string.no_date);
+
         long dv;
         Date df;
         String dateFrom;
+
         dv = Long.valueOf(date) * 1000;
         df = new java.util.Date(dv);
         dateFrom = new SimpleDateFormat("dd.MM.yyyy").format(df);

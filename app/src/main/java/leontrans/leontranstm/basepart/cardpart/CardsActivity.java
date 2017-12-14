@@ -1,5 +1,6 @@
 package leontrans.leontranstm.basepart.cardpart;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
@@ -353,12 +355,15 @@ public class CardsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerLayout.isDrawerOpen(navView)){
+        /*if (drawerLayout.isDrawerOpen(navView)){
             drawerLayout.closeDrawer(navView);
         }
         else {
             drawerLayout.openDrawer(navView, false);
-        }
+        }*/
+
+        Intent intent = new Intent(CardsActivity.this, FilterSwitcherDialogActivity.class);
+        startActivity(intent);
 
         return super.onOptionsItemSelected(item);
     }
