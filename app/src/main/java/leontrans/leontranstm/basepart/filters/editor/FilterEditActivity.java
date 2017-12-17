@@ -1,4 +1,4 @@
-package leontrans.leontranstm.basepart.filters;
+package leontrans.leontranstm.basepart.filters.editor;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,23 +10,22 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Switch;
-
-import com.mikepenz.materialdrawer.Drawer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.basepart.cardpart.CardsActivity;
-import leontrans.leontranstm.utils.Constants;
-import leontrans.leontranstm.utils.NavigationDrawerMain;
+import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class FilterEditActivity extends AppCompatActivity {
+
+    private final int REQUEST_CODE_DOCS = 2;
 
     private Toolbar toolbar;
     String notifyId;
@@ -34,6 +33,8 @@ public class FilterEditActivity extends AppCompatActivity {
     Spinner notifyTypeSpinenr;
     Spinner carTypeSpinenr;
     Spinner carKindSpinenr;
+
+    ArrayList<String> docsArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,20 @@ public class FilterEditActivity extends AppCompatActivity {
         ArrayAdapter<?> carKindAdapter = ArrayAdapter.createFromResource(this, R.array.car_kind, android.R.layout.simple_spinner_item);
             carKindAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
         notifyTypeSpinenr.setAdapter(notifyTypeAdapter);
         carTypeSpinenr.setAdapter(carTypeAdapter);
         carKindSpinenr.setAdapter(carKindAdapter);
+
+        docsArrayList = new ArrayList<>();
+
+        ((Button) findViewById(R.id.docs_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FilterEditActivity.this, DocsSelectorDialog.class);
+                intent.putStringArrayListExtra("docsArray",docsArrayList);
+                startActivityForResult(intent, REQUEST_CODE_DOCS);
+            }
+        });
 
         notifyId = getIntent().getStringExtra("notifyId");
         new LoadFilterInfo().execute();
@@ -100,8 +111,17 @@ public class FilterEditActivity extends AppCompatActivity {
                 setCarTypeSpinnerSelection(notifyData.getString("trans_type"));
                 setCarKindSpinnerSelection(notifyData.getString("trans_kind"));
 
+                setDocsArrayList(notifyData.getString("docs"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+        }
+
+        private void setDocsArrayList(String data){
+            String[] docs = data.split(",");
+            for (int i = 0; i < docs.length; i++){
+                docsArrayList.add(docs[i]);
             }
         }
 
@@ -263,5 +283,12 @@ public class FilterEditActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_DOCS){
+            if(data != null) docsArrayList = data.getStringArrayListExtra("docsResult");
+        }
     }
 }

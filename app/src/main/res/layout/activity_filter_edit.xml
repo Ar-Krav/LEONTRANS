@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="leontrans.leontranstm.basepart.filters.FilterEditActivity">
+    tools:context="leontrans.leontranstm.basepart.filters.editor.FilterEditActivity">
 
     <include
         layout="@layout/toolbar"

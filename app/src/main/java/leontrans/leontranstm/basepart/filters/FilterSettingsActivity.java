@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.mikepenz.materialdrawer.Drawer;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
+import leontrans.leontranstm.basepart.filters.editor.FilterEditActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 

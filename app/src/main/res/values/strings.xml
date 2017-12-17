@@ -54,25 +54,25 @@
     <string name="fuel_oil">fuel_oil</string>
     <string name="concrete">concrete</string>
     <string name="gas">gas</string>
-    <string name="hard">any</string>
-    <string name="grain">any</string>
-    <string name="isotherms">any</string>
-    <string name="containertrans">any</string>
-    <string name="tap">any</string>
-    <string name="closed">any</string>
-    <string name="trees">any</string>
-    <string name="microbus">any</string>
-    <string name="oversized">any</string>
-    <string name="unclosed">any</string>
-    <string name="refrigerator">any</string>
-    <string name="tipper">any</string>
-    <string name="animaltruck">any</string>
-    <string name="awning">any</string>
-    <string name="trall">any</string>
-    <string name="avtotipper">any</string>
-    <string name="fullmetal">any</string>
-    <string name="fuel_oil_small">any</string>
-    <string name="evacuator">any</string>
+    <string name="hard">hard</string>
+    <string name="grain">grain</string>
+    <string name="isotherms">isotherms</string>
+    <string name="containertrans">containertrans</string>
+    <string name="tap">tap</string>
+    <string name="closed">closed</string>
+    <string name="trees">trees</string>
+    <string name="microbus">microbus</string>
+    <string name="oversized">oversized</string>
+    <string name="unclosed">unclosed</string>
+    <string name="refrigerator">refrigerator</string>
+    <string name="tipper">tipper</string>
+    <string name="animaltruck">animaltruck</string>
+    <string name="awning">awning</string>
+    <string name="trall">trall</string>
+    <string name="avtotipper">avtotipper</string>
+    <string name="fullmetal">fullmetal</string>
+    <string name="fuel_oil_small">fuel_oil_small</string>
+    <string name="evacuator">evacuator</string>
 
     <string name="request">request</string>
 
@@ -112,14 +112,14 @@
 
     <string name="cancel_filter_btn">Cancel</string>
     <string name="save_filter_btn">Save</string>
-    
+
     <string name="tir">TIR</string>
     <string name="cmr">CMR</string>
     <string name="ekmt">EKMT</string>
     <string name="t1">T1</string>
     <string name="mbook">Medical book</string>
     <string name="customscontrol">The customs control</string>
-    
+
     <string name="dangerous">Dangerous</string>
     <string name="undangerous">Not dangerous</string>
     <string name="adr1">ADR 1</string>
@@ -142,37 +142,37 @@
 
     <string-array name="car_types">
         <item>Not selected</item>
-        <item >any</item>
-        <item >bus</item>
-        <item >avto</item>
-        <item >fuel_oil</item>
-        <item >concrete</item>
-        <item >gas</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
-        <item >any</item>
+        <item>any</item>
+        <item>bus</item>
+        <item>avto</item>
+        <item>fuel_oil</item>
+        <item>concrete</item>
+        <item>gas</item>
+        <item>hard</item>
+        <item>grain</item>
+        <item>isotherms</item>
+        <item>containertrans</item>
+        <item>tap</item>
+        <item>closed</item>
+        <item>trees</item>
+        <item>microbus</item>
+        <item>oversized</item>
+        <item>unclosed</item>
+        <item>refrigerator</item>
+        <item>tipper</item>
+        <item>animaltruck</item>
+        <item>awning</item>
+        <item>trall</item>
+        <item>avtotipper</item>
+        <item>fullmetal</item>
+        <item>fuel_oil_small</item>
+        <item>evacuator</item>
     </string-array>
 
     <string-array name="car_kind">
         <item>Not selected</item>
-        <item >truck</item>
-        <item >trailer</item>
-        <item >half-trailer</item>
+        <item>truck</item>
+        <item>trailer</item>
+        <item>half-trailer</item>
     </string-array>
 </resources>
