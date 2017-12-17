@@ -44,9 +44,8 @@
     <string name="fulluntent">fulluntent</string>
     <string name="uncrossbar">uncrossbar</string>
     <string name="unrack">unrack</string>
-    <string name="gydrobort">gydrobort</string>
-
     <string name="ungate">ungate</string>
+    <string name="gydrobort">gydrobort</string>
 
     <string name="any">any</string>
     <string name="bus">bus</string>

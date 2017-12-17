@@ -25,7 +25,9 @@ import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class FilterEditActivity extends AppCompatActivity {
 
+    private final int REQUEST_CODE_LOAD_TYPE = 1;
     private final int REQUEST_CODE_DOCS = 2;
+    private final int REQUEST_CODE_ADR = 3;
 
     private Toolbar toolbar;
     String notifyId;
@@ -35,6 +37,7 @@ public class FilterEditActivity extends AppCompatActivity {
     Spinner carKindSpinenr;
 
     ArrayList<String> docsArrayList;
+    ArrayList<String> loadTypeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class FilterEditActivity extends AppCompatActivity {
         carKindSpinenr.setAdapter(carKindAdapter);
 
         docsArrayList = new ArrayList<>();
+        loadTypeArrayList = new ArrayList<>();
 
         ((Button) findViewById(R.id.docs_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +72,15 @@ public class FilterEditActivity extends AppCompatActivity {
                 Intent intent = new Intent(FilterEditActivity.this, DocsSelectorDialog.class);
                 intent.putStringArrayListExtra("docsArray",docsArrayList);
                 startActivityForResult(intent, REQUEST_CODE_DOCS);
+            }
+        });
+
+        ((Button) findViewById(R.id.load_type_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FilterEditActivity.this, LoadTypeSelectorDialog.class);
+                intent.putStringArrayListExtra("loadTypeArray",loadTypeArrayList);
+                startActivityForResult(intent, REQUEST_CODE_LOAD_TYPE);
             }
         });
 
@@ -111,18 +124,23 @@ public class FilterEditActivity extends AppCompatActivity {
                 setCarTypeSpinnerSelection(notifyData.getString("trans_type"));
                 setCarKindSpinnerSelection(notifyData.getString("trans_kind"));
 
-                setDocsArrayList(notifyData.getString("docs"));
+                docsArrayList = getSplittedArrayList(notifyData.getString("docs"));
+                loadTypeArrayList = getSplittedArrayList(notifyData.getString("load_type"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        private void setDocsArrayList(String data){
+        private ArrayList<String> getSplittedArrayList(String data){
+            ArrayList<String> resultList = new ArrayList<>();
+
             String[] docs = data.split(",");
             for (int i = 0; i < docs.length; i++){
-                docsArrayList.add(docs[i]);
+                resultList.add(docs[i]);
             }
+
+            return resultList;
         }
 
         //TODO change names to correct!!!
@@ -287,8 +305,27 @@ public class FilterEditActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_DOCS){
-            if(data != null) docsArrayList = data.getStringArrayListExtra("docsResult");
+
+        switch (requestCode){
+            case REQUEST_CODE_LOAD_TYPE:{
+                if(data != null) loadTypeArrayList = data.getStringArrayListExtra("loadTypeResult");
+
+                for (String s : loadTypeArrayList){
+                    Log.d("TESTER_TAG", "onActivityResult: " + s);
+                }
+
+                break;
+            }
+
+            case REQUEST_CODE_DOCS:{
+                if(data != null) docsArrayList = data.getStringArrayListExtra("docsResult");
+                break;
+            }
+
+            case REQUEST_CODE_ADR:{
+                /*if(data != null) docsArrayList = data.getStringArrayListExtra("docsResult");
+                break;*/
+            }
         }
     }
 }
