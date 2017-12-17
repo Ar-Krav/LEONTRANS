@@ -136,4 +136,23 @@
     <string name="adr8">ADR 8</string>
     <string name="adr9">ADR 9</string>
     <string name="adr10">ADR 10</string>
+
+    <string name="capacity_from">Об\'єм від, м3</string>
+    <string name="capacity_to">Об\'єм  До, м3</string>
+    <string name="weight_from">Вага От, т</string>
+    <string name="weight_to">Вага До, т</string>
+
+    <string name="country_from">Країна звідки</string>
+    <string name="country_to">Країна куди</string>
+    <string name="city_from">Місто звідки</string>
+    <string name="city_to">Місто куди</string>
+
+    <string name="notification_type">Тип оголошення</string>
+    <string name="car_type">Тип авто</string>
+    <string name="car_kind">Вид авто</string>
+
+    <string name="loading">Завантаження</string>
+    <string name="docs">Документи</string>
+    <string name="adr">ADR</string>
+
 </resources>

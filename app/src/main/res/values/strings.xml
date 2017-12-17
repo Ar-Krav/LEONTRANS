@@ -174,4 +174,22 @@
         <item>trailer</item>
         <item>half-trailer</item>
     </string-array>
+
+    <string name="capacity_from">capacity from</string>
+    <string name="capacity_to">capacity to</string>
+    <string name="weight_from">weight from</string>
+    <string name="weight_to">weight to</string>
+
+    <string name="country_from">country from</string>
+    <string name="country_to">country to</string>
+    <string name="city_from">city from</string>
+    <string name="city_to">city to</string>
+
+    <string name="notification_type">Notification type</string>
+    <string name="car_type">Car type</string>
+    <string name="car_kind">The kind of car</string>
+
+    <string name="loading">Loading</string>
+    <string name="docs">Documents</string>
+    <string name="adr">ADR</string>
 </resources>
