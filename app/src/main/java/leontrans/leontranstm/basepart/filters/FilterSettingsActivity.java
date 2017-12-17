@@ -15,7 +15,7 @@ import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 
-public class FilterSettingsActivity extends AppCompatActivity {
+public class FilterSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private Drawer.Result mainNavigationDrawer;
@@ -30,13 +30,16 @@ public class FilterSettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FILTER_SETTINGS).getMainNavigationDrawer();
 
-        ((Button) findViewById(R.id.filter_1)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FilterSettingsActivity.this, FilterEditActivity.class);
-                startActivity(intent);
-            }
-        });
+        ((Button) findViewById(R.id.filter_1)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_2)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_3)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_4)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_5)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_6)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_7)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_8)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_9)).setOnClickListener(this);
+        ((Button) findViewById(R.id.filter_10)).setOnClickListener(this);
     }
 
     public void onBackPressed(){
@@ -46,5 +49,55 @@ public class FilterSettingsActivity extends AppCompatActivity {
         else{
             startActivity(new Intent(FilterSettingsActivity.this, CardsActivity.class));
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(FilterSettingsActivity.this, FilterEditActivity.class);
+
+        switch (view.getId()){
+            case R.id.filter_1:{
+                intent.putExtra("notifyId", "notify_1");
+                break;
+            }
+            case R.id.filter_2:{
+                intent.putExtra("notifyId", "notify_2");
+                break;
+            }
+            case R.id.filter_3:{
+                intent.putExtra("notifyId", "notify_3");
+                break;
+            }
+            case R.id.filter_4:{
+                intent.putExtra("notifyId", "notify_4");
+                break;
+            }
+            case R.id.filter_5:{
+                intent.putExtra("notifyId", "notify_5");
+                break;
+            }
+            case R.id.filter_6:{
+                intent.putExtra("notifyId", "notify_6");
+                break;
+            }
+            case R.id.filter_7:{
+                intent.putExtra("notifyId", "notify_7");
+                break;
+            }
+            case R.id.filter_8:{
+                intent.putExtra("notifyId", "notify_8");
+                break;
+            }
+            case R.id.filter_9:{
+                intent.putExtra("notifyId", "notify_9");
+                break;
+            }
+            case R.id.filter_10:{
+                intent.putExtra("notifyId", "notify_10");
+                break;
+            }
+        }
+
+        startActivity(intent);
     }
 }

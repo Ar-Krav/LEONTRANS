@@ -133,4 +133,46 @@
     <string name="adr9">ADR 9</string>
     <string name="adr10">ADR 10</string>
 
+
+    <string-array name="notify_types">
+        <item>Not selected</item>
+        <item>Car</item>
+        <item>Luggage</item>
+    </string-array>
+
+    <string-array name="car_types">
+        <item>Not selected</item>
+        <item >any</item>
+        <item >bus</item>
+        <item >avto</item>
+        <item >fuel_oil</item>
+        <item >concrete</item>
+        <item >gas</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+        <item >any</item>
+    </string-array>
+
+    <string-array name="car_kind">
+        <item>Not selected</item>
+        <item >truck</item>
+        <item >trailer</item>
+        <item >half-trailer</item>
+    </string-array>
 </resources>
