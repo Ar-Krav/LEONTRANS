@@ -38,6 +38,7 @@ public class FilterEditActivity extends AppCompatActivity {
 
     ArrayList<String> docsArrayList;
     ArrayList<String> loadTypeArrayList;
+    ArrayList<String> adrArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class FilterEditActivity extends AppCompatActivity {
 
         docsArrayList = new ArrayList<>();
         loadTypeArrayList = new ArrayList<>();
+        adrArrayList = new ArrayList<>();
 
         ((Button) findViewById(R.id.docs_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,16 @@ public class FilterEditActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_LOAD_TYPE);
             }
         });
+
+        ((Button) findViewById(R.id.adr_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FilterEditActivity.this, AdrSelectorDialog.class);
+                intent.putStringArrayListExtra("adrArray",adrArrayList);
+                startActivityForResult(intent, REQUEST_CODE_ADR);
+            }
+        });
+
 
         notifyId = getIntent().getStringExtra("notifyId");
         new LoadFilterInfo().execute();
@@ -126,6 +138,7 @@ public class FilterEditActivity extends AppCompatActivity {
 
                 docsArrayList = getSplittedArrayList(notifyData.getString("docs"));
                 loadTypeArrayList = getSplittedArrayList(notifyData.getString("load_type"));
+                adrArrayList = getSplittedArrayList(notifyData.getString("adr"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -309,11 +322,6 @@ public class FilterEditActivity extends AppCompatActivity {
         switch (requestCode){
             case REQUEST_CODE_LOAD_TYPE:{
                 if(data != null) loadTypeArrayList = data.getStringArrayListExtra("loadTypeResult");
-
-                for (String s : loadTypeArrayList){
-                    Log.d("TESTER_TAG", "onActivityResult: " + s);
-                }
-
                 break;
             }
 
@@ -323,8 +331,8 @@ public class FilterEditActivity extends AppCompatActivity {
             }
 
             case REQUEST_CODE_ADR:{
-                /*if(data != null) docsArrayList = data.getStringArrayListExtra("docsResult");
-                break;*/
+                if(data != null) adrArrayList = data.getStringArrayListExtra("adrResult");
+                break;
             }
         }
     }

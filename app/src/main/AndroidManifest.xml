@@ -42,11 +42,12 @@
         <activity android:name=".basepart.filters.editor.FilterEditActivity" />
         <activity
             android:name=".basepart.filters.editor.DocsSelectorDialog"
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity
+            android:name=".basepart.filters.editor.LoadTypeSelectorDialog"
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity android:name=".basepart.filters.editor.AdrSelectorDialog"
             android:theme="@style/Theme.AppCompat.Dialog">
-
-        </activity>
-        <activity android:name=".basepart.filters.editor.LoadTypeSelectorDialog"
-                    android:theme="@style/Theme.AppCompat.Dialog">
 
         </activity>
     </application>
