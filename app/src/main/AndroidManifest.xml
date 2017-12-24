@@ -50,6 +50,11 @@
             android:theme="@style/Theme.AppCompat.Dialog">
 
         </activity>
+
+        <service
+            android:enabled="true"
+            android:name=".backgraund.CheckNewCardsService">
+        </service>
     </application>
 
 </manifest>

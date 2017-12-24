@@ -155,4 +155,10 @@
     <string name="docs">Документи</string>
     <string name="adr">ADR</string>
 
+    <string name="notification_title">Нове оголошення!</string>
+    <string name="notification_content">За вашими фільтрами було знайдено нове оголошення.</string>
+    <string name="notification_warning">Перевірте нові оголошення!</string>
+
+
+
 </resources>

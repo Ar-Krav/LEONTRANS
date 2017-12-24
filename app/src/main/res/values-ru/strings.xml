@@ -151,4 +151,8 @@
     <string name="docs">Документы</string>
     <string name="adr">ADR</string>
 
+    <string name="notification_title">Новое объявление!</string>
+    <string name="notification_content">По вашим фильтрам было найдено новое объявление</string>
+    <string name="notification_warning">Проверьте новые объявления!</string>
+
 </resources>

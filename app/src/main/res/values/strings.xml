@@ -192,4 +192,9 @@
     <string name="loading">Loading</string>
     <string name="docs">Documents</string>
     <string name="adr">ADR</string>
+
+
+    <string name="notification_title">New bids!</string>
+    <string name="notification_content">There is new bid on your filters.</string>
+    <string name="notification_warning">Check new bids!</string>
 </resources>

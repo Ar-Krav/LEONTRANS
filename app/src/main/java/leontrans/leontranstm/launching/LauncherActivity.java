@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.backgraund.CheckNewCardsService;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
@@ -47,6 +48,10 @@ public class LauncherActivity extends AppCompatActivity {
         protected void onPostExecute(Integer userID) {
             super.onPostExecute(userID);
             if (userID > 0){
+
+                stopService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
+                startService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
+
                 Intent intent = new Intent(LauncherActivity.this, CardsActivity.class);
                 startActivity(intent);
             }
