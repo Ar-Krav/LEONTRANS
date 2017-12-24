@@ -82,12 +82,12 @@ public class NavigationDrawerMain {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
 
-                        if (drawerItem.getIdentifier() == NAVMENU_ADMIN) {
+                        if (drawerItem != null && drawerItem.getIdentifier() == NAVMENU_ADMIN) {
                             SharedPreferences sharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
                             sharedPreferences.edit().clear().commit();
                         } //TODO admin exit button. Developing part only!
 
-                        if (drawerItem.getIdentifier() == idSelectedDrawerItem) return;
+                        if (drawerItem == null || drawerItem.getIdentifier() == idSelectedDrawerItem) return;
 
                         idSelectedDrawerItem = drawerItem.getIdentifier();
                         selectedDrawerItem = drawerItem;

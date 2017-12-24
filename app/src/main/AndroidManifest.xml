@@ -35,17 +35,22 @@
         <activity android:name=".basepart.userprofile.UserCardOwenerProfile" />
         <activity
             android:name=".utils.LanguageDialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:noHistory="true"/>
         <activity
             android:name=".basepart.filters.FilterSwitcherDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".basepart.filters.editor.FilterEditActivity" />
         <activity
             android:name=".basepart.filters.editor.DocsSelectorDialog"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog">
+
+        </activity>
         <activity
             android:name=".basepart.filters.editor.LoadTypeSelectorDialog"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog">
+
+        </activity>
         <activity android:name=".basepart.filters.editor.AdrSelectorDialog"
             android:theme="@style/Theme.AppCompat.Dialog">
 

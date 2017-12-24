@@ -108,8 +108,7 @@ public class FilterEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO send all result to server
-                Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
-                startActivity(intent);
+                returnToFilterSettingActivity();
             }
         };
     }
@@ -118,8 +117,7 @@ public class FilterEditActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
-                startActivity(intent);
+                returnToFilterSettingActivity();
             }
         };
     }
@@ -333,8 +331,7 @@ public class FilterEditActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
-            startActivity(intent);
+            returnToFilterSettingActivity();
         }
         return true;
     }
@@ -358,5 +355,15 @@ public class FilterEditActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        returnToFilterSettingActivity();
+    }
+
+    private void returnToFilterSettingActivity(){
+        Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
+        startActivity(intent);
     }
 }

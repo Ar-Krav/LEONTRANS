@@ -29,7 +29,6 @@ public class CheckNewCardsService extends Service {
 
         timer.schedule(serviceTimerTask, 0,5000);
 
-        Log.d("TEST_TAG_LOG", "onStartCommand: Служба запущена" );
         return super.onStartCommand(intent, flags, startId);
     }
 

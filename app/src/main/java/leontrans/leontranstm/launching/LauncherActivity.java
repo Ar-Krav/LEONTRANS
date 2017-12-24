@@ -49,8 +49,9 @@ public class LauncherActivity extends AppCompatActivity {
             super.onPostExecute(userID);
             if (userID > 0){
 
+                //TODO uncommented startService on relise version!
                 stopService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
-                startService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
+                //startService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
 
                 Intent intent = new Intent(LauncherActivity.this, CardsActivity.class);
                 startActivity(intent);

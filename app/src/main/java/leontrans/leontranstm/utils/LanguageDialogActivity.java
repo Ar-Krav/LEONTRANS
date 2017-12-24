@@ -9,10 +9,12 @@ import android.widget.RadioGroup;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
+import leontrans.leontranstm.basepart.userprofile.UserProfileActivity;
 
 public class LanguageDialogActivity extends AppCompatActivity {
 
-    RadioGroup radioGroup;
+    private RadioGroup radioGroup;
+    private boolean isLanguageChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,17 @@ public class LanguageDialogActivity extends AppCompatActivity {
                     }
                     default:getSharedPreferences("app_language", MODE_PRIVATE).edit().putString("language", "en").commit();
                 }
+
+                isLanguageChanged = true;
                 finish();
                 startActivity(new Intent(LanguageDialogActivity.this, CardsActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(!isLanguageChanged) startActivity(new Intent(LanguageDialogActivity.this, CardsActivity.class));
+        super.onDestroy();
     }
 }
