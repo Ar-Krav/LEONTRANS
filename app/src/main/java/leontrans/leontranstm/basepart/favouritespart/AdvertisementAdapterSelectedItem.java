@@ -1,4 +1,4 @@
-package leontrans.leontranstm;
+package leontrans.leontranstm.basepart.favouritespart;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +16,7 @@ import com.kcode.bottomlib.BottomDialog;
 
 import java.util.ArrayList;
 
-import leontrans.leontranstm.basepart.FavouriteCardsActivity;
+import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
 import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
 import leontrans.leontranstm.utils.SystemServicesUtils;

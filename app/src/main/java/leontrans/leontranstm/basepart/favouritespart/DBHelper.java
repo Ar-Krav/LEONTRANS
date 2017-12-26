@@ -1,4 +1,4 @@
-package leontrans.leontranstm;
+package leontrans.leontranstm.basepart.favouritespart;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package leontrans.leontranstm;
+package leontrans.leontranstm.basepart.favouritespart;
 
 public class DBinformation {
     private int id ;

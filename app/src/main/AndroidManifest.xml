@@ -27,7 +27,7 @@
             android:noHistory="true" />
         <activity android:name=".basepart.cardpart.CardsActivity" />
         <activity
-            android:name=".basepart.FavouriteCardsActivity"
+            android:name=".basepart.favouritespart.FavouriteCardsActivity"
             android:noHistory="true" />
         <activity
             android:name=".basepart.filters.FilterSettingsActivity"

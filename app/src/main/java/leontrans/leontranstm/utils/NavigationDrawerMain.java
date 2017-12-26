@@ -19,7 +19,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
-import leontrans.leontranstm.basepart.FavouriteCardsActivity;
+import leontrans.leontranstm.basepart.favouritespart.FavouriteCardsActivity;
 import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
 import leontrans.leontranstm.basepart.userprofile.UserProfileActivity;
 

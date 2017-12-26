@@ -1,4 +1,4 @@
-package leontrans.leontranstm.basepart;
+package leontrans.leontranstm.basepart.favouritespart;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,8 +19,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import leontrans.leontranstm.AdvertisementAdapterSelectedItem;
-import leontrans.leontranstm.DBinformation;
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementOwnerInfo;
