@@ -36,6 +36,7 @@ public class AdvertisementInfo {
     private String trans_length;
     private String trans_trailer;
     private String pay_form_moment;
+    private Boolean isInFavourite;
 
     private RoutPointsCoordinates routPointsCoordinates;
 
@@ -66,6 +67,15 @@ public class AdvertisementInfo {
         this.full_name = advertisementOwnerInfo.getFull_name();
 
         this.routPointsCoordinates = new RoutPointsCoordinates(list.getString("lat_from"), list.getString("lng_from"), list.getString("lat_to"), list.getString("lng_to"));
+        this.isInFavourite = false;
+    }
+
+    public Boolean getInFavourite() {
+        return isInFavourite;
+    }
+
+    public void setInFavourite(Boolean inFavourite) {
+        isInFavourite = inFavourite;
     }
 
     public int getId() {

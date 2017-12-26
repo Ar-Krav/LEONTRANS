@@ -54,6 +54,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         icon_asterisk.setTag(R.drawable.icon_unfavourite);
 
         if(dbHelper.checkIfExist(Integer.toString(advertisementInfoList.get(position).getId()))){
+            advertisementInfoList.get(position).setInFavourite(true);
             icon_asterisk.setImageResource(R.drawable.icon_favourite);
             icon_asterisk.setTag(R.drawable.icon_favourite);
         }else{
@@ -154,7 +155,9 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
                 Toast toast_choose = Toast.makeText(getContext(),R.string.saved_favourite_bids, Toast.LENGTH_SHORT);
                 Toast toast_close = Toast.makeText(getContext(),R.string.delete_favourite_bids, Toast.LENGTH_SHORT);
 
-                if(icon_asterisk.getTag().equals(R.drawable.icon_unfavourite)){
+
+                if(!advertisementInfoList.get(position).getInFavourite()){
+                    advertisementInfoList.get(position).setInFavourite(true);
                     icon_asterisk.setImageResource(R.drawable.icon_favourite);
                     icon_asterisk.setTag(R.drawable.icon_favourite);
                     toast_choose.show();
@@ -164,11 +167,14 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
                 }else{
                     icon_asterisk.setImageResource(R.drawable.icon_unfavourite);
                     icon_asterisk.setTag(R.drawable.icon_unfavourite);
+                    advertisementInfoList.get(position).setInFavourite(false);
                     toast_close.show();
                     if(dbHelper.checkIfExist(Integer.toString(advertisementInfoList.get(position).getId()))){
                         dbHelper.deleteContact(advertisementInfoList.get(position).getId());
                     }
                 }
+
+                notifyDataSetChanged();
             }
         });
 
