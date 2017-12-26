@@ -1,18 +1,13 @@
-package leontrans.leontranstm.basepart.cardpart;
+package leontrans.leontranstm.basepart;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -24,13 +19,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import leontrans.leontranstm.AdvertisementAdapterSelectedItem;
+import leontrans.leontranstm.DBinformation;
 import leontrans.leontranstm.R;
-import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
+import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
+import leontrans.leontranstm.basepart.cardpart.AdvertisementOwnerInfo;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
-public class CardsActivity extends AppCompatActivity {
+import static leontrans.leontranstm.basepart.cardpart.AdvertisementAdapter.dbHelper;
+
+public class FavouriteCardsActivity extends AppCompatActivity {
+
     private SiteDataParseUtils siteDataUtils;
 
     private Toolbar toolbar;
@@ -40,20 +42,18 @@ public class CardsActivity extends AppCompatActivity {
     private ConstraintLayout contentArea;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
-    private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
-    private int numbOfAdvertisement = 10;
 
     private ListView advertisementListView;
-    private FloatingActionButton loadNewCardsBtn;
-    private FloatingActionButton btToTop;
-    private AdvertisementAdapter adapter;
+
+    public AdvertisementAdapterSelectedItem selected_item_adapter;
+    public ArrayList<AdvertisementInfo> arrayListSelectedItem = new ArrayList<>();
+    private ArrayList<DBinformation> informationList;
 
     private Locale locale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cards);
-
+        setContentView(R.layout.activity_faq);
         //en ru uk
         String language = getSharedPreferences("app_language", MODE_PRIVATE).getString("language","en");
         locale = new Locale("" + language);
@@ -65,27 +65,29 @@ public class CardsActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_CARDS).getMainNavigationDrawer();
+        mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FAQ).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
         contentArea = (ConstraintLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
 
         siteDataUtils = new SiteDataParseUtils();
-        adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
-
-        loadNewCardsBtn = (FloatingActionButton) findViewById(R.id.btToBottom);
-            loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
-
-        btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
-            btToTop.setOnClickListener(getUpButtonClickListener());
+        selected_item_adapter = new AdvertisementAdapterSelectedItem(this,R.layout.list_item_layout,arrayListSelectedItem);
 
         advertisementListView = (ListView)findViewById(R.id.listView);
-            advertisementListView.setAdapter(adapter);
-            advertisementListView.setOnScrollListener(getListScrollListener());
+        advertisementListView.setAdapter(selected_item_adapter);
+        if(arrayListSelectedItem.isEmpty()){
+            informationList = dbHelper.getAllTODOLIST();
+            new LoadCards().execute(0);
+        }else{
+            arrayListSelectedItem.clear();
+            arrayListSelectedItem.removeAll(arrayListSelectedItem);
+            informationList = dbHelper.getAllTODOLIST();
+            new LoadCards().execute(0);
+        }
 
-        new LoadCards().execute(0);
     }
+
 
     private class LoadCards extends AsyncTask<Integer, Void, Void> {
 
@@ -98,17 +100,16 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Integer... integers) {
             try {
-                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement, numbOfAdvertisement);
-
-                SharedPreferences lastCardId = getSharedPreferences("lastCardInfo", MODE_PRIVATE);
-                lastCardId.edit().putInt("idLastCard", Integer.parseInt(arrayListJsonObjectAdvertisement.get(0).getString("id"))).commit();
+                for(int i = 0 ; i < informationList.size();i++){
+                    arrayListJsonObjectAdvertisement.add(i,siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_bid&id=" + informationList.get(i).getId_selected_item()));
+                }
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
                     JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator"));
 
                     AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
-                    arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo ,getApplicationContext(),locale));
+                    arrayListSelectedItem.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo ,getApplicationContext(),locale));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -119,7 +120,7 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            adapter.notifyDataSetChanged();
+            selected_item_adapter.notifyDataSetChanged();
 
             loaderView.setVisibility(View.GONE);
             contentArea.setVisibility(View.VISIBLE);
@@ -152,38 +153,6 @@ public class CardsActivity extends AppCompatActivity {
         }
     }
 
-    private AbsListView.OnScrollListener getListScrollListener(){
-        return new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                final int lastItem = firstVisibleItem + visibleItemCount;
-
-                if(lastItem >= totalItemCount-1){
-                    loadNewCardsBtn.setVisibility(View.VISIBLE);
-                    btToTop.setVisibility(View.VISIBLE);
-
-                }else{
-                    loadNewCardsBtn.setVisibility(View.INVISIBLE);
-                    btToTop.setVisibility(View.INVISIBLE);
-                }
-            }
-        };
-    }
-
-    private View.OnClickListener getLoadNewCardsBtnListener(){
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numbOfAdvertisement += 10;
-                new LoadCards().execute(numbOfAdvertisement-10);
-            }
-        };
-    }
-
     private View.OnClickListener getUpButtonClickListener(){
         return new View.OnClickListener() {
             @Override
@@ -193,45 +162,12 @@ public class CardsActivity extends AppCompatActivity {
         };
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cards_activity_meny,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-
-        switch (item.getItemId()){
-            case R.id.reloadCardActivityMenuBtn:{
-                intent = getIntent();
-                overridePendingTransition(0, 0);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                finish();
-                overridePendingTransition(0, 0);
-                break;
-            }
-            case R.id.showFilterNavigationDrawer:{
-                intent = new Intent(CardsActivity.this, FilterSwitcherDialogActivity.class);
-                break;
-            }
-
-            default:{
-                intent = getIntent();
-            }
-        }
-
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
-    }
-
     public void onBackPressed(){
         if(mainNavigationDrawer.isDrawerOpen()){
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            super.onBackPressed();
+            startActivity(new Intent(FavouriteCardsActivity.this, CardsActivity.class));
         }
     }
 }

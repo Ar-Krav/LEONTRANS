@@ -1,7 +1,6 @@
 package leontrans.leontranstm.basepart.cardpart;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +14,7 @@ import leontrans.leontranstm.utils.RoutPointsCoordinates;
 
 public class AdvertisementInfo {
     private Context context;
+    private int id;
     private String trans_type;
     private String date_from;
     private String date_to;
@@ -41,13 +41,14 @@ public class AdvertisementInfo {
 
     public AdvertisementInfo(JSONObject list, AdvertisementOwnerInfo advertisementOwnerInfo, Context context, Locale locale) throws JSONException {
         this.context = context;
+        this.id = Integer.parseInt(list.getString("id"));
         this.trans_trailer = getTrans_trailer(list.getString("trans_trailer"));
         this.trans_height = list.getString("trans_height");
         this.trans_width = list.getString("trans_width");
         this.trans_length = list.getString("trans_length");
         this.trans_type = getTrans_type(list.getString("trans_type"));
-        this.date_from = makeDate(list.getString("date_from"));
-        this.date_to = makeDate(list.getString("date_to"));
+        this.date_from = list.getString("date_from");
+        this.date_to = list.getString("date_to");
         this.country_from = getDestinationPoint(list.getString("country_from_ru"),list.getString("country_from_ua"),list.getString("country_from_en"),locale);
         this.country_to = getDestinationPoint(list.getString("country_to_ru"),list.getString("country_to_ua"),list.getString("country_to_en"),locale);
         this.city_from = getDestinationPoint(list.getString("city_from_ru"),list.getString("city_from_ua"),list.getString("city_from_en"),locale);
@@ -66,7 +67,16 @@ public class AdvertisementInfo {
 
         this.routPointsCoordinates = new RoutPointsCoordinates(list.getString("lat_from"), list.getString("lng_from"), list.getString("lat_to"), list.getString("lng_to"));
     }
-    private String getPay_form_moment(String pay_form,String pay_moment){
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private String getPay_form_moment(String pay_form, String pay_moment){
         String res = "";
         switch (pay_form){
             case "777":{
@@ -402,13 +412,9 @@ public class AdvertisementInfo {
     }
 
     private String makeDate(String date){
-
-        if (date.isEmpty()) return context.getString(R.string.no_date);
-
-        long dv;
+        long dv = 0;
         Date df;
         String dateFrom;
-
         dv = Long.valueOf(date) * 1000;
         df = new java.util.Date(dv);
         dateFrom = new SimpleDateFormat("dd.MM.yyyy").format(df);

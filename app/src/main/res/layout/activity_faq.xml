@@ -1,26 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="leontrans.leontranstm.basepart.FAQActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="0dp">
 
         <include
             layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/content_area"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="F.A.Q. FRAGMENT"/>
+            android:layout_height="match_parent"
+            android:layout_margin="0dp">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:divider="#464646"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:dividerHeight="10.0sp" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
@@ -30,5 +40,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
-
 </FrameLayout>

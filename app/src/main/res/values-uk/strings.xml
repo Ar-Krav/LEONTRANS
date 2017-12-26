@@ -10,6 +10,7 @@
 
     <string name="test_text_card_view_activity">Card View</string>
     <string name="menu_item_title">showFilterNavigationDrawer</string>
+    <string name="reload_activity_cards_menu">Оновити оголошення</string>
 
     <string name="TV_name">Ім\'я</string>
     <string name="TV_city">Місто</string>
@@ -101,6 +102,7 @@
     <string name="my_profile">Мій профіль</string>
     <string name="advertisement_list">Список оголошень</string>
     <string name="filter_settings">Налаштування фільтрів</string>
+    <string name="favourite_cards_activity">Обране</string>
     <string name="app_settings">Налаштування</string>
 
     <string name="filter_1">Фільтр 1</string>
@@ -160,5 +162,7 @@
     <string name="notification_warning">Перевірте нові оголошення!</string>
 
 
+    <string name="saved_favourite_bids">Оголошення додано до обраних</string>
+    <string name="delete_favourite_bids">Оголошення видалено із обраних</string>
 
 </resources>

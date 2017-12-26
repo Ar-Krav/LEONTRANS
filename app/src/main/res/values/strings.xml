@@ -9,7 +9,8 @@
 
 
     <string name="test_text_card_view_activity">Card View</string>
-    <string name="menu_item_title">showFilterNavigationDrawer</string>
+    <string name="menu_item_title">showFilter navigation drawer</string>
+    <string name="reload_activity_cards_menu">Reload card activity</string>
 
     <string name="TV_name">Name</string>
     <string name="TV_city">City</string>
@@ -96,6 +97,7 @@
     <string name="my_profile">My profile</string>
     <string name="advertisement_list">Advertisement list</string>
     <string name="filter_settings">Filter settings</string>
+    <string name="favourite_cards_activity">Favourites</string>
     <string name="app_settings">Settings</string>
 
     <string name="filter_1">Filter 1</string>
@@ -197,4 +199,11 @@
     <string name="notification_title">New bids!</string>
     <string name="notification_content">There is new bid on your filters.</string>
     <string name="notification_warning">Check new bids!</string>
+
+
+    <string name="saved_favourite_bids">Bid saved in favourite</string>
+    <string name="delete_favourite_bids">Bid deleted from favourite</string>
+
+
+
 </resources>
