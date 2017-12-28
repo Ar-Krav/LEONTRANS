@@ -24,11 +24,14 @@ import com.mikepenz.materialdrawer.Drawer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
+import leontrans.leontranstm.basepart.filters.editor.FilterEditActivity;
 import leontrans.leontranstm.launching.LauncherActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.InternetStatusUtils;
@@ -109,7 +112,12 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Integer... integers) {
             try {
-                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement, numbOfAdvertisement);
+
+                SharedPreferences userPasswordSharedPreferences = CardsActivity.this.getSharedPreferences("hashPassword", MODE_PRIVATE);
+                String userPassword = userPasswordSharedPreferences.getString("userPassword","");
+                int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
+
+                arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement + "&user=" + userID, numbOfAdvertisement);
 
                 SharedPreferences lastCardId = getSharedPreferences("lastCardInfo", MODE_PRIVATE);
                 lastCardId.edit().putInt("idLastCard", Integer.parseInt(arrayListJsonObjectAdvertisement.get(0).getString("id"))).commit();

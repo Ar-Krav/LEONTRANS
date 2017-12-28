@@ -1,9 +1,5 @@
 package leontrans.leontranstm.basepart.cardpart;
 
-/**
- * Created by Ar-Krav on 03.11.2017.
- */
-
 public class AdvertisementOwnerInfo {
     private String telephone;
     private String person_type;

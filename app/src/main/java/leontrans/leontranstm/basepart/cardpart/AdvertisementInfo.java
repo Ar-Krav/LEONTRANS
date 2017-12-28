@@ -1,10 +1,15 @@
 package leontrans.leontranstm.basepart.cardpart;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -149,15 +154,25 @@ public class AdvertisementInfo {
         return pay_form_moment;
     }
 
-    private String getDestinationPoint(String country_ru, String country_ua, String country_en, Locale locale){
-        String res = "";
-        if(locale.getLanguage() == "en"){
-            res = country_en;
-        }else if(locale.getLanguage() == "ru"){
-            res = country_ru;
-        }else if(locale.getLanguage() == "uk"){
-            res = country_ua;
+    private String getDestinationPoint(String dest_ru, String dest_ua, String dest_en, Locale locale){
+        String res;
+
+        switch (locale.getLanguage()){
+            case "en":{
+                res = dest_en;
+                break;
+            }
+            case "ru":{
+                res = dest_ru;
+                break;
+            }
+            case "ua":{
+                res = dest_ua;
+                break;
+            }
+            default: res = dest_en;
         }
+
         return res;
     }
 

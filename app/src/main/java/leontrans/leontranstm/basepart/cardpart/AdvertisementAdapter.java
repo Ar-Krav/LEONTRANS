@@ -61,7 +61,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
         TextView trans_type = (TextView) view.findViewById(R.id.trans_type);
         TextView date_from = (TextView) view.findViewById(R.id.date_from);
-        ImageView telephone = (ImageView) view.findViewById(R.id.telephone);
+        TextView telephone = (TextView) view.findViewById(R.id.telephone);
         TextView date_to = (TextView) view.findViewById(R.id.date_to);
         Button country_from_ru = (Button) view.findViewById(R.id.country_from_ru);
 
@@ -138,7 +138,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         }
 
 
-        ImageView routView = (ImageView) view.findViewById(R.id.routBtn);
+        Button routView = (Button) view.findViewById(R.id.routBtn);
         routView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

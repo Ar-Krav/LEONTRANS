@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.TimerTask;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.launching.LauncherActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
@@ -36,7 +37,12 @@ public class ServiceTimerTask extends TimerTask {
         SharedPreferences lastCardIdSharedPreferences = context.getSharedPreferences("lastCardInfo", MODE_PRIVATE);
         int lastCardId = lastCardIdSharedPreferences.getInt("idLastCard",-1);
         int checkedCardId = -1;
-        ArrayList<JSONObject> jsonObjectArrayList = new SiteDataParseUtils().getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + 1, 1);
+
+        SharedPreferences userPasswordSharedPreferences = context.getSharedPreferences("hashPassword", MODE_PRIVATE);
+        String userPassword = userPasswordSharedPreferences.getString("userPassword","");
+        int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
+
+        ArrayList<JSONObject> jsonObjectArrayList = new SiteDataParseUtils().getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + 1 + "&user=" + userID, 1);
 
         if (jsonObjectArrayList.size() <= 0) return;
 
