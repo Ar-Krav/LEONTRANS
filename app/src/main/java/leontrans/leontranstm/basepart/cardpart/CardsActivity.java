@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -45,14 +47,14 @@ public class CardsActivity extends AppCompatActivity {
     private Drawer.Result mainNavigationDrawer;
 
     private ProgressBar loaderView;
-    private ConstraintLayout contentArea;
+    private LinearLayout contentArea;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
     private int numbOfAdvertisement = 10;
 
     private ListView advertisementListView;
-    private FloatingActionButton loadNewCardsBtn;
+    private Button loadNewCardsBtn;
     private FloatingActionButton btToTop;
     private AdvertisementAdapter adapter;
 
@@ -82,14 +84,15 @@ public class CardsActivity extends AppCompatActivity {
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_CARDS).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
-        contentArea = (ConstraintLayout) findViewById(R.id.content_area);
+        contentArea = (LinearLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
 
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
 
-        loadNewCardsBtn = (FloatingActionButton) findViewById(R.id.btToBottom);
+        loadNewCardsBtn = (Button) findViewById(R.id.show_more_bids_btn);
             loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
+            loadNewCardsBtn.setVisibility(View.GONE);
 
         btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
             btToTop.setOnClickListener(getUpButtonClickListener());
@@ -186,8 +189,8 @@ public class CardsActivity extends AppCompatActivity {
                     btToTop.setVisibility(View.VISIBLE);
 
                 }else{
-                    loadNewCardsBtn.setVisibility(View.INVISIBLE);
-                    btToTop.setVisibility(View.INVISIBLE);
+                    loadNewCardsBtn.setVisibility(View.GONE);
+                    btToTop.setVisibility(View.GONE);
                 }
             }
         };
