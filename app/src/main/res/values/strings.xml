@@ -137,8 +137,8 @@
 
     <string-array name="notify_types">
         <item>Not selected</item>
-        <item>Car</item>
-        <item>Luggage</item>
+        <item>avto</item>
+        <item>goods</item>
     </string-array>
 
     <string-array name="car_types">

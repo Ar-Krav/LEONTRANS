@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,13 @@ import android.widget.Switch;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
+import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class FilterEditActivity extends AppCompatActivity {
@@ -107,7 +110,7 @@ public class FilterEditActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO send all result to server
+                new SentFilterInfo().execute();
                 returnToFilterSettingActivity();
             }
         };
@@ -364,5 +367,78 @@ public class FilterEditActivity extends AppCompatActivity {
     private void returnToFilterSettingActivity(){
         Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
         startActivity(intent);
+    }
+
+    private class SentFilterInfo extends AsyncTask<Void,Void,Void> {
+
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            SharedPreferences userPasswordSharedPreferences = FilterEditActivity.this.getSharedPreferences("hashPassword", MODE_PRIVATE);
+            String userPassword = userPasswordSharedPreferences.getString("userPassword","");
+            int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
+
+            JSONObject filterInfoJSON = new JSONObject();
+
+            try {
+                filterInfoJSON.put("id",getNotifyId(notifyId));
+
+                filterInfoJSON.put("type","" +getEmptyStringIfNotSelected((Spinner) findViewById(R.id.notify_type_spinner)));
+                filterInfoJSON.put("trans_type","" + getEmptyStringIfNotSelected((Spinner) findViewById(R.id.car_type)));
+                filterInfoJSON.put("trans_kind","" + getEmptyStringIfNotSelected((Spinner) findViewById(R.id.car_kind)));
+
+                filterInfoJSON.put("country_from_name","" + getDestenationString((EditText) findViewById(R.id.country_from)));
+                filterInfoJSON.put("country_to_name","" +getDestenationString(((EditText) findViewById(R.id.country_to))));
+                filterInfoJSON.put("city_from_name","" +getDestenationString(((EditText) findViewById(R.id.city_from))));
+                filterInfoJSON.put("city_to_name","" +getDestenationString((EditText) findViewById(R.id.city_to)));
+
+                filterInfoJSON.put("capacity_from","" + ((EditText) findViewById(R.id.capacity_from)).getText());
+                filterInfoJSON.put("capacity_to","" + ((EditText) findViewById(R.id.capacity_to)).getText());
+                filterInfoJSON.put("weight_from","" + ((EditText) findViewById(R.id.weight_from)).getText());
+                filterInfoJSON.put("weight_to","" + ((EditText) findViewById(R.id.weight_to)).getText());
+
+                filterInfoJSON.put("load_type","" + joinArrayStrings(loadTypeArrayList));
+                filterInfoJSON.put("docs","" + joinArrayStrings(docsArrayList));
+                filterInfoJSON.put("adr","" + joinArrayStrings(adrArrayList));
+
+                Log.d("JSON_TEST_TAG", "doInBackground: " + filterInfoJSON);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            new SiteDataParseUtils().getSiteRequestResult("https://leon-trans.com/api/ver1/update.php?action=notify&id=" + userID + "&id_notify=" + getNotifyId(notifyId) + "&notify=" + filterInfoJSON);
+
+            return  null;
+        }
+
+        private String getNotifyId(String notifyId){
+            return notifyId.substring(notifyId.indexOf("_") + 1, notifyId.length());
+        }
+
+        private String getDestenationString(EditText editText){
+            if (editText.getText().equals("null")){
+                return "";
+            }
+            else return editText.getText().toString();
+        }
+
+        private String getEmptyStringIfNotSelected(Spinner spinner){
+            if (spinner.getSelectedItemId() == 0){
+                return "";
+            }
+            else return (String) spinner.getSelectedItem();
+        }
+
+        private String joinArrayStrings(ArrayList<String> arrayList){
+            String arrayJoinText = "";
+            for (int i = 0; i < arrayList.size(); i++){
+                arrayJoinText += arrayList.get(i);
+                arrayJoinText += ",";
+            }
+
+            return arrayJoinText.substring(0, arrayJoinText.length() - 1);
+        }
     }
 }
