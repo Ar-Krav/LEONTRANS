@@ -1,15 +1,18 @@
 package leontrans.leontranstm.launching;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.backgraund.CheckNewCardsService;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
+import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -22,7 +25,36 @@ public class LauncherActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        isUserAlreadySignedin();
+        if (InternetStatusUtils.isDeviceOnline(this)) {
+            isUserAlreadySignedin();
+        }
+        else{
+            showConnectionAlertDialog();
+        }
+    }
+
+    private void showConnectionAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LauncherActivity.this);
+        builder.setTitle("You are offline!")
+                .setMessage("Check your internet connection and try again.")
+                .setIcon(R.drawable.icon_internet_disabled)
+                .setCancelable(false)
+                .setNegativeButton("Refresh",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent;
+                                intent = getIntent();
+                                overridePendingTransition(0, 0);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                overridePendingTransition(0, 0);
+
+                                dialog.cancel();
+                                finish();
+                                startActivity(intent);
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void isUserAlreadySignedin(){
@@ -49,9 +81,8 @@ public class LauncherActivity extends AppCompatActivity {
             super.onPostExecute(userID);
             if (userID > 0){
 
-                //TODO uncommented startService on relise version!
                 stopService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
-                //startService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
+                startService(new Intent(LauncherActivity.this, CheckNewCardsService.class));
 
                 Intent intent = new Intent(LauncherActivity.this, CardsActivity.class);
                 startActivity(intent);

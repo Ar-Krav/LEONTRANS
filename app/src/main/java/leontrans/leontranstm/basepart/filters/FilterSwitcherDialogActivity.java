@@ -26,6 +26,7 @@ import java.util.Map;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
+import leontrans.leontranstm.basepart.filters.editor.FilterEditActivity;
 import leontrans.leontranstm.basepart.userprofile.UserCardOwenerProfile;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 import leontrans.leontranstm.utils.SystemServicesUtils;
@@ -33,6 +34,7 @@ import leontrans.leontranstm.utils.SystemServicesUtils;
 public class FilterSwitcherDialogActivity extends AppCompatActivity {
 
     private ArrayList<Switch> filterSwitchersList;
+    Map<String, String> filterStatMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +55,15 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Map<String, String> filterStatMap = new HashMap<>();
+                filterStatMap = new HashMap<>();
                 int filterNumber = 1;
 
                 for (Switch switcher : filterSwitchersList){
                     filterStatMap.put("b" + filterNumber, switcher.isChecked() ? "" + 1 : "" + 0);
+                    filterNumber++;
                 }
 
-                //TODO send result to web site
+                new SentFilterInfo().execute();
 
                 Intent intent = new Intent(FilterSwitcherDialogActivity.this, CardsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -122,6 +125,37 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private class SentFilterInfo extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            SharedPreferences userPasswordSharedPreferences = FilterSwitcherDialogActivity.this.getSharedPreferences("hashPassword", MODE_PRIVATE);
+            String userPassword = userPasswordSharedPreferences.getString("userPassword","");
+            int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
+
+            JSONObject filterJSON = new JSONObject();
+
+            try {
+                filterJSON.put("b1","" + filterStatMap.get("b1") );
+                filterJSON.put("b2","" + filterStatMap.get("b2") );
+                filterJSON.put("b3","" + filterStatMap.get("b3") );
+                filterJSON.put("b4","" + filterStatMap.get("b4") );
+                filterJSON.put("b5","" + filterStatMap.get("b5") );
+                filterJSON.put("b6","" + filterStatMap.get("b6") );
+                filterJSON.put("b7","" + filterStatMap.get("b7") );
+                filterJSON.put("b8","" + filterStatMap.get("b8") );
+                filterJSON.put("b9","" + filterStatMap.get("b9") );
+                filterJSON.put("b10","" + filterStatMap.get("b10") );
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            new SiteDataParseUtils().getSiteRequestResult("https://leon-trans.com/api/ver1/update.php?action=on_off&id=" + userID + "&notify=" + filterJSON);
+
+            return  null;
         }
     }
 

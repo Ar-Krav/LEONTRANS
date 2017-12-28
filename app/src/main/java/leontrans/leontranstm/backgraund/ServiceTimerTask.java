@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,8 @@ public class ServiceTimerTask extends TimerTask {
         int lastCardId = lastCardIdSharedPreferences.getInt("idLastCard",-1);
         int checkedCardId = -1;
         ArrayList<JSONObject> jsonObjectArrayList = new SiteDataParseUtils().getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + 1, 1);
+
+        if (jsonObjectArrayList.size() <= 0) return;
 
         try {
             checkedCardId = Integer.parseInt(jsonObjectArrayList.get(0).getString("id"));

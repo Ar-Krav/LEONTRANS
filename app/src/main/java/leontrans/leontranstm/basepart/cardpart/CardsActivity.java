@@ -1,14 +1,17 @@
 package leontrans.leontranstm.basepart.cardpart;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +29,9 @@ import java.util.Locale;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
+import leontrans.leontranstm.launching.LauncherActivity;
 import leontrans.leontranstm.utils.Constants;
+import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
@@ -52,6 +57,12 @@ public class CardsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!InternetStatusUtils.isDeviceOnline(this)){
+            showConnectionAlertDialog();
+            return;
+        }
+
         setContentView(R.layout.activity_cards);
 
         //en ru uk
@@ -224,6 +235,30 @@ public class CardsActivity extends AppCompatActivity {
 
         startActivity(intent);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showConnectionAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CardsActivity.this);
+        builder.setTitle("You are offline!")
+                .setMessage("Check your internet connection and try again.")
+                .setIcon(R.drawable.icon_internet_disabled)
+                .setCancelable(false)
+                .setNegativeButton("Refresh",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent;
+                                intent = getIntent();
+                                overridePendingTransition(0, 0);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                overridePendingTransition(0, 0);
+
+                                dialog.cancel();
+                                finish();
+                                startActivity(intent);
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void onBackPressed(){

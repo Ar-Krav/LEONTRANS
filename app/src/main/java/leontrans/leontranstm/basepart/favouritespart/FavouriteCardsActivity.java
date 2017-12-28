@@ -1,9 +1,11 @@
 package leontrans.leontranstm.basepart.favouritespart;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +26,7 @@ import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementOwnerInfo;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.Constants;
+import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
@@ -51,7 +54,12 @@ public class FavouriteCardsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);
+        if (!InternetStatusUtils.isDeviceOnline(this)){
+            showConnectionAlertDialog();
+            return;
+        }
+
+        setContentView(R.layout.activity_favourite_cards);
         //en ru uk
         String language = getSharedPreferences("app_language", MODE_PRIVATE).getString("language","en");
         locale = new Locale("" + language);
@@ -167,5 +175,29 @@ public class FavouriteCardsActivity extends AppCompatActivity {
         else{
             startActivity(new Intent(FavouriteCardsActivity.this, CardsActivity.class));
         }
+    }
+
+    private void showConnectionAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(FavouriteCardsActivity.this);
+        builder.setTitle("You are offline!")
+                .setMessage("Check your internet connection and try again.")
+                .setIcon(R.drawable.icon_internet_disabled)
+                .setCancelable(false)
+                .setNegativeButton("Refresh",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent;
+                                intent = getIntent();
+                                overridePendingTransition(0, 0);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                overridePendingTransition(0, 0);
+
+                                dialog.cancel();
+                                finish();
+                                startActivity(intent);
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

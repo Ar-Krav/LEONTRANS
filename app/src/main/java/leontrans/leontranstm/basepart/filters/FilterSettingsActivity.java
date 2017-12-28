@@ -1,6 +1,8 @@
 package leontrans.leontranstm.basepart.filters;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,7 @@ import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.basepart.filters.editor.FilterEditActivity;
 import leontrans.leontranstm.utils.Constants;
+import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
 
 public class FilterSettingsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,6 +56,12 @@ public class FilterSettingsActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
+
+        if (!InternetStatusUtils.isDeviceOnline(this)){
+            showConnectionAlertDialog();
+            return;
+        }
+
         Intent intent = new Intent(FilterSettingsActivity.this, FilterEditActivity.class);
 
         switch (view.getId()){
@@ -99,5 +108,21 @@ public class FilterSettingsActivity extends AppCompatActivity implements View.On
         }
 
         startActivity(intent);
+    }
+
+    private void showConnectionAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(FilterSettingsActivity.this);
+        builder.setTitle("You are offline!")
+                .setMessage("Check your internet connection and try again.")
+                .setIcon(R.drawable.icon_internet_disabled)
+                .setCancelable(false)
+                .setNegativeButton("Return",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

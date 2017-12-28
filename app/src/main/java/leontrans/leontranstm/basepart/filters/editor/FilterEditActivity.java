@@ -177,17 +177,16 @@ public class FilterEditActivity extends AppCompatActivity {
             return resultList;
         }
 
-        //TODO change names to correct!!!
         private void setNotifySpinnerSelection(String notifyType){
             switch (notifyType){
                 case "": {
                     notifyTypeSpinner.setSelection(0);
                     break;
                 }
-                case "car": {
+                case "avto": {
                     notifyTypeSpinner.setSelection(1);
                     break;
-                }case "luggage": {
+                }case "goods": {
                     notifyTypeSpinner.setSelection(2);
                     break;
                 }
