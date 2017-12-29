@@ -157,6 +157,8 @@ public class AdvertisementInfo {
     private String getDestinationPoint(String dest_ru, String dest_ua, String dest_en, Locale locale){
         String res;
 
+        Log.d("LOCALE_TEST_TAG", "getDestinationPoint: " + locale.getLanguage());
+
         switch (locale.getLanguage()){
             case "en":{
                 res = dest_en;
@@ -166,7 +168,7 @@ public class AdvertisementInfo {
                 res = dest_ru;
                 break;
             }
-            case "ua":{
+            case "uk":{
                 res = dest_ua;
                 break;
             }
