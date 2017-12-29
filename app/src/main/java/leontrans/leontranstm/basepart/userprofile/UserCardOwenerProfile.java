@@ -2,12 +2,14 @@ package leontrans.leontranstm.basepart.userprofile;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -68,7 +70,10 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 JSONObject dataJson = new JSONObject(jsonStr);
                 final SystemServicesUtils systemServicesUtils = new SystemServicesUtils();
 
+                Button employeeOwner = (Button) findViewById(R.id.employee_owner);
+
                 TextView userNameInfo = (TextView) findViewById(R.id.underImageInfo);
+                TextView TV_name_value = (TextView) findViewById(R.id.TV_name_value);
                 final TextView TV_city_value = (TextView) findViewById(R.id.TV_city_value);
                 final TextView TV_email_value = (TextView) findViewById(R.id.TV_email_value);
                 final TextView TV_telephone_value = (TextView) findViewById(R.id.TV_telephone_value);
@@ -88,12 +93,8 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                         .error(R.drawable.default_avatar)
                         .into(userAvatarImageView);
 
-                if (dataJson.getString("person_type").equals("individual")){
-                    userNameInfo.setText(dataJson.getString("full_name") + "\n" + dataJson.getString("login"));
-                }
-                else {
-                    userNameInfo.setText(dataJson.getString("nomination_prefix") + " " + dataJson.getString("nomination_name") +"\n" + dataJson.getString("login"));
-                }
+                userNameInfo.setText(getFullName(dataJson) + "\n" + dataJson.getString("login"));
+                TV_name_value.setText(getFullName(dataJson));
 
                 TV_city_value.setText(dataJson.getString("location_city"));
                 TV_email_value.setText(dataJson.getString("email"));
@@ -139,11 +140,38 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                     }
                 });
 
+                String employyeOwnerName = getUserOwner(dataJson);
+
+                if (!employyeOwnerName.equals("")){
+                    employeeOwner.setVisibility(View.VISIBLE);
+                    String employeeOwnerText = UserCardOwenerProfile.this.getString(R.string.employee_owner_btn) + ": " + employyeOwnerName;
+                    employeeOwner.setText(employeeOwnerText);
+                }
+
                 crossfade();
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+
+        private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
+            if (advertisementOwnerInfo.getString("full_name").equals("")){
+                return advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+            }
+            else return advertisementOwnerInfo.getString("full_name");
+        }
+
+        private String getUserOwner(JSONObject advertisementOwnerInfo) throws JSONException{
+            JSONObject userCreatorEmploeeOwner;
+
+            if (!advertisementOwnerInfo.getString("employee_owner").equals("0")){
+                userCreatorEmploeeOwner = new SiteDataParseUtils().getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
+                return getFullName(userCreatorEmploeeOwner);
+            }
+
+            return "";
         }
     }
 

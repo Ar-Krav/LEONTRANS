@@ -28,10 +28,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/employee_owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Employer"
+                    android:layout_marginTop="30dp"
+                    android:background="#3bb36e"
+                    android:visibility="gone"/>
+
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp">
+                    android:layout_marginTop="30dp">
 
                     <FrameLayout
                         android:id="@+id/frame_image_area"
@@ -81,28 +90,51 @@
                 android:padding="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/TV_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:background="#FF303030"
-                    android:gravity="center"
-                    android:text="@string/TV_city"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/TV_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="#FF303030"
+                        android:gravity="center"
+                        android:text="@string/TV_name"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/TV_city_value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:background="#AAA"
-                    android:gravity="center"
-                    android:textColor="@color/dark"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/TV_name_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="#AAA"
+                        android:gravity="center"
+                        android:textColor="@color/dark"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/TV_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="#FF303030"
+                        android:gravity="center"
+                        android:text="@string/TV_city"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TV_city_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="#AAA"
+                        android:gravity="center"
+                        android:textColor="@color/dark"
+                        android:textSize="20sp" />
             </LinearLayout>
 
                 <LinearLayout

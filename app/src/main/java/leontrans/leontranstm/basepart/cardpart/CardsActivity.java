@@ -150,7 +150,7 @@ public class CardsActivity extends AppCompatActivity {
                     break;
                 }
                 case "entity":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    result = advertisementOwnerInfo.getString("nomination_prefix") + "\n" +advertisementOwnerInfo.getString("nomination_name");
                     break;
                 }
                 case "fop":{
@@ -159,7 +159,12 @@ public class CardsActivity extends AppCompatActivity {
                 }
                 case "employee":{
                     userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
-                    result = userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name");
+                    if(userCreatorEmploeeOwner.getString("full_name").equals("")){
+                        result = "(" + userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name") + ")\n" +  advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    }else{
+                        result = "(" + userCreatorEmploeeOwner.getString("full_name")+ ")\n" + advertisementOwnerInfo.getString("full_name");
+                    }
+
                     break;
                 }
             }

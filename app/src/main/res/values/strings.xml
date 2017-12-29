@@ -204,6 +204,7 @@
     <string name="saved_favourite_bids">Bid saved in favourite</string>
     <string name="delete_favourite_bids">Bid deleted from favourite</string>
 
-
+    <string name="employee_owner_btn">Employee</string>
+    <string name="show_new_cards_btn">Show more cards</string>
 
 </resources>

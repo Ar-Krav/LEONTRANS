@@ -165,4 +165,7 @@
     <string name="saved_favourite_bids">Оголошення додано до обраних</string>
     <string name="delete_favourite_bids">Оголошення видалено із обраних</string>
 
+    <string name="employee_owner_btn">Співробітник</string>
+    <string name="show_new_cards_btn">Показати більше оголошень</string>
+
 </resources>

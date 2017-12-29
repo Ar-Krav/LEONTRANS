@@ -35,7 +35,7 @@
                 android:id="@+id/show_more_bids_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Show more cards"
+                android:text="@string/show_new_cards_btn"
                 android:layout_weight="0"
                 android:visibility="gone"
                 android:background="#3bb36e" />

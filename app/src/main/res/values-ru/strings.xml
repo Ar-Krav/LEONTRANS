@@ -160,4 +160,7 @@
     <string name="saved_favourite_bids">Объявления добавлены в избранное</string>
     <string name="delete_favourite_bids">Объявления удалено из избранных</string>
 
+    <string name="employee_owner_btn">Сотрудник</string>
+    <string name="show_new_cards_btn">Показать больше объявлений</string>
+
 </resources>
