@@ -53,8 +53,8 @@ public class AdvertisementInfo {
         this.trans_width = list.getString("trans_width");
         this.trans_length = list.getString("trans_length");
         this.trans_type = getTrans_type(list.getString("trans_type"));
-        this.date_from = list.getString("date_from");
-        this.date_to = list.getString("date_to");
+        this.date_from = makeDate(list.getString("date_from"));
+        this.date_to = makeDate(list.getString("date_to"));
         this.country_from = getDestinationPoint(list.getString("country_from_ru"),list.getString("country_from_ua"),list.getString("country_from_en"),locale);
         this.country_to = getDestinationPoint(list.getString("country_to_ru"),list.getString("country_to_ua"),list.getString("country_to_en"),locale);
         this.city_from = getDestinationPoint(list.getString("city_from_ru"),list.getString("city_from_ua"),list.getString("city_from_en"),locale);

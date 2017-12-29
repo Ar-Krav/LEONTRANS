@@ -51,7 +51,7 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
 
         TextView trans_type = (TextView) view.findViewById(R.id.trans_type);
         TextView date_from = (TextView) view.findViewById(R.id.date_from);
-        ImageView telephone = (ImageView) view.findViewById(R.id.telephone);
+        TextView telephone = (TextView) view.findViewById(R.id.telephone);
         TextView date_to = (TextView) view.findViewById(R.id.date_to);
         Button country_from_ru = (Button) view.findViewById(R.id.country_from_ru);
 
