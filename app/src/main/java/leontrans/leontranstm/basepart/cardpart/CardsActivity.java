@@ -90,11 +90,9 @@ public class CardsActivity extends AppCompatActivity {
             loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
 
         listViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            listViewParams.weight = 0.0f;
         advertisementListView = (ListView)findViewById(R.id.listView);
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());
-            advertisementListView.setLayoutParams(listViewParams);
 
         new LoadCards().execute(0);
     }
@@ -140,6 +138,11 @@ public class CardsActivity extends AppCompatActivity {
 
             loaderView.setVisibility(View.GONE);
             contentArea.setVisibility(View.VISIBLE);
+
+            listViewParams.weight = 0.0f;
+            advertisementListView.setLayoutParams(listViewParams);
+
+            advertisementListView.invalidate();
         }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
@@ -206,9 +209,6 @@ public class CardsActivity extends AppCompatActivity {
                 }
 
                 numbOfAdvertisement += 10;
-
-                listViewParams.weight = 0.0f;
-                advertisementListView.setLayoutParams(listViewParams);
 
                 new LoadCards().execute(numbOfAdvertisement-10);
             }
