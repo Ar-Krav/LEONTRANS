@@ -21,43 +21,24 @@
             android:id="@+id/content_area"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="0dp">
+            android:orientation="vertical">
 
-            <android.support.constraint.ConstraintLayout
+            <ListView
+                android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ListView
-                    android:id="@+id/listView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="#464646"
-                    android:dividerHeight="10.0sp"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btToTop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    app:fabSize="normal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@android:drawable/arrow_up_float" />
-            </android.support.constraint.ConstraintLayout>
+                android:divider="#464646"
+                android:dividerHeight="10.0sp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <Button
                 android:id="@+id/show_more_bids_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Show more cards"
-                android:layout_margin="15dp"
-                android:background="#3bb36e"/>
+                android:layout_weight="0"
+                android:visibility="gone"
+                android:background="#3bb36e" />
 
         </LinearLayout>
 

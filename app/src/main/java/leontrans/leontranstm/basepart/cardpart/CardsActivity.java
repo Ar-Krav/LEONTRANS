@@ -5,16 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,15 +24,11 @@ import com.mikepenz.materialdrawer.Drawer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
-import leontrans.leontranstm.basepart.filters.editor.FilterEditActivity;
-import leontrans.leontranstm.launching.LauncherActivity;
 import leontrans.leontranstm.utils.Constants;
 import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.NavigationDrawerMain;
@@ -48,6 +42,7 @@ public class CardsActivity extends AppCompatActivity {
 
     private ProgressBar loaderView;
     private LinearLayout contentArea;
+    LinearLayout.LayoutParams listViewParams;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
@@ -55,7 +50,6 @@ public class CardsActivity extends AppCompatActivity {
 
     private ListView advertisementListView;
     private Button loadNewCardsBtn;
-    private FloatingActionButton btToTop;
     private AdvertisementAdapter adapter;
 
     private Locale locale;
@@ -92,14 +86,13 @@ public class CardsActivity extends AppCompatActivity {
 
         loadNewCardsBtn = (Button) findViewById(R.id.show_more_bids_btn);
             loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
-            loadNewCardsBtn.setVisibility(View.GONE);
 
-        btToTop = (FloatingActionButton) findViewById(R.id.btToTop);
-            btToTop.setOnClickListener(getUpButtonClickListener());
-
+        listViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            listViewParams.weight = 0.0f;
         advertisementListView = (ListView)findViewById(R.id.listView);
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());
+            advertisementListView.setLayoutParams(listViewParams);
 
         new LoadCards().execute(0);
     }
@@ -185,13 +178,14 @@ public class CardsActivity extends AppCompatActivity {
                 final int lastItem = firstVisibleItem + visibleItemCount;
 
                 if(lastItem >= totalItemCount-1){
+                    listViewParams.weight = 1.0f;
                     loadNewCardsBtn.setVisibility(View.VISIBLE);
-                    btToTop.setVisibility(View.VISIBLE);
-
                 }else{
+                    listViewParams.weight = 0.0f;
                     loadNewCardsBtn.setVisibility(View.GONE);
-                    btToTop.setVisibility(View.GONE);
                 }
+
+                advertisementListView.setLayoutParams(listViewParams);
             }
         };
     }
@@ -201,16 +195,11 @@ public class CardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numbOfAdvertisement += 10;
-                new LoadCards().execute(numbOfAdvertisement-10);
-            }
-        };
-    }
 
-    private View.OnClickListener getUpButtonClickListener(){
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                advertisementListView.setSelectionAfterHeaderView();
+                listViewParams.weight = 0.0f;
+                advertisementListView.setLayoutParams(listViewParams);
+
+                new LoadCards().execute(numbOfAdvertisement-10);
             }
         };
     }
