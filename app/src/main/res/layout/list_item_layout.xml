@@ -41,7 +41,7 @@
                 android:text="@string/date_from"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF" />
 
             <View
                 android:layout_width="78dp"
@@ -59,7 +59,7 @@
                 android:text="@string/date_to"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"/>
 
         </LinearLayout>
 

@@ -42,6 +42,7 @@ public class AdvertisementInfo {
     private String trans_trailer;
     private String pay_form_moment;
     private Boolean isInFavourite;
+    private Date creation_date;
 
     private RoutPointsCoordinates routPointsCoordinates;
 
@@ -73,6 +74,15 @@ public class AdvertisementInfo {
 
         this.routPointsCoordinates = new RoutPointsCoordinates(list.getString("lat_from"), list.getString("lng_from"), list.getString("lat_to"), list.getString("lng_to"));
         this.isInFavourite = false;
+        this.creation_date = new Date(Long.valueOf(list.getString("date_creation")) * 1000);
+    }
+
+    public Date getCreation_date() {
+        return creation_date;
+    }
+
+    public void setCreation_date(Date creation_date) {
+        this.creation_date = creation_date;
     }
 
     public Boolean getInFavourite() {

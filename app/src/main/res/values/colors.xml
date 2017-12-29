@@ -6,4 +6,10 @@
     <color name="colorBackground">#DEDEDE</color>
     <color name="color">#40a630</color>
     <color name="dark">#000000</color>
+
+
+    <color name="time_red">#bd6c6c</color>
+    <color name="time_yellow">#cad23e</color>
+    <color name="time_green">#3bb26e</color>
+
 </resources>
