@@ -59,14 +59,14 @@
                         android:id="@+id/underImageInfo"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        android:paddingTop="10dp"
+                        android:fontFamily="sans-serif"
                         android:gravity="bottom|center_horizontal"
+                        android:paddingTop="10dp"
                         android:textColor="@color/dark"
                         android:textSize="20sp"
-                        app:layout_constraintTop_toBottomOf="@id/userAvatarImageView"
                         app:layout_constraintBottom_toBottomOf="@id/frame_image_area"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        tools:layout_editor_absoluteX="0dp" />
+                        app:layout_constraintTop_toBottomOf="@id/userAvatarImageView" />
 
                     <ImageView
                         android:id="@+id/userAvatarImageView"
@@ -94,10 +94,11 @@
                         android:id="@+id/TV_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
                         android:background="#FF303030"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
                         android:text="@string/TV_name"
                         android:textSize="18sp" />
 
@@ -105,11 +106,12 @@
                         android:id="@+id/TV_name_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="center"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -117,10 +119,11 @@
                         android:id="@+id/TV_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
                         android:background="#FF303030"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
                         android:text="@string/TV_city"
                         android:textSize="18sp" />
 
@@ -128,11 +131,12 @@
                         android:id="@+id/TV_city_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="center"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
             </LinearLayout>
@@ -149,22 +153,24 @@
                         android:id="@+id/TV_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_email"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_email_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -172,22 +178,24 @@
                         android:id="@+id/TV_telephone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_telephone"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_telephone_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -195,22 +203,24 @@
                         android:id="@+id/TV_skype"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_skype"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_skype_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -218,22 +228,24 @@
                         android:id="@+id/TV_icq"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_icq"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_icq_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -241,22 +253,24 @@
                         android:id="@+id/TV_website"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_website"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_website_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -275,22 +289,24 @@
                         android:id="@+id/TV_occupation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_occupation"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_occupation_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -298,22 +314,24 @@
                         android:id="@+id/TV_occupation_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_occupation_type"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_occupation_type_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -321,21 +339,23 @@
                         android:id="@+id/TV_occupation_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_occupation_description"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_occupation_description_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -352,22 +372,24 @@
                         android:id="@+id/TV_register_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_register_date"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_register_date_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
 
@@ -375,22 +397,24 @@
                         android:id="@+id/TV_last_online"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#FF303030"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#FF303030"
                         android:text="@string/TV_last_online"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/TV_last_online_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#AAA"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="#AAA"
-                        android:gravity="end"
                         android:textColor="@color/dark"
                         android:textSize="20sp" />
                 </LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.kcode.bottomlib.BottomDialog;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
@@ -97,6 +98,8 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
         date_from.setText(advertisementInfoList.get(position).getDate_from());
         date_to.setText(advertisementInfoList.get(position).getDate_to());
 
+        setBackgroundColorByDate(date_from,date_to,advertisementInfoList.get(position).getCreation_date());
+
         country_from_ru.setText(advertisementInfoList.get(position).getCountry_from());
         country_to_ru.setText(advertisementInfoList.get(position).getCountry_to());
 
@@ -115,8 +118,6 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
             }
         });
 
-        date_from.setBackgroundColor(Color.parseColor("#bb6b6b"));
-        date_to.setBackgroundColor(Color.parseColor("#bb6b6b"));
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
         if(advertisementInfoList.get(position).getGoods().isEmpty()){
@@ -154,6 +155,25 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
                 bottomDialog.show(activity.getSupportFragmentManager(),"dialogTag");
             }
         };
+    }
+
+    private void setBackgroundColorByDate(TextView tvFrom, TextView tvTo, Date cardCreationTime){
+        Date currentDate = new Date();
+
+        if (currentDate.getTime() - cardCreationTime.getTime() < 3600000){
+            tvFrom.setBackgroundColor(activity.getResources().getColor(R.color.time_red));
+            tvTo.setBackgroundColor(activity.getResources().getColor(R.color.time_red));
+        }
+        else if (currentDate.getTime() - cardCreationTime.getTime() > 10800000){
+            tvFrom.setBackgroundColor(activity.getResources().getColor(R.color.time_green));
+            tvTo.setBackgroundColor(activity.getResources().getColor(R.color.time_green));
+        }
+        else{
+            tvFrom.setBackgroundColor(activity.getResources().getColor(R.color.time_yellow));
+            tvTo.setBackgroundColor(activity.getResources().getColor(R.color.time_yellow));
+        }
+
+        notifyDataSetChanged();
     }
 
 }

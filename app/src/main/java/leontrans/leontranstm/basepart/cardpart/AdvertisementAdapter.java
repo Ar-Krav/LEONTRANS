@@ -2,6 +2,7 @@ package leontrans.leontranstm.basepart.cardpart;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
     private ArrayList<AdvertisementInfo> advertisementInfoList;
     public  ImageView icon_asterisk;
     public static DBHelper dbHelper;
+    Typeface type;
 
     public AdvertisementAdapter(CardsActivity activity, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
         super(activity, resource, advertisementInfoList);
