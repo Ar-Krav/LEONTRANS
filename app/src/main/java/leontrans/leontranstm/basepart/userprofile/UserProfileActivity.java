@@ -17,6 +17,7 @@ public class UserProfileActivity extends UserCardOwenerProfile {
         super.onCreate(savedInstanceState);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.my_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_PROFILE).getMainNavigationDrawer();

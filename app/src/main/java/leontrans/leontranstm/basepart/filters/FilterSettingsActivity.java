@@ -29,6 +29,7 @@ public class FilterSettingsActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_filter_settings);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.filter_settings);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FILTER_SETTINGS).getMainNavigationDrawer();

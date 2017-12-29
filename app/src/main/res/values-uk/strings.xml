@@ -168,4 +168,7 @@
     <string name="employee_owner_btn">Співробітник</string>
     <string name="show_new_cards_btn">Показати більше оголошень</string>
 
+    <string name="user_card_creator">Профіль</string>
+    <string name="filter_editor">Фільтр №</string>
+
 </resources>

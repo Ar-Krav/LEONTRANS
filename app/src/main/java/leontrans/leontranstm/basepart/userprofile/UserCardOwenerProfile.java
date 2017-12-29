@@ -38,6 +38,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
         setContentView(R.layout.activity_user_profile);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.user_card_creator);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

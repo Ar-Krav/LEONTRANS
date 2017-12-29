@@ -207,4 +207,7 @@
     <string name="employee_owner_btn">Employee</string>
     <string name="show_new_cards_btn">Show more cards</string>
 
+    <string name="user_card_creator">Profile</string>
+    <string name="filter_editor">Filter #</string>
+
 </resources>

@@ -12,63 +12,79 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/filter_1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 1"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <Button
+            android:id="@+id/filter_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_1"/>
 
-    <Button
-        android:id="@+id/filter_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 2"/>
+        <Button
+            android:id="@+id/filter_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_2"/>
 
-    <Button
-        android:id="@+id/filter_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 3"/>
+        <Button
+            android:id="@+id/filter_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_3"/>
 
-    <Button
-        android:id="@+id/filter_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 4"/>
+        <Button
+            android:id="@+id/filter_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_4"/>
 
-    <Button
-        android:id="@+id/filter_5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 5"/>
-    <Button
-        android:id="@+id/filter_6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 6"/>
+        <Button
+            android:id="@+id/filter_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_5"/>
+        <Button
+            android:id="@+id/filter_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_6"/>
 
-    <Button
-        android:id="@+id/filter_7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 7"/>
+        <Button
+            android:id="@+id/filter_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_7"/>
 
-    <Button
-        android:id="@+id/filter_8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 8"/>
+        <Button
+            android:id="@+id/filter_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_8"/>
 
-    <Button
-        android:id="@+id/filter_9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 9"/>
+        <Button
+            android:id="@+id/filter_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_9"/>
 
-    <Button
-        android:id="@+id/filter_10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter 10"/>
+        <Button
+            android:id="@+id/filter_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_10"/>
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -73,6 +73,7 @@ public class CardsActivity extends AppCompatActivity {
         getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.advertisement_list);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_CARDS).getMainNavigationDrawer();

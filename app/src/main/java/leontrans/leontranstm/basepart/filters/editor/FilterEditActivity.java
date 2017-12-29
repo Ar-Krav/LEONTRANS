@@ -48,8 +48,10 @@ public class FilterEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_edit);
+        notifyId = getIntent().getStringExtra("notifyId");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.filter_editor) + getNotifyId(notifyId));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -102,7 +104,6 @@ public class FilterEditActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.save_button)).setOnClickListener(getSaveBtnClickListener());
         ((Button) findViewById(R.id.cancel_button)).setOnClickListener(getCancelBtnClickListener());
 
-        notifyId = getIntent().getStringExtra("notifyId");
         new LoadFilterInfo().execute();
     }
 
@@ -413,10 +414,6 @@ public class FilterEditActivity extends AppCompatActivity {
             return  null;
         }
 
-        private String getNotifyId(String notifyId){
-            return notifyId.substring(notifyId.indexOf("_") + 1, notifyId.length());
-        }
-
         private String getDestenationString(EditText editText){
             if (editText.getText().equals("null")){
                 return "";
@@ -440,5 +437,9 @@ public class FilterEditActivity extends AppCompatActivity {
 
             return arrayJoinText.substring(0, arrayJoinText.length() - 1);
         }
+    }
+
+    private String getNotifyId(String notifyId){
+        return notifyId.substring(notifyId.indexOf("_") + 1, notifyId.length());
     }
 }
