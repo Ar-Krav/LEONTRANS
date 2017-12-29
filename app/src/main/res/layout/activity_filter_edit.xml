@@ -20,11 +20,13 @@
         android:paddingEnd="15dp"
         android:paddingTop="10dp"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:text="@string/notification_type"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/notify_type_spinner"
@@ -57,16 +59,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/country_from" />
+                android:fontFamily="sans-serif"
+                android:hint="@string/country_from"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/city_from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/city_from" />
+                android:fontFamily="sans-serif"
+                android:hint="@string/city_from"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
 
@@ -82,16 +86,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/country_to" />
+                android:fontFamily="sans-serif"
+                android:hint="@string/country_to"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/city_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/city_to" />
+                android:fontFamily="sans-serif"
+                android:hint="@string/city_to"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
     </LinearLayout>
@@ -119,8 +125,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:text="@string/car_type"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/car_type"
@@ -137,8 +144,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:text="@string/car_kind"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/car_kind"
@@ -172,6 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:hint="@string/capacity_from"
                 android:inputType="numberSigned" />
 
@@ -181,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:hint="@string/capacity_to"
                 android:inputType="numberSigned" />
         </LinearLayout>
@@ -198,7 +208,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/weight_from"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                android:fontFamily="sans-serif" />
 
             <EditText
                 android:id="@+id/weight_to"
@@ -206,6 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:hint="@string/weight_to"
                 android:inputType="numberSigned" />
 
@@ -221,14 +233,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/loading"/>
+                android:fontFamily="sans-serif"
+                android:text="@string/loading" />
 
             <Button
                 android:id="@+id/docs_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/docs"/>
+                android:fontFamily="sans-serif"
+                android:text="@string/docs" />
 
         </LinearLayout>
 
@@ -236,7 +250,8 @@
             android:id="@+id/adr_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/adr"/>
+            android:fontFamily="sans-serif"
+            android:text="@string/adr" />
     </LinearLayout>
 
     <View

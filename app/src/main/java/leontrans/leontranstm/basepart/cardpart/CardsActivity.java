@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -198,6 +199,12 @@ public class CardsActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!InternetStatusUtils.isDeviceOnline(CardsActivity.this)){
+                    Toast.makeText(CardsActivity.this, CardsActivity.this.getResources().getString(R.string.internet_dialog_message), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 numbOfAdvertisement += 10;
 
                 listViewParams.weight = 0.0f;
@@ -228,6 +235,11 @@ public class CardsActivity extends AppCompatActivity {
                 break;
             }
             case R.id.showFilterNavigationDrawer:{
+                if (!InternetStatusUtils.isDeviceOnline(CardsActivity.this)){
+                    Toast.makeText(CardsActivity.this, CardsActivity.this.getResources().getString(R.string.internet_dialog_message), Toast.LENGTH_SHORT).show();
+                    return super.onOptionsItemSelected(item);
+                }
+
                 intent = new Intent(CardsActivity.this, FilterSwitcherDialogActivity.class);
                 break;
             }
@@ -243,8 +255,8 @@ public class CardsActivity extends AppCompatActivity {
 
     private void showConnectionAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(CardsActivity.this);
-        builder.setTitle("You are offline!")
-                .setMessage("Check your internet connection and try again.")
+        builder.setTitle(CardsActivity.this.getResources().getString(R.string.internet_dialog_title))
+                .setMessage(CardsActivity.this.getResources().getString(R.string.internet_dialog_message))
                 .setIcon(R.drawable.icon_internet_disabled)
                 .setCancelable(false)
                 .setNegativeButton("Refresh",

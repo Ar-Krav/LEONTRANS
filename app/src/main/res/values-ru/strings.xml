@@ -166,4 +166,7 @@
     <string name="user_card_creator">Профиль</string>
     <string name="filter_editor">Фильтр №</string>
 
+    <string name="internet_dialog_title">Без связи с сетью</string>
+    <string name="internet_dialog_message">Проверьте подключение и повторите попытку.</string>
+
 </resources>

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,8 +24,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
+import leontrans.leontranstm.utils.InternetStatusUtils;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class FilterEditActivity extends AppCompatActivity {
@@ -111,6 +114,11 @@ public class FilterEditActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!InternetStatusUtils.isDeviceOnline(FilterEditActivity.this)){
+                    Toast.makeText(FilterEditActivity.this, FilterEditActivity.this.getResources().getString(R.string.internet_dialog_message), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 new SentFilterInfo().execute();
                 returnToFilterSettingActivity();
             }

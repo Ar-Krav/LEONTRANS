@@ -171,4 +171,7 @@
     <string name="user_card_creator">Профіль</string>
     <string name="filter_editor">Фільтр №</string>
 
+    <string name="internet_dialog_title">Без доступу до мережі!</string>
+    <string name="internet_dialog_message">Перевірте з\'єднання із інтернетом та повторіть спробу.</string>
+
 </resources>
