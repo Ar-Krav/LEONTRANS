@@ -315,4 +315,14 @@
     <string name = "fo">ФО (Фермерское Объединение)</string>
     <string name = "hk">ХК (холдинговая компания)</string>
 
+    <string name="carrier">Перевозчик</string>
+    <string name="customer">Заказчик</string>
+    <string name="manager">Экспедитор</string>
+
+    <string name="production">Производство</string>
+    <string name="trade">Торговля</string>
+    <string name="services">Услуги</string>
+
+    <string name="no_selected">Не выбрано</string>
+
 </resources>

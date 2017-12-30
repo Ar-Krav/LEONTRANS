@@ -103,8 +103,8 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 TV_skype_value.setText(dataJson.getString("skype"));
                 TV_icq_value.setText(dataJson.getString("icq"));
                 TV_website_value.setText(dataJson.getString("website"));
-                TV_occupation_value.setText(dataJson.getString("metier_type"));
-                TV_occupation_type_value.setText(dataJson.getString("activity_kind"));
+                TV_occupation_value.setText(getOcupation(dataJson.getString("metier_type")));
+                TV_occupation_type_value.setText(getActivityKind(dataJson.getString("activity_kind")));
                 TV_occupation_description_value.setText(dataJson.getString("activity_desc"));
                 TV_register_date_value.setText(makeDate(dataJson.getString("date_registry")));
                 TV_last_online_value.setText(makeDate(dataJson.getString("date_last_action")));
@@ -141,11 +141,11 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                     }
                 });
 
-                String employyeOwnerName = getUserOwner(dataJson);
+                String employeeOwnerName = getUserOwner(dataJson);
 
-                if (!employyeOwnerName.equals("")){
+                if (!employeeOwnerName.equals("")){
                     employeeOwner.setVisibility(View.VISIBLE);
-                    String employeeOwnerText = UserCardOwenerProfile.this.getString(R.string.employee_owner_btn) + ": " + employyeOwnerName;
+                    String employeeOwnerText = UserCardOwenerProfile.this.getString(R.string.employee_owner_btn) + ": " + employeeOwnerName;
                     employeeOwner.setText(employeeOwnerText);
                 }
 
@@ -173,6 +173,44 @@ public class UserCardOwenerProfile extends AppCompatActivity{
             }
 
             return "";
+        }
+
+        private String getOcupation(String ocupation){
+            String res = "";
+            switch (ocupation){
+                case "carrier":{
+                    res = UserCardOwenerProfile.this.getString(R.string.carrier);
+                    break;
+                }
+                case "customer":{
+                    res = UserCardOwenerProfile.this.getString(R.string.customer);
+                    break;
+                }
+                case "manager":{
+                    res = UserCardOwenerProfile.this.getString(R.string.manager);
+                    break;
+                }
+            }
+            return res;
+        }
+
+        private String getActivityKind(String kind){
+            String res = "";
+            switch (kind){
+                case "production":{
+                    res = UserCardOwenerProfile.this.getString(R.string.production);
+                    break;
+                }
+                case "trade":{
+                    res = UserCardOwenerProfile.this.getString(R.string.trade);
+                    break;
+                }
+                case "services":{
+                    res = UserCardOwenerProfile.this.getString(R.string.services);
+                    break;
+                }
+            }
+            return res;
         }
     }
 

@@ -360,4 +360,14 @@
     <string name = "fo">FA</string>
     <string name = "hk">HC</string>
 
+    <string name="carrier">Carrier</string>
+    <string name="customer">Customer</string>
+    <string name="manager">Forwarder</string>
+
+    <string name="production">Manufacture</string>
+    <string name="trade">Trade</string>
+    <string name="services">Service</string>
+
+    <string name="no_selected">Not selected</string>
+
 </resources>
