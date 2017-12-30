@@ -629,7 +629,8 @@ public class UserCardOwenerProfile extends AppCompatActivity{
             }
         }
         private String splitStrings(String string){
-            return string.substring(0,string.indexOf("("));
+            if (string.indexOf("(") > 0) return string.substring(0,string.indexOf("("));
+            else return string;
         }
     }
 

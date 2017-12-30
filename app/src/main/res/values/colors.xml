@@ -12,4 +12,7 @@
     <color name="time_yellow">#cad23e</color>
     <color name="time_green">#3bb26e</color>
 
+    <color name="leon_green">#3bb36e</color>
+    <color name="leon_grey">#363e40</color>
+
 </resources>

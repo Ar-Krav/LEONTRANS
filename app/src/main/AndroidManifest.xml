@@ -40,7 +40,8 @@
         <activity
             android:name=".basepart.filters.FilterSwitcherDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity android:name=".basepart.filters.editor.FilterEditActivity" />
+        <activity android:name=".basepart.filters.editor.FilterEditActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".basepart.filters.editor.DocsSelectorDialog"
             android:theme="@style/Theme.AppCompat.Dialog">

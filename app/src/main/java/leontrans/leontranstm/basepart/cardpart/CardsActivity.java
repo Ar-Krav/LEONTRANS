@@ -9,11 +9,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
@@ -44,6 +47,7 @@ public class CardsActivity extends AppCompatActivity {
     private ProgressBar loaderView;
     private LinearLayout contentArea;
     LinearLayout.LayoutParams listViewParams;
+    LinearLayout footerLinear;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
@@ -51,7 +55,9 @@ public class CardsActivity extends AppCompatActivity {
 
     private ListView advertisementListView;
     private Button loadNewCardsBtn;
+    private Button btnToUp;
     private AdvertisementAdapter adapter;
+    private static long backPressed;
 
     private Locale locale;
     @Override
@@ -83,18 +89,28 @@ public class CardsActivity extends AppCompatActivity {
         contentArea = (LinearLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
 
+        footerLinear = (LinearLayout) findViewById(R.id.footer_layout);
+
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
 
         loadNewCardsBtn = (Button) findViewById(R.id.show_more_bids_btn);
             loadNewCardsBtn.setOnClickListener(getLoadNewCardsBtnListener());
 
+        btnToUp = (Button) findViewById(R.id.go_up_to_list);
+            btnToUp.setOnClickListener(getUpButtonClickListener());
+
         listViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         advertisementListView = (ListView)findViewById(R.id.listView);
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());
 
-        loadNewCardsBtn.setText(R.string.show_new_cards_btn);
+        loadNewCardsBtn.setText(R.string.app_name);
+        loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));
+        loadNewCardsBtn.setClickable(false);
+
+        btnToUp.setText(R.string.go_up_to_list);
+        btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
 
         new LoadCards().execute(0);
     }
@@ -140,11 +156,6 @@ public class CardsActivity extends AppCompatActivity {
 
             loaderView.setVisibility(View.GONE);
             contentArea.setVisibility(View.VISIBLE);
-
-            listViewParams.weight = 0.0f;
-            advertisementListView.setLayoutParams(listViewParams);
-
-            advertisementListView.invalidate();
         }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
@@ -574,7 +585,8 @@ public class CardsActivity extends AppCompatActivity {
         }
 
         private String splitStrings(String string){
-            return string.substring(0,string.indexOf("("));
+            if (string.indexOf("(") > 0) return string.substring(0,string.indexOf("("));
+            else return string;
         }
     }
 
@@ -582,6 +594,7 @@ public class CardsActivity extends AppCompatActivity {
         return new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+
             }
 
             @Override
@@ -589,14 +602,16 @@ public class CardsActivity extends AppCompatActivity {
                 final int lastItem = firstVisibleItem + visibleItemCount;
 
                 if(lastItem >= totalItemCount-1){
-                    listViewParams.weight = 1.0f;
-                    loadNewCardsBtn.setVisibility(View.VISIBLE);
+                    loadNewCardsBtn.setText(R.string.show_new_cards_btn);
+                    loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
+                    btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));
+                    loadNewCardsBtn.setClickable(true);
                 }else{
-                    listViewParams.weight = 0.0f;
-                    loadNewCardsBtn.setVisibility(View.GONE);
+                    loadNewCardsBtn.setText(R.string.app_name);
+                    loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));
+                    btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
+                    loadNewCardsBtn.setClickable(false);
                 }
-
-                advertisementListView.setLayoutParams(listViewParams);
             }
         };
     }
@@ -610,10 +625,17 @@ public class CardsActivity extends AppCompatActivity {
                     Toast.makeText(CardsActivity.this, CardsActivity.this.getResources().getString(R.string.internet_dialog_message), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 numbOfAdvertisement += 10;
-
                 new LoadCards().execute(numbOfAdvertisement-10);
+            }
+        };
+    }
+
+    private View.OnClickListener getUpButtonClickListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                advertisementListView.setSelection(0);
             }
         };
     }
@@ -662,7 +684,7 @@ public class CardsActivity extends AppCompatActivity {
                 .setMessage(CardsActivity.this.getResources().getString(R.string.internet_dialog_message))
                 .setIcon(R.drawable.icon_internet_disabled)
                 .setCancelable(false)
-                .setNegativeButton("Refresh",
+                .setNegativeButton(CardsActivity.this.getResources().getString(R.string.refresh),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent;
@@ -685,7 +707,12 @@ public class CardsActivity extends AppCompatActivity {
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            super.onBackPressed();
+            if (backPressed + 2000 > System.currentTimeMillis()) {
+                super.onBackPressed();
+            } else {
+                Toast.makeText(getBaseContext(), getBaseContext().getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
+            }
+            backPressed = System.currentTimeMillis();
         }
     }
 }

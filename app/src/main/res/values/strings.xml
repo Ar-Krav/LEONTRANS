@@ -40,14 +40,14 @@
     <string name="trailer">Semitrailer</string>
     <string name="half_trailer">Half-trailer</string>
 
-    <string name="top">top</string>
-    <string name="side">side</string>
-    <string name="back">back</string>
-    <string name="fulluntent">with full movable curtains</string>
-    <string name="uncrossbar">with the removal of cross bars</string>
-    <string name="unrack">with the removal of racks</string>
-    <string name="ungate">without the gates</string>
-    <string name="gydrobort">loadinglift</string>
+    <string name="top">Top</string>
+    <string name="side">Side</string>
+    <string name="back">Back</string>
+    <string name="fulluntent">With full movable curtains</string>
+    <string name="uncrossbar">With the removal of cross bars</string>
+    <string name="unrack">With the removal of racks</string>
+    <string name="ungate">Without the gates</string>
+    <string name="gydrobort">Loadinglift</string>
 
     <string name="any">Any</string>
     <string name="easy">Passenger car</string>
@@ -180,15 +180,15 @@
         <item>Half-trailer</item>
     </string-array>
 
-    <string name="capacity_from">capacity from</string>
-    <string name="capacity_to">capacity to</string>
-    <string name="weight_from">weight from</string>
-    <string name="weight_to">weight to</string>
+    <string name="capacity_from">Capacity from</string>
+    <string name="capacity_to">Capacity to</string>
+    <string name="weight_from">Weight from</string>
+    <string name="weight_to">Weight to</string>
 
-    <string name="country_from">country from</string>
-    <string name="country_to">country to</string>
-    <string name="city_from">city from</string>
-    <string name="city_to">city to</string>
+    <string name="country_from">Country from</string>
+    <string name="country_to">Country to</string>
+    <string name="city_from">City from</string>
+    <string name="city_to">City to</string>
 
     <string name="notification_type">Notification type</string>
     <string name="car_type">Car type</string>
@@ -209,6 +209,7 @@
 
     <string name="employee_owner_btn">Employee</string>
     <string name="show_new_cards_btn">Show more cards</string>
+    <string name="go_up_to_list">↑ To top ↑</string>
 
     <string name="user_card_creator">Profile</string>
     <string name="filter_editor">Filter #</string>
@@ -370,5 +371,8 @@
     <string name="services">Service</string>
 
     <string name="no_selected">Not selected</string>
+    <string name="back_pressed">Press once again to exit!</string>
+
+    <string name="refresh">Refresh</string>
 
 </resources>

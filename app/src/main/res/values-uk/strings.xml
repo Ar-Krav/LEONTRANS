@@ -11,6 +11,7 @@
     <string name="test_text_card_view_activity">Card View</string>
     <string name="menu_item_title">showFilterNavigationDrawer</string>
     <string name="reload_activity_cards_menu">Оновити оголошення</string>
+    <string name="go_up_to_list">↑ Вгору ↑</string>
 
     <string name="TV_name">Ім\'я</string>
     <string name="TV_city">Місто</string>
@@ -372,5 +373,8 @@
     <string name="production">Виробництво</string>
     <string name="trade">Торгівля</string>
     <string name="services">Послуги</string>
+
+    <string name="back_pressed">Натисніть ще раз для виходу!</string>
+    <string name="refresh">Оновити</string>
 
 </resources>

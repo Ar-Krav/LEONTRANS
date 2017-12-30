@@ -11,6 +11,7 @@
     <string name="test_text_card_view_activity">Card View</string>
     <string name="menu_item_title">showFilterNavigationDrawer</string>
     <string name="reload_activity_cards_menu">Обновить объявления</string>
+    <string name="go_up_to_list">↑ Вверх ↑</string>
 
     <string name="TV_name">Имя</string>
     <string name="TV_city">Город</string>
@@ -367,4 +368,7 @@
     <string name="production">Производство</string>
     <string name="trade">Торговля</string>
     <string name="services">Услуги</string>
+
+    <string name="back_pressed">Для выхода нажмите есчё раз!</string>
+    <string name="refresh">Обновить</string>
 </resources>
