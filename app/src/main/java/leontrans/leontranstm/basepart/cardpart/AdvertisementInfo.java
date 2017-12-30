@@ -297,6 +297,10 @@ public class AdvertisementInfo {
                 res = " "+context.getString(R.string.any);
                 break;
             }
+            case "easy":{
+                res = " "+context.getString(R.string.easy);
+                break;
+            }
             case "bus":{
                 res = " "+context.getString(R.string.bus);
                 break;
