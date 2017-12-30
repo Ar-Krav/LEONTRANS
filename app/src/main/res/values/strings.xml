@@ -139,44 +139,45 @@
 
     <string-array name="notify_types">
         <item>Not selected</item>
-        <item>avto</item>
-        <item>goods</item>
+        <item>Transport</item>
+        <item>Product</item>
     </string-array>
 
     <string-array name="car_types">
         <item>Not selected</item>
-        <item>any</item>
-        <item>bus</item>
-        <item>avto</item>
-        <item>fuel_oil</item>
-        <item>concrete</item>
-        <item>gas</item>
-        <item>hard</item>
-        <item>grain</item>
-        <item>isotherms</item>
-        <item>containertrans</item>
-        <item>tap</item>
-        <item>closed</item>
-        <item>trees</item>
-        <item>microbus</item>
-        <item>oversized</item>
-        <item>unclosed</item>
-        <item>refrigerator</item>
-        <item>tipper</item>
-        <item>animaltruck</item>
-        <item>awning</item>
-        <item>trall</item>
-        <item>avtotipper</item>
-        <item>fullmetal</item>
-        <item>fuel_oil_small</item>
-        <item>evacuator</item>
+        <item>Any</item>
+        <item>Bus</item>
+        <item>Autotransporter</item>
+        <item>Fuel truck (oil truck)</item>
+        <item>Concrete carrier</item>
+        <item>Gas carrier</item>
+        <item>Truck</item>
+        <item>Grain carrier</item>
+        <item>Isotherm</item>
+        <item>Container carrier</item>
+        <item>Tap</item>
+        <item>Covered</item>
+        <item>Passenger car</item>
+        <item>Timber carrier</item>
+        <item>Minibus</item>
+        <item>Oversized</item>
+        <item>Opened</item>
+        <item>Refrigerator</item>
+        <item>Dump truck</item>
+        <item>Cattle carrier</item>
+        <item>Tent</item>
+        <item>Trall</item>
+        <item>Tractor</item>
+        <item>Full Metal</item>
+        <item>Barrel</item>
+        <item>Evacuator</item>
     </string-array>
 
     <string-array name="car_kind">
         <item>Not selected</item>
-        <item>truck</item>
-        <item>trailer</item>
-        <item>half-trailer</item>
+        <item>Any</item>
+        <item>Semitrailer</item>
+        <item>Half-trailer</item>
     </string-array>
 
     <string name="capacity_from">capacity from</string>

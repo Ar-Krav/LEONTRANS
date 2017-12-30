@@ -170,6 +170,51 @@
     <string name="internet_dialog_title">Без связи с сетью</string>
     <string name="internet_dialog_message">Проверьте подключение и повторите попытку.</string>
 
+
+    <string-array name="notify_types">
+        <item>Не выбрано</item>
+        <item>Транспорт</item>
+        <item>Товары</item>
+    </string-array>
+
+    <string-array name="car_types">
+        <item>Не выбрано</item>
+        <item>Любая</item>
+        <item>Автобус</item>
+        <item>Автовоз</item>
+        <item>Бензовоз (Масловоз)</item>
+        <item>Бетоновоз</item>
+        <item>Газовоз</item>
+        <item>Грузовая</item>
+        <item>Зерновоз</item>
+        <item>Изотерм</item>
+        <item>Контейнеровоз</item>
+        <item>Кран</item>
+        <item>Крытая</item>
+        <item>Легковая</item>
+        <item>Лесовоз</item>
+        <item>Микроавтобус</item>
+        <item>Негабарит</item>
+        <item>Открытая</item>
+        <item>Рефрижератор</item>
+        <item>Самосвал</item>
+        <item>Скотовоз</item>
+        <item>Тент</item>
+        <item>Тралл</item>
+        <item>Тягач</item>
+        <item>Цельнометаллическая</item>
+        <item>Цистерна</item>
+        <item>Эвакуатор</item>
+    </string-array>
+
+    <string-array name="car_kind">
+        <item>Не выбрано</item>
+        <item>Любая</item>
+        <item>Полуприцеп</item>
+        <item>Сцепка</item>
+    </string-array>
+
+
     <string name = "pp">ЧП (Частное предприятие)</string>
     <string name = "tov">ООО (Общество с ограниченной ответственностью)</string>
     <string name = "at">АО (Акционерное общество)</string>
@@ -322,7 +367,4 @@
     <string name="production">Производство</string>
     <string name="trade">Торговля</string>
     <string name="services">Услуги</string>
-
-    <string name="no_selected">Не выбрано</string>
-
 </resources>

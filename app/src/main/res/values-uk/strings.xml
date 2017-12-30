@@ -175,6 +175,51 @@
     <string name="internet_dialog_title">Без доступу до мережі!</string>
     <string name="internet_dialog_message">Перевірте з\'єднання із інтернетом та повторіть спробу.</string>
 
+
+    <string-array name="notify_types">
+        <item>Не обрано</item>
+        <item>Транспорт</item>
+        <item>Товари</item>
+    </string-array>
+
+    <string-array name="car_types">
+        <item>Не обрано</item>
+        <item>Будь-яка</item>
+        <item>Автобус</item>
+        <item>Автовоз</item>
+        <item>Бензовоз (Масловоз)</item>
+        <item>Бетоновоз</item>
+        <item>Газовоз</item>
+        <item>Вантажна</item>
+        <item>Зерновоз</item>
+        <item>Ізотерм</item>
+        <item>Контейнеровоз</item>
+        <item>Кран</item>
+        <item>Крита</item>
+        <item>Легкова</item>
+        <item>Лісовоз</item>
+        <item>Мікроавтобус</item>
+        <item>Негабарит</item>
+        <item>Відкрита</item>
+        <item>Рефрижератор</item>
+        <item>Самоскид</item>
+        <item>Скотовоз</item>
+        <item>Тент</item>
+        <item>Трал</item>
+        <item>Тягач</item>
+        <item>Суцільнометалева</item>
+        <item>Цистерна</item>
+        <item>Евакуатор</item>
+    </string-array>
+
+    <string-array name="car_kind">
+        <item>Не обрано</item>
+        <item>Будь-яка</item>
+        <item>Напівпричіп</item>
+        <item>Зчіпка</item>
+    </string-array>
+
+
     <string name = "pp">ПП (Приватне підприємство)</string>
     <string name = "tov">ТОВ (Товариство з обмеженою відповідальністю)</string>
     <string name = "at">АТ (Акціонерне товариство)</string>
@@ -327,7 +372,5 @@
     <string name="production">Виробництво</string>
     <string name="trade">Торгівля</string>
     <string name="services">Послуги</string>
-
-    <string name="no_selected">Не обрано</string>
 
 </resources>

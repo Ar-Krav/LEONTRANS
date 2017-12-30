@@ -393,9 +393,9 @@ public class FilterEditActivity extends AppCompatActivity {
             try {
                 filterInfoJSON.put("id",getNotifyId(notifyId));
 
-                filterInfoJSON.put("type","" +getEmptyStringIfNotSelected((Spinner) findViewById(R.id.notify_type_spinner)));
-                filterInfoJSON.put("trans_type","" + getEmptyStringIfNotSelected((Spinner) findViewById(R.id.car_type)));
-                filterInfoJSON.put("trans_kind","" + getEmptyStringIfNotSelected((Spinner) findViewById(R.id.car_kind)));
+                filterInfoJSON.put("type","" + getNotifyTypeResult((Spinner) findViewById(R.id.notify_type_spinner)));
+                filterInfoJSON.put("trans_type","" + getCarTypeResult((Spinner) findViewById(R.id.car_type)));
+                filterInfoJSON.put("trans_kind","" + getCarKindResult((Spinner) findViewById(R.id.car_kind)));
 
                 filterInfoJSON.put("country_from_name","" + getDestenationString((EditText) findViewById(R.id.country_from)));
                 filterInfoJSON.put("country_to_name","" +getDestenationString(((EditText) findViewById(R.id.country_to))));
@@ -427,6 +427,66 @@ public class FilterEditActivity extends AppCompatActivity {
                 return "";
             }
             else return editText.getText().toString();
+        }
+
+        private String getNotifyTypeResult(Spinner spinner){
+            switch((int)spinner.getSelectedItemId()){
+                case 0: return "";
+
+                case 1: return "avto";
+
+                case 2: return "goods";
+
+                default: return "";
+            }
+        }
+
+        private String getCarTypeResult(Spinner spinner){
+            switch((int)spinner.getSelectedItemId()){
+
+                case 0: return "";
+                case 1: return "any";
+                case 2: return "bus";
+                case 3: return "avto";
+                case 4: return "fuel_oil";
+                case 5: return "concrete";
+                case 6: return "gas";
+                case 7: return "hard";
+                case 8: return "grain";
+                case 9: return "isotherms";
+                case 10: return "containertrans";
+                case 11: return "tap";
+                case 12: return "closed";
+                case 13: return "trees";
+                case 14: return "microbus";
+                case 15: return "oversized";
+                case 16: return "unclosed";
+                case 17: return "refrigerator";
+                case 18: return "tipper";
+                case 19: return "animaltruck";
+                case 20: return "awning";
+                case 21: return "trall";
+                case 22: return "avtotipper";
+                case 23: return "fullmetal";
+                case 24: return "fuel_oil_small";
+                case 25: return "evacuator";
+
+                default: return "";
+            }
+        }
+
+        private String getCarKindResult(Spinner spinner){
+            switch((int)spinner.getSelectedItemId()){
+                case 0: return "";
+
+                case 1: return "truck";
+
+                case 2: return "trailer";
+
+                case 3: return "half-trailer";
+
+                default: return "";
+            }
         }
 
         private String getEmptyStringIfNotSelected(Spinner spinner){
