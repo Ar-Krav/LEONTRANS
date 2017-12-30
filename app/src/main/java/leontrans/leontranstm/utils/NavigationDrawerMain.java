@@ -36,17 +36,17 @@ public class NavigationDrawerMain {
     private IDrawerItem selectedDrawerItem;
     private int idSelectedDrawerItem;
 
-    private ProgressBar loaderSpinner;
+    Drawer.Result result;
 
     public NavigationDrawerMain(Activity activity, android.support.v7.widget.Toolbar toolbar, int idSelectedDrawerItem) {
         this.activity = activity;
         this.toolbar = toolbar;
         this.idSelectedDrawerItem = idSelectedDrawerItem;
-        loaderSpinner = activity.findViewById(R.id.loading_spinner);
     }
 
     public Drawer.Result getMainNavigationDrawer(){
-        return new Drawer()
+
+        result = new Drawer()
                 .withActivity(activity)
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggle(true)
@@ -73,13 +73,14 @@ public class NavigationDrawerMain {
 
                     @Override
                     public void onDrawerClosed(View drawerView) {
-                        if (selectedDrawerItem != null) new StartActivityInAsync().execute();
+                        if (selectedDrawerItem != null) new StartActivityInAsync().execute(-1);
                     }
                 })
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         if (drawerItem == null) {
+                            setSelectedDrawerItemIfNull(idSelectedDrawerItem);
                             return;
                         }
 
@@ -90,15 +91,23 @@ public class NavigationDrawerMain {
                     }
                 })
                 .build();
+
+        return result;
     }
 
-    private class StartActivityInAsync extends AsyncTask<Void, Void, Void> {
+    private void setSelectedDrawerItemIfNull(int id){
+        result.setSelection(id);
+    }
+
+    private class StartActivityInAsync extends AsyncTask<Integer, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Void doInBackground(Integer... voids) {
             Log.d("TEST_TAG_LOG","userID " + selectedDrawerItem.getIdentifier());
 
-            switch (selectedDrawerItem.getIdentifier()){
+            int identifier = voids[0] > -1 ? voids[0] : selectedDrawerItem.getIdentifier();
+
+            switch (identifier){
                 case NAVMENU_PROFILE: {
                     Intent intent = new Intent(activity, UserProfileActivity.class);
 
