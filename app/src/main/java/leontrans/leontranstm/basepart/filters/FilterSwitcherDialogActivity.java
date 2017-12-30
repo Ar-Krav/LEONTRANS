@@ -106,7 +106,7 @@ public class FilterSwitcherDialogActivity extends AppCompatActivity {
             SharedPreferences userPasswordSharedPreferences = FilterSwitcherDialogActivity.this.getSharedPreferences("hashPassword", MODE_PRIVATE);
             String userPassword = userPasswordSharedPreferences.getString("userPassword","");
             int userID = new SiteDataParseUtils().getUserIdByHashpassword("https://leon-trans.com/api/ver1/login.php?action=get_hash_id&hash=" + userPassword);
-            return new SiteDataParseUtils().getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID); //TODO
+            return new SiteDataParseUtils().getSiteRequestResult("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + userID);
         }
 
         @Override

@@ -35,8 +35,8 @@ public class LauncherActivity extends AppCompatActivity {
 
     private void showConnectionAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(LauncherActivity.this);
-        builder.setTitle("You are offline!")
-                .setMessage("Check your internet connection and try again.")
+        builder.setTitle(LauncherActivity.this.getResources().getString(R.string.internet_dialog_title))
+                .setMessage(LauncherActivity.this.getResources().getString(R.string.internet_dialog_message))
                 .setIcon(R.drawable.icon_internet_disabled)
                 .setCancelable(false)
                 .setNegativeButton("Refresh",

@@ -113,8 +113,8 @@ public class FilterSettingsActivity extends AppCompatActivity implements View.On
 
     private void showConnectionAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(FilterSettingsActivity.this);
-        builder.setTitle("You are offline!")
-                .setMessage("Check your internet connection and try again.")
+        builder.setTitle(FilterSettingsActivity.this.getResources().getString(R.string.internet_dialog_title))
+                .setMessage(FilterSettingsActivity.this.getResources().getString(R.string.internet_dialog_message))
                 .setIcon(R.drawable.icon_internet_disabled)
                 .setCancelable(false)
                 .setNegativeButton("Return",

@@ -24,7 +24,6 @@ import leontrans.leontranstm.basepart.filters.FilterSettingsActivity;
 import leontrans.leontranstm.basepart.userprofile.UserProfileActivity;
 
 import static android.content.Context.MODE_PRIVATE;
-import static leontrans.leontranstm.utils.Constants.NAVMENU_ADMIN;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_CARDS;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_FAQ;
 import static leontrans.leontranstm.utils.Constants.NAVMENU_FILTER_SETTINGS;
@@ -61,8 +60,7 @@ public class NavigationDrawerMain {
                         new PrimaryDrawerItem().withName(R.string.favourite_cards_activity).withIcon(FontAwesome.Icon.faw_heart).withIdentifier(NAVMENU_FAQ),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(R.string.app_settings).withIcon(FontAwesome.Icon. faw_info_circle).withIdentifier(7),
-                        new PrimaryDrawerItem().withName("admin exit").withIcon(FontAwesome.Icon.faw_medkit).withIdentifier(NAVMENU_ADMIN) //TODO admin exit button. Developing part only!
+                        new SecondaryDrawerItem().withName(R.string.app_settings).withIcon(FontAwesome.Icon. faw_info_circle).withIdentifier(7)
                 )
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
                     @Override
@@ -81,12 +79,6 @@ public class NavigationDrawerMain {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-
-                        if (drawerItem != null && drawerItem.getIdentifier() == NAVMENU_ADMIN) {
-                            SharedPreferences sharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
-                            sharedPreferences.edit().clear().commit();
-                        } //TODO admin exit button. Developing part only!
-
                         if (drawerItem == null || drawerItem.getIdentifier() == idSelectedDrawerItem) return;
 
                         idSelectedDrawerItem = drawerItem.getIdentifier();
