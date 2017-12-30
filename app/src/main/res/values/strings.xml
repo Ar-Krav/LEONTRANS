@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LeonTransTM</string>
+    <string name="app_name">LeonTransCom</string>
 
     <string name="logo_of_leontrans_tm_hint">logo of leontrans_TM</string>
     <string name="login_hello_TV">Sign in</string>
@@ -35,60 +35,61 @@
     <string name="country_from_ru">country_from_ru</string>
     <string name="userid_creator">id</string>
 
-    <string name="truck">truck</string>
-    <string name="trailer">trailer</string>
-    <string name="half_trailer">half-trailer</string>
+    <string name="truck">Any</string>
+    <string name="trailer">Semitrailer</string>
+    <string name="half_trailer">Half-trailer</string>
 
     <string name="top">top</string>
     <string name="side">side</string>
     <string name="back">back</string>
-    <string name="fulluntent">fulluntent</string>
-    <string name="uncrossbar">uncrossbar</string>
-    <string name="unrack">unrack</string>
-    <string name="ungate">ungate</string>
-    <string name="gydrobort">gydrobort</string>
+    <string name="fulluntent">with full movable curtains</string>
+    <string name="uncrossbar">with the removal of cross bars</string>
+    <string name="unrack">with the removal of racks</string>
+    <string name="ungate">without the gates</string>
+    <string name="gydrobort">loadinglift</string>
 
-    <string name="any">any</string>
-    <string name="bus">bus</string>
-    <string name="avto">avto</string>
-    <string name="fuel_oil">fuel_oil</string>
-    <string name="concrete">concrete</string>
-    <string name="gas">gas</string>
-    <string name="hard">hard</string>
-    <string name="grain">grain</string>
-    <string name="isotherms">isotherms</string>
-    <string name="containertrans">containertrans</string>
-    <string name="tap">tap</string>
-    <string name="closed">closed</string>
-    <string name="trees">trees</string>
-    <string name="microbus">microbus</string>
-    <string name="oversized">oversized</string>
-    <string name="unclosed">unclosed</string>
-    <string name="refrigerator">refrigerator</string>
-    <string name="tipper">tipper</string>
-    <string name="animaltruck">animaltruck</string>
-    <string name="awning">awning</string>
-    <string name="trall">trall</string>
-    <string name="avtotipper">avtotipper</string>
-    <string name="fullmetal">fullmetal</string>
-    <string name="fuel_oil_small">fuel_oil_small</string>
-    <string name="evacuator">evacuator</string>
+    <string name="any">Any</string>
+    <string name="easy">Passenger car</string>
+    <string name="bus">Bus</string>
+    <string name="avto">Autotransporter</string>
+    <string name="fuel_oil">Fuel truck (oil truck)</string>
+    <string name="concrete">Concrete carrier</string>
+    <string name="gas">Gas carrier</string>
+    <string name="hard">Truck</string>
+    <string name="grain">Grain carrier</string>
+    <string name="isotherms">Isotherm</string>
+    <string name="containertrans">Container carrier</string>
+    <string name="tap">Tap</string>
+    <string name="closed">Covered</string>
+    <string name="trees">Timber carrier</string>
+    <string name="microbus">Minibus</string>
+    <string name="oversized">Oversized</string>
+    <string name="unclosed">Opened</string>
+    <string name="refrigerator">Refrigerator</string>
+    <string name="tipper">Dump truck</string>
+    <string name="animaltruck">Cattle carrier</string>
+    <string name="awning">Tent</string>
+    <string name="trall">Trall</string>
+    <string name="avtotipper">Tractor</string>
+    <string name="fullmetal">Full Metal</string>
+    <string name="fuel_oil_small">Barrel</string>
+    <string name="evacuator">Evacuator</string>
 
     <string name="request">request</string>
 
-    <string name="payform_777">any</string>
-    <string name="payform_1">In cash</string>
-    <string name="payform_3">Non-cash</string>
-    <string name="payform_6">non-cash with VAT</string>
+    <string name="payform_777">Any</string>
+    <string name="payform_1">Cash</string>
+    <string name="payform_3">Cashless</string>
+    <string name="payform_6">Cashless with VAT</string>
     <string name="payform_4">Combined</string>
-    <string name="payform_71">El. payment</string>
-    <string name="payform_72">card</string>
+    <string name="payform_71">Electronic payment</string>
+    <string name="payform_72">Map</string>
 
 
     <string name="paymoment_52">On the loading</string>
-    <string name="paymoment_53">at the unloading</string>
-    <string name="paymoment_6">by originals</string>
-    <string name="paymoment_61">deferment of payment</string>
+    <string name="paymoment_53">On the unloading</string>
+    <string name="paymoment_6">On originals</string>
+    <string name="paymoment_61">The deferment of payment</string>
 
     <string name="telephone_numbers">telephone numbers</string>
     <string name="close_telephone_dialog">return</string>

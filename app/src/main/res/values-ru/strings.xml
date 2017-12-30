@@ -50,6 +50,7 @@
 
     <string name="any">любая</string>
     <string name="bus">Автобус</string>
+    <string name="easy">Легковая</string>
     <string name="avto">Автовоз</string>
     <string name="fuel_oil">Бензовоз (Масловоз)</string>
     <string name="concrete">Бетоновоз</string>

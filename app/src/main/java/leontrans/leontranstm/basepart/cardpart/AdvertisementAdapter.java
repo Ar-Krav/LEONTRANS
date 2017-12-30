@@ -119,8 +119,8 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         country_from_ru.setText(advertisementInfoList.get(position).getCountry_from());
         country_to_ru.setText(advertisementInfoList.get(position).getCountry_to());
 
-        city_from_ru.setText(advertisementInfoList.get(position).getCity_from());
-        city_to_ru.setText(advertisementInfoList.get(position).getCity_to());
+        city_from_ru.setText(getCityInfo(advertisementInfoList.get(position).getCity_from(), advertisementInfoList.get(position).getRegion_from(), position));
+        city_to_ru.setText(getCityInfo(advertisementInfoList.get(position).getCity_to(), advertisementInfoList.get(position).getRegion_to(), position));
 
 
         Button name = (Button) view.findViewById(R.id.name);
@@ -146,6 +146,12 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
 
 
         Button routView = (Button) view.findViewById(R.id.routBtn);
+        if (advertisementInfoList.get(position).getDistance().isEmpty()){
+            routView.setText("A ↔ B");
+        }
+        else {
+            routView.setText(advertisementInfoList.get(position).getDistance());
+        }
         routView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,6 +228,15 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
         }
 
         notifyDataSetChanged();
+    }
+
+    private String getCityInfo(String city, String region, int position){
+        if (region.isEmpty()){
+            return advertisementInfoList.get(position).getCity_to();
+        }
+        else{
+            return advertisementInfoList.get(position).getCity_to() + "\n(" + advertisementInfoList.get(position).getRegion_to() + ")";
+        }
     }
 
 }

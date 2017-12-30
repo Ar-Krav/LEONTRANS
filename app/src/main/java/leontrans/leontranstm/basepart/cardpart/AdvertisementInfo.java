@@ -19,6 +19,8 @@ import leontrans.leontranstm.utils.RoutPointsCoordinates;
 
 public class AdvertisementInfo {
     private Context context;
+    private JSONObject list;
+
     private int id;
     private String trans_type;
     private String date_from;
@@ -43,11 +45,16 @@ public class AdvertisementInfo {
     private String pay_form_moment;
     private Boolean isInFavourite;
     private Date creation_date;
+    private String region_from;
+    private String region_to;
+    private String distance;
 
     private RoutPointsCoordinates routPointsCoordinates;
 
     public AdvertisementInfo(JSONObject list, AdvertisementOwnerInfo advertisementOwnerInfo, Context context, Locale locale) throws JSONException {
         this.context = context;
+        this.list = list;
+
         this.id = Integer.parseInt(list.getString("id"));
         this.trans_trailer = getTrans_trailer(list.getString("trans_trailer"));
         this.trans_height = list.getString("trans_height");
@@ -55,7 +62,7 @@ public class AdvertisementInfo {
         this.trans_length = list.getString("trans_length");
         this.trans_type = getTrans_type(list.getString("trans_type"));
         this.date_from = makeDate(list.getString("date_from"));
-        this.date_to = makeDate(list.getString("date_to"));
+        this.date_to = checkData(list.getString("date_from"), list.getString("date_to"));
         this.country_from = getDestinationPoint(list.getString("country_from_ru"),list.getString("country_from_ua"),list.getString("country_from_en"),locale);
         this.country_to = getDestinationPoint(list.getString("country_to_ru"),list.getString("country_to_ua"),list.getString("country_to_en"),locale);
         this.city_from = getDestinationPoint(list.getString("city_from_ru"),list.getString("city_from_ua"),list.getString("city_from_en"),locale);
@@ -75,6 +82,18 @@ public class AdvertisementInfo {
         this.routPointsCoordinates = new RoutPointsCoordinates(list.getString("lat_from"), list.getString("lng_from"), list.getString("lat_to"), list.getString("lng_to"));
         this.isInFavourite = false;
         this.creation_date = new Date(Long.valueOf(list.getString("date_creation")) * 1000);
+
+        this.region_from = getDestinationPoint(list.getString("region_from_ru"),list.getString("region_from_ua"),list.getString("region_from_en"),locale);
+        this.region_to = getDestinationPoint(list.getString("region_to_ru"),list.getString("region_to_ua"),list.getString("region_to_en"),locale);
+        this.distance = list.getString("distance");
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     public Date getCreation_date() {
@@ -83,6 +102,22 @@ public class AdvertisementInfo {
 
     public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
+    }
+
+    public String getRegion_from() {
+        return region_from;
+    }
+
+    public void setRegion_from(String region_from) {
+        this.region_from = region_from;
+    }
+
+    public String getRegion_to() {
+        return region_to;
+    }
+
+    public void setRegion_to(String region_to) {
+        this.region_to = region_to;
     }
 
     public Boolean getInFavourite() {
@@ -446,6 +481,25 @@ public class AdvertisementInfo {
     }
     public RoutPointsCoordinates getRoutPointsCoordinates() {
         return routPointsCoordinates;
+    }
+
+    private String checkData(String date_from, String date_to) throws JSONException{
+        if (date_from.equals(date_to)){
+            return makeTime(list.getString("date_creation"));
+        }
+        else{
+            return makeDate(date_to);
+        }
+    }
+
+    private String makeTime(String date){
+        long dv = 0;
+        Date df;
+        String dateFrom;
+        dv = Long.valueOf(date) * 1000;
+        df = new java.util.Date(dv);
+        dateFrom = new SimpleDateFormat("HH:mm").format(df);
+        return dateFrom;
     }
 
     private String makeDate(String date){
