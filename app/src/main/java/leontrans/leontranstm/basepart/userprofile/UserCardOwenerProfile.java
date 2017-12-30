@@ -2,7 +2,7 @@ package leontrans.leontranstm.basepart.userprofile;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.CardsActivity;
 import leontrans.leontranstm.utils.SiteDataParseUtils;
 import leontrans.leontranstm.utils.SystemServicesUtils;
 
@@ -53,7 +54,9 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) finish();
+        if (item.getItemId() == android.R.id.home){
+            startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
+        }
         return true;
     }
 
@@ -112,13 +115,16 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 TV_telephone_value.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
                         systemServicesUtils.startDial(UserCardOwenerProfile.this, TV_telephone_value.getText().toString());
+
                     }
                 });
 
                 TV_email_value.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
                         systemServicesUtils.startMail(UserCardOwenerProfile.this, TV_email_value.getText().toString());
                     }
                 });
@@ -127,6 +133,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if (!TV_website_value.getText().toString().isEmpty()) {
+                            startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
                             systemServicesUtils.startInternetBrowser(UserCardOwenerProfile.this, TV_website_value.getText().toString());
                         }
                     }
@@ -136,12 +143,14 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if (!TV_city_value.getText().toString().isEmpty()) {
+                            startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
                             systemServicesUtils.startMaps(UserCardOwenerProfile.this, TV_city_value.getText().toString());
                         }
                     }
                 });
 
-                String employeeOwnerName = getUserOwner(dataJson);
+                String employeeOwnerName = getUserOwnerName(dataJson);
+                employeeOwner.setOnClickListener(showUserOwnerProfile(Integer.parseInt(dataJson.getString("employee_owner"))));
 
                 if (!employeeOwnerName.equals("")){
                     employeeOwner.setVisibility(View.VISIBLE);
@@ -156,6 +165,16 @@ public class UserCardOwenerProfile extends AppCompatActivity{
             }
         }
 
+        private View.OnClickListener showUserOwnerProfile(final int ownerId){
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(UserCardOwenerProfile.this,UserCardOwenerProfile.class);
+                    intent.putExtra("userID", ownerId);
+                    UserCardOwenerProfile.this.startActivity(intent);
+                }
+            };
+        }
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
             if (advertisementOwnerInfo.getString("full_name").equals("")){
@@ -164,7 +183,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
             else return advertisementOwnerInfo.getString("full_name");
         }
 
-        private String getUserOwner(JSONObject advertisementOwnerInfo) throws JSONException{
+        private String getUserOwnerName(JSONObject advertisementOwnerInfo) throws JSONException{
             JSONObject userCreatorEmploeeOwner;
 
             if (!advertisementOwnerInfo.getString("employee_owner").equals("0")){
@@ -222,6 +241,11 @@ public class UserCardOwenerProfile extends AppCompatActivity{
         df = new java.util.Date(dv);
         dateFrom = new SimpleDateFormat("dd.MM.yyyy").format(df);
         return dateFrom;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
     }
 
     private void crossfade() {

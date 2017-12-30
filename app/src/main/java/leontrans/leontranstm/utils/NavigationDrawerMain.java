@@ -79,7 +79,12 @@ public class NavigationDrawerMain {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                        if (drawerItem == null || drawerItem.getIdentifier() == idSelectedDrawerItem) return;
+                        if (drawerItem == null) {
+                            //TODO
+                            return;
+                        }
+
+                        if (drawerItem.getIdentifier() == idSelectedDrawerItem) return;
 
                         idSelectedDrawerItem = drawerItem.getIdentifier();
                         selectedDrawerItem = drawerItem;

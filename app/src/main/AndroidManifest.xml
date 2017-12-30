@@ -31,7 +31,8 @@
         <activity
             android:name=".basepart.filters.FilterSettingsActivity"
             android:noHistory="true" />
-        <activity android:name=".basepart.userprofile.UserCardOwenerProfile" />
+        <activity android:name=".basepart.userprofile.UserCardOwenerProfile"
+            android:noHistory="true"/>
         <activity
             android:name=".utils.LanguageDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
