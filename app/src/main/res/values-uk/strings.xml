@@ -37,9 +37,9 @@
 
 
 
-    <string name="truck">Люба</string>
-    <string name="trailer">Напів-прицеп</string>
-    <string name="half_trailer">Зчепленний</string>
+    <string name="truck">Будь-яка</string>
+    <string name="trailer">Напівпричіп</string>
+    <string name="half_trailer">Зчіпка</string>
 
 
     <string name="top">верхня</string>
@@ -47,8 +47,8 @@
     <string name="back">задня</string>
     <string name="fulluntent">з повним розтентуванням</string>
     <string name="uncrossbar">зі зняттям поперечин</string>
-    <string name="unrack">зі зніманням стойок</string>
-    <string name="ungate">без ворот</string>
+    <string name="unrack">зі зніманням стійок</string>
+    <string name="ungate">без воріт</string>
     <string name="gydrobort">гідроборт</string>
 
 
@@ -59,9 +59,9 @@
     <string name="fuel_oil">Бензовоз (Мазутовоз)</string>
     <string name="concrete">Бетоновоз</string>
     <string name="gas">Газовоз</string>
-    <string name="hard">Грузова</string>
+    <string name="hard">Вантажна</string>
     <string name="grain">Зерновоз</string>
-    <string name="isotherms">Изотерм</string>
+    <string name="isotherms">Ізотерм</string>
     <string name="containertrans">Контейнеровоз</string>
     <string name="tap">Кран</string>
     <string name="closed">Крита</string>
@@ -71,30 +71,30 @@
     <string name="unclosed">Открита</string>
     <string name="refrigerator">Рефрижератор</string>
     <string name="tipper">Самоскид</string>
-    <string name="animaltruck">Для тварин</string>
+    <string name="animaltruck">Скотовоз</string>
     <string name="awning">Тент</string>
     <string name="trall">Тралл</string>
     <string name="avtotipper">Тягач</string>
     <string name="fullmetal">Суцільно-металева</string>
     <string name="fuel_oil_small">Цистерна</string>
-    <string name="evacuator">Эвакуатор</string>
+    <string name="evacuator">Евакуатор</string>
 
 
     <string name="request">запит</string>
 
-    <string name="payform_777">Люба</string>
-    <string name="payform_1">готівковий</string>
-    <string name="payform_3">безготівковий</string>
-    <string name="payform_6">безготівковий с НДС</string>
-    <string name="payform_4">Комбінований</string>
+    <string name="payform_777">Будь-яка</string>
+    <string name="payform_1">Готівковий</string>
+    <string name="payform_3">Безготівковий</string>
+    <string name="payform_6">Безготівковий с ПДВ</string>
+    <string name="payform_4">Комбінована</string>
     <string name="payform_71">Ел. платіж</string>
     <string name="payform_72">Карта</string>
 
 
     <string name="paymoment_52">на завантаженні</string>
     <string name="paymoment_53">при розвантаженні</string>
-    <string name="paymoment_6">по оригиналам</string>
-    <string name="paymoment_61">отсрочка платежа</string>
+    <string name="paymoment_6">за оригіналами</string>
+    <string name="paymoment_61">відстрочка платежу</string>
 
     <string name="telephone_numbers">номери телефонів</string>
     <string name="close_telephone_dialog">закрити</string>
