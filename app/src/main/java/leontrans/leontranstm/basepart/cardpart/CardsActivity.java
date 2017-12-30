@@ -94,6 +94,8 @@ public class CardsActivity extends AppCompatActivity {
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());
 
+        loadNewCardsBtn.setText(R.string.show_new_cards_btn);
+
         new LoadCards().execute(0);
     }
 
