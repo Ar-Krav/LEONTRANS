@@ -157,23 +157,424 @@ public class CardsActivity extends AppCompatActivity {
                     break;
                 }
                 case "entity":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + "\n" +advertisementOwnerInfo.getString("nomination_name");
+                    result = nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + "\n" +advertisementOwnerInfo.getString("nomination_name");
                     break;
                 }
                 case "fop":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    result = nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
                     break;
                 }
                 case "employee":{
                     userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
 
-                    result = "(" + userCreatorEmploeeOwner.getString("full_name")+ userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name")
-                            + ")\n " + advertisementOwnerInfo.getString("full_name")+ advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                    result = "(" + userCreatorEmploeeOwner.getString("full_name")+ nominationPrefixTranslation(userCreatorEmploeeOwner.getString("nomination_prefix"))+ " " +userCreatorEmploeeOwner.getString("nomination_name")
+                            + ")\n " + advertisementOwnerInfo.getString("full_name") + nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
 
                     break;
                 }
             }
             return result;
+        }
+
+        private String nominationPrefixTranslation(String nominationPrefix){
+            switch(nominationPrefix){
+                case "ag":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ag));
+                }
+                case "apop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.apop));
+                }
+                case "apf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.apf));
+                }
+                case "at":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.at));
+                }
+                case "atzt":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.atzt));
+                }
+                case "atov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.atov));
+                }
+                case "bkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.bkp));
+                }
+                case "bsok":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.bsok));
+                }
+
+                case "by":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.by));
+                }
+
+                case "bf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.bf));
+                }
+
+
+                case "b-kpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.b_kpp));
+                }
+
+                case "b-kpf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.b_kpf));
+                }
+
+                case "b-tp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.b_tp));
+                }
+
+                case "wat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.wat));
+                }
+
+                case "vk":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vk));
+                }
+
+
+                case "vkkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vkkp));
+                }
+
+                case "vkoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vkoop));
+                }
+
+                case "vkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vkp));
+                }
+
+                case "vktov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vktov));
+                }
+
+                case "vkf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vkf));
+                }
+
+                case "vo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vo));
+                }
+
+                case "vsp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vsp));
+                }
+
+                case "vtzov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vtzov));
+                }
+
+                case "vtf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vtf));
+                }
+
+                case "vf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.vf));
+                }
+
+                case "go":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.go));
+                }
+                case "gtzov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.gtzov));
+                }
+
+                case "dat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dat));
+                }
+
+                case "dahk":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dahk));
+                }
+
+                case "dvat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dvat));
+                }
+
+                case "dip":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dip));
+                }
+
+                case "dp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dp));
+                }
+
+                case "dp2":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dp2));
+                }
+
+                case "dpzd":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dpzd));
+                }
+
+                case "dpmoy":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dpmoy));
+                }
+
+                case "dsp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dsp));
+                }
+
+                case "dpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dpp));
+                }
+
+                case "dtgo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dtgo));
+                }
+
+                case "dtep":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dtep));
+                }
+
+                case "dchp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.dchp));
+                }
+
+                case "jbk":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.jbk));
+                }
+
+                case "zat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.zat));
+                }
+                case "zogo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.zogo));
+                }
+
+                case "zp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.zp));
+                }
+
+                case "iaa":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.iaa));
+                }
+
+                case "kmp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.kmp));
+                }
+
+                case "ip":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ip));
+                }
+
+                case "knvmp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.knvmp));
+                }
+
+                case "knvo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.knvo));
+                }
+
+                case "komp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.komp));
+                }
+
+                case "concern":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.concern));
+                }
+
+                case "koop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.koop));
+                }
+
+                case "koopp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.koopp));
+                }
+                case "corp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.corp));
+                }case "kp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.kp));
+                }case "kt":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.kt));
+                }case "kfg":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.kfg));
+                }case "mbf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mbf));
+                }case "mbkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mbkp));
+                }case "mp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mp));
+                }case "mpzov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mpzov));
+                }case "mpvkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mpvkp));
+                }case "mpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mpp));
+                }case "mspp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.mspp));
+                }case "nva":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.nva));
+                }
+                case "nvo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.nvo));
+                }
+                case "nvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.nvp));
+                }case "nvpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.nvpp));
+                }case "nnvpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.nnvpp));
+                }case "ntyy":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ntyy));
+                }case "ob":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ob));
+                }case "okoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.okoop));
+                }case "ooo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ooo));
+                }case "pii":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pii));
+                }case "pop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pop));
+                }case "pap":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pap));
+                }case "pat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pat));
+                }case "paf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.paf));
+                }case "pbk":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pbk));
+                }case "pbmp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pbmp));
+                }
+                case "pbp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pbp));
+                }
+                case "pvkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvkp));
+                }case "pvkf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvkf));
+                }case "pvtp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvtp));
+                }case "pvtf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvtf));
+                }case "pvgp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvgp));
+                }case "pvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvp));
+                }case "pvf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pvf));
+                }case "pgo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pgo));
+                }case "pz":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pz));
+                }case "pzvkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pzvkp));
+                }case "pzii":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pzii));
+                }case "prid":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.prid));
+                }case "pkvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pkvp));
+                }case "pmp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pmp));
+                }case "pnvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pnvp));
+                }case "pnvf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pnvf));
+                }case "po":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.po));
+                }case "posp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.posp));
+                }case "pog":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pog));
+                }case "pp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pp));
+                }case "ppbf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ppbf));
+                }case "ppf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ppf));
+                }case "prat":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.prat));
+                }case "prbp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.prbp));
+                }case "predst":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.predst));
+                }case "prsp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.prsp));
+                }case "psp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.psp));
+                }case "ptep":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ptep));
+                }case "ptvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ptvp));
+                }case "ptmp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ptmp));
+                }case "ptp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ptp));
+                }case "pyfsi":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pyfsi));
+                }case "pf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pf));
+                }case "pbkoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.pbkoop));
+                }case "svkoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.svkoop));
+                }case "svf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.svf));
+                }case "sg":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sg));
+                }case "sgpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sgpp));
+                }case "smpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.smpp));
+                }case "sokoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sokoop));
+                }case "sp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sp));
+                }case "spzii":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.spzii));
+                }case "sskoop":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sskoop));
+                }case "st":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.st));
+                }case "stov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.stov));
+                }case "sfg":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.sfg));
+                }case "tepp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tepp));
+                }case "tvkp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tvkp));
+                }case "tvo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tvo));
+                }case "tdv":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tdv));
+                }case "tov":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tov));
+                }case "tovzii":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tovzii));
+                }case "tpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.tpp));
+                }case "ttpp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ttpp));
+                }case "ttpf":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ttpf));
+                }case "yvp":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.yvp));
+                }case "ydppz":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.ydppz));
+                }case "fg":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.fg));
+                }case "fgvs":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.fgvs));
+                }case "fili":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.fili));
+                }case "firm":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.firm));
+                }case "fo":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.fo));
+                }case "hk":{
+                    return splitStrings(CardsActivity.this.getResources().getString(R.string.hk));
+                }
+                default: return "";
+            }
+        }
+
+        private String splitStrings(String string){
+            return string.substring(0,string.indexOf("("));
         }
     }
 

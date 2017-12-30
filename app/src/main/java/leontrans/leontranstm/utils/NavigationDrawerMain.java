@@ -80,7 +80,6 @@ public class NavigationDrawerMain {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         if (drawerItem == null) {
-                            //TODO
                             return;
                         }
 

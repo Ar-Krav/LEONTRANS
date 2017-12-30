@@ -178,7 +178,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
             if (advertisementOwnerInfo.getString("full_name").equals("")){
-                return advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+                return nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
             }
             else return advertisementOwnerInfo.getString("full_name");
         }
@@ -230,6 +230,406 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 }
             }
             return res;
+        }
+
+        private String nominationPrefixTranslation(String nominationPrefix){
+            switch(nominationPrefix){
+                case "ag":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ag));
+                }
+                case "apop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.apop));
+                }
+                case "apf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.apf));
+                }
+                case "at":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.at));
+                }
+                case "atzt":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.atzt));
+                }
+                case "atov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.atov));
+                }
+                case "bkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.bkp));
+                }
+                case "bsok":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.bsok));
+                }
+
+                case "by":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.by));
+                }
+
+                case "bf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.bf));
+                }
+
+
+                case "b-kpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.b_kpp));
+                }
+
+                case "b-kpf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.b_kpf));
+                }
+
+                case "b-tp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.b_tp));
+                }
+
+                case "wat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.wat));
+                }
+
+                case "vk":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vk));
+                }
+
+
+                case "vkkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vkkp));
+                }
+
+                case "vkoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vkoop));
+                }
+
+                case "vkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vkp));
+                }
+
+                case "vktov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vktov));
+                }
+
+                case "vkf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vkf));
+                }
+
+                case "vo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vo));
+                }
+
+                case "vsp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vsp));
+                }
+
+                case "vtzov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vtzov));
+                }
+
+                case "vtf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vtf));
+                }
+
+                case "vf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.vf));
+                }
+
+                case "go":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.go));
+                }
+                case "gtzov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.gtzov));
+                }
+
+                case "dat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dat));
+                }
+
+                case "dahk":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dahk));
+                }
+
+                case "dvat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dvat));
+                }
+
+                case "dip":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dip));
+                }
+
+                case "dp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dp));
+                }
+
+                case "dp2":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dp2));
+                }
+
+                case "dpzd":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dpzd));
+                }
+
+                case "dpmoy":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dpmoy));
+                }
+
+                case "dsp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dsp));
+                }
+
+                case "dpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dpp));
+                }
+
+                case "dtgo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dtgo));
+                }
+
+                case "dtep":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dtep));
+                }
+
+                case "dchp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.dchp));
+                }
+
+                case "jbk":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.jbk));
+                }
+
+                case "zat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.zat));
+                }
+                case "zogo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.zogo));
+                }
+
+                case "zp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.zp));
+                }
+
+                case "iaa":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.iaa));
+                }
+
+                case "kmp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.kmp));
+                }
+
+                case "ip":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ip));
+                }
+
+                case "knvmp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.knvmp));
+                }
+
+                case "knvo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.knvo));
+                }
+
+                case "komp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.komp));
+                }
+
+                case "concern":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.concern));
+                }
+
+                case "koop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.koop));
+                }
+
+                case "koopp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.koopp));
+                }
+                case "corp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.corp));
+                }case "kp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.kp));
+                }case "kt":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.kt));
+                }case "kfg":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.kfg));
+                }case "mbf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mbf));
+                }case "mbkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mbkp));
+                }case "mp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mp));
+                }case "mpzov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mpzov));
+                }case "mpvkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mpvkp));
+                }case "mpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mpp));
+                }case "mspp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.mspp));
+                }case "nva":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.nva));
+                }
+                case "nvo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.nvo));
+                }
+                case "nvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.nvp));
+                }case "nvpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.nvpp));
+                }case "nnvpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.nnvpp));
+                }case "ntyy":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ntyy));
+                }case "ob":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ob));
+                }case "okoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.okoop));
+                }case "ooo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ooo));
+                }case "pii":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pii));
+                }case "pop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pop));
+                }case "pap":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pap));
+                }case "pat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pat));
+                }case "paf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.paf));
+                }case "pbk":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pbk));
+                }case "pbmp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pbmp));
+                }
+                case "pbp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pbp));
+                }
+                case "pvkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvkp));
+                }case "pvkf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvkf));
+                }case "pvtp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvtp));
+                }case "pvtf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvtf));
+                }case "pvgp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvgp));
+                }case "pvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvp));
+                }case "pvf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pvf));
+                }case "pgo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pgo));
+                }case "pz":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pz));
+                }case "pzvkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pzvkp));
+                }case "pzii":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pzii));
+                }case "prid":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.prid));
+                }case "pkvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pkvp));
+                }case "pmp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pmp));
+                }case "pnvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pnvp));
+                }case "pnvf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pnvf));
+                }case "po":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.po));
+                }case "posp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.posp));
+                }case "pog":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pog));
+                }case "pp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pp));
+                }case "ppbf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ppbf));
+                }case "ppf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ppf));
+                }case "prat":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.prat));
+                }case "prbp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.prbp));
+                }case "predst":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.predst));
+                }case "prsp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.prsp));
+                }case "psp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.psp));
+                }case "ptep":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ptep));
+                }case "ptvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ptvp));
+                }case "ptmp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ptmp));
+                }case "ptp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ptp));
+                }case "pyfsi":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pyfsi));
+                }case "pf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pf));
+                }case "pbkoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.pbkoop));
+                }case "svkoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.svkoop));
+                }case "svf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.svf));
+                }case "sg":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sg));
+                }case "sgpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sgpp));
+                }case "smpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.smpp));
+                }case "sokoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sokoop));
+                }case "sp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sp));
+                }case "spzii":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.spzii));
+                }case "sskoop":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sskoop));
+                }case "st":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.st));
+                }case "stov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.stov));
+                }case "sfg":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.sfg));
+                }case "tepp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tepp));
+                }case "tvkp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tvkp));
+                }case "tvo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tvo));
+                }case "tdv":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tdv));
+                }case "tov":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tov));
+                }case "tovzii":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tovzii));
+                }case "tpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.tpp));
+                }case "ttpp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ttpp));
+                }case "ttpf":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ttpf));
+                }case "yvp":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.yvp));
+                }case "ydppz":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.ydppz));
+                }case "fg":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.fg));
+                }case "fgvs":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.fgvs));
+                }case "fili":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.fili));
+                }case "firm":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.firm));
+                }case "fo":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.fo));
+                }case "hk":{
+                    return splitStrings(UserCardOwenerProfile.this.getResources().getString(R.string.hk));
+                }
+                default: return "";
+            }
+        }
+        private String splitStrings(String string){
+            return string.substring(0,string.indexOf("("));
         }
     }
 
