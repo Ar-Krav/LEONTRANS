@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">LeonTransCom</string>
+    <string name="app_name">Leon-Trans</string>
 
     <string name="logo_of_leontrans_tm_hint">logo of leontrans_TM</string>
     <string name="login_hello_TV">Sign in</string>
