@@ -137,6 +137,8 @@ public class CardsActivity extends AppCompatActivity {
                 lastCardId.edit().putInt("idLastCard", Integer.parseInt(arrayListJsonObjectAdvertisement.get(0).getString("id"))).commit();
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
+                    Log.d("SOME_TEST_TAG", "id: " + arrayListJsonObjectAdvertisement.get(i).getString("id"));
+
                     JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator"));
 
@@ -162,28 +164,31 @@ public class CardsActivity extends AppCompatActivity {
             JSONObject userCreatorEmploeeOwner;
             String result = "";
 
-            switch (advertisementOwnerInfo.getString("person_type")){
-                case "individual":{
-                    result = advertisementOwnerInfo.getString("full_name");
-                    break;
-                }
-                case "entity":{
-                    result = nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + "\n" +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "fop":{
-                    result = nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "employee":{
-                    userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
 
-                    result = "(" + userCreatorEmploeeOwner.getString("full_name")+ nominationPrefixTranslation(userCreatorEmploeeOwner.getString("nomination_prefix"))+ " " +userCreatorEmploeeOwner.getString("nomination_name")
-                            + ")\n " + advertisementOwnerInfo.getString("full_name") + nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
+            if (advertisementOwnerInfo.getString("person_type").equals("employee")){
+                userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
 
-                    break;
+                if (userCreatorEmploeeOwner.getString("full_name").equals("")){
+                    result = "(" + nominationPrefixTranslation(userCreatorEmploeeOwner.getString("nomination_prefix"))+ " " +userCreatorEmploeeOwner.getString("nomination_name")
+                            + ")\n" + getFullOrNomName(advertisementOwnerInfo);
                 }
+                else result = "(" + userCreatorEmploeeOwner.getString("full_name") + ")\n" + getFullOrNomName(advertisementOwnerInfo);
             }
+            else {
+                result = getFullOrNomName(advertisementOwnerInfo);
+            }
+
+            return result;
+        }
+
+        private String getFullOrNomName(JSONObject jsonObject) throws JSONException{
+            String result = "";
+
+            if (jsonObject.getString("full_name").equals("")){
+                result = nominationPrefixTranslation(jsonObject.getString("nomination_prefix")) + " " +jsonObject.getString("nomination_name");
+            }
+            else result = jsonObject.getString("full_name");
+
             return result;
         }
 

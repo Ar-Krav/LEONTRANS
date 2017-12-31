@@ -488,6 +488,10 @@ public class AdvertisementInfo {
     }
 
     private String checkData(String date_from, String date_to) throws JSONException{
+        if (date_from.equals("") || date_to.equals("")){
+            return makeDate(date_to);
+        }
+
         if (date_from.equals(date_to)){
             return makeTime(list.getString("date_creation"));
         }
@@ -497,6 +501,10 @@ public class AdvertisementInfo {
     }
 
     private String makeTime(String date){
+        if (date.equals("")){
+            return "";
+        }
+
         long dv = 0;
         Date df;
         String dateFrom;
@@ -507,6 +515,10 @@ public class AdvertisementInfo {
     }
 
     private String makeDate(String date){
+        if (date.equals("")){
+            return "";
+        }
+
         long dv = 0;
         Date df;
         String dateFrom;

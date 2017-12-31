@@ -635,6 +635,10 @@ public class UserCardOwenerProfile extends AppCompatActivity{
     }
 
     private String makeDate(String date){
+        if (date.equals("")){
+            return "";
+        }
+
         long dv;
         Date df;
         String dateFrom;

@@ -57,7 +57,8 @@ public class SiteDataParseUtils {
 
         try{
             dataJsonArr = new JSONArray(getSiteRequestResult(urlRequest));
-            for(int i = 0 ; i < numOfRequests ; i++){
+            Log.d("LENGTH_TEST", "getCardsInformation: " + dataJsonArr.length());
+            for(int i = 0 ; i < dataJsonArr.length() ; i++){
                 dataJsonObj = dataJsonArr.getJSONObject(i);
                 resultArray.add(dataJsonObj);
             }
