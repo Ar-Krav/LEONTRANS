@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.kcode.bottomlib.BottomDialog;
 import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +105,18 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
                 TV_city_value.setText(dataJson.getString("location_city"));
                 TV_email_value.setText(dataJson.getString("email"));
-                TV_telephone_value.setText(dataJson.getString("phones"));
+
+                final String [] telephoneNumbers = dataJson.getString("phones").split(",");
+                StringBuffer stringBuffer = new StringBuffer();
+
+                for (int i = 0; i < telephoneNumbers.length; i++){
+                    stringBuffer.append(telephoneNumbers[i]);
+                    if (i + 1 != telephoneNumbers.length){
+                        stringBuffer.append("\n");
+                    }
+                }
+                TV_telephone_value.setText(stringBuffer.toString());
+
                 TV_skype_value.setText(dataJson.getString("skype"));
                 TV_icq_value.setText(dataJson.getString("icq"));
                 TV_website_value.setText(dataJson.getString("website"));
@@ -114,11 +126,20 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 TV_register_date_value.setText(makeDate(dataJson.getString("date_registry")));
                 TV_last_online_value.setText(makeDate(dataJson.getString("date_last_action")));
 
+
                 TV_telephone_value.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
-                        systemServicesUtils.startDial(UserCardOwenerProfile.this, TV_telephone_value.getText().toString());
+                        BottomDialog bottomDialog = BottomDialog.newInstance(UserCardOwenerProfile.this.getResources().getString(R.string.telephone_numbers), UserCardOwenerProfile.this.getResources().getString(R.string.close_telephone_dialog), telephoneNumbers);
+                        bottomDialog.setListener(new BottomDialog.OnClickListener() {
+                            @Override
+                            public void click(int i) {
+                                startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
+                                new SystemServicesUtils().startDial(UserCardOwenerProfile.this, telephoneNumbers[i]);
+                            }
+                        });
+
+                        bottomDialog.show(UserCardOwenerProfile.this.getSupportFragmentManager(),"dialogTag");
 
                     }
                 });
