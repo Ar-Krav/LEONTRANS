@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import leontrans.leontranstm.R;
+import leontrans.leontranstm.basepart.cardpart.AdvertisementAdapter;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementInfo;
 import leontrans.leontranstm.basepart.cardpart.AdvertisementOwnerInfo;
 import leontrans.leontranstm.basepart.cardpart.CardsActivity;
@@ -46,7 +47,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
 
     private ListView advertisementListView;
 
-    public AdvertisementAdapterSelectedItem selected_item_adapter;
+    public AdvertisementAdapter selected_item_adapter;
     public ArrayList<AdvertisementInfo> arrayListSelectedItem = new ArrayList<>();
     private ArrayList<DBinformation> informationList;
 
@@ -79,7 +80,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
         contentArea.setVisibility(View.GONE);
 
         siteDataUtils = new SiteDataParseUtils();
-        selected_item_adapter = new AdvertisementAdapterSelectedItem(this,R.layout.list_item_layout,arrayListSelectedItem);
+        selected_item_adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListSelectedItem);
 
         advertisementListView = (ListView)findViewById(R.id.listView);
         advertisementListView.setAdapter(selected_item_adapter);
@@ -575,7 +576,10 @@ public class FavouriteCardsActivity extends AppCompatActivity {
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            startActivity(new Intent(FavouriteCardsActivity.this, CardsActivity.class));
+            Intent intent = new Intent(FavouriteCardsActivity.this, CardsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
         }
     }
 

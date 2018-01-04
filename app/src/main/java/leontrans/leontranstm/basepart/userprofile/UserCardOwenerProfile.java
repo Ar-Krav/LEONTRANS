@@ -55,7 +55,9 @@ public class UserCardOwenerProfile extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
         }
         return true;
     }
@@ -171,7 +173,7 @@ public class UserCardOwenerProfile extends AppCompatActivity{
                 public void onClick(View view) {
                     Intent intent = new Intent(UserCardOwenerProfile.this,UserCardOwenerProfile.class);
                     intent.putExtra("userID", ownerId);
-                    UserCardOwenerProfile.this.startActivity(intent);
+                    UserCardOwenerProfile.this.startActivityForResult(intent,2);
                 }
             };
         }
@@ -650,7 +652,9 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(UserCardOwenerProfile.this, CardsActivity.class));
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void crossfade() {

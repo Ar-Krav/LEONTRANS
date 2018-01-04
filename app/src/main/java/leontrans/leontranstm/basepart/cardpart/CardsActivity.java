@@ -98,7 +98,6 @@ public class CardsActivity extends AppCompatActivity {
         btnToUp = (Button) findViewById(R.id.go_up_to_list);
             btnToUp.setOnClickListener(getUpButtonClickListener());
 
-        listViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         advertisementListView = (ListView)findViewById(R.id.listView);
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());

@@ -25,7 +25,6 @@
         </activity>
         <activity
             android:name=".basepart.userprofile.UserProfileActivity"
-            android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity android:name=".basepart.cardpart.CardsActivity"
@@ -33,7 +32,6 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".basepart.favouritespart.FavouriteCardsActivity"
-            android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
@@ -42,7 +40,6 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity android:name=".basepart.userprofile.UserCardOwenerProfile"
-            android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity

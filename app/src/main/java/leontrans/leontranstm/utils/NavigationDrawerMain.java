@@ -110,6 +110,7 @@ public class NavigationDrawerMain {
             switch (identifier){
                 case NAVMENU_PROFILE: {
                     Intent intent = new Intent(activity, UserProfileActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                     SharedPreferences userPasswordSharedPreferences = activity.getSharedPreferences("hashPassword", MODE_PRIVATE);
                     String userPassword = userPasswordSharedPreferences.getString("userPassword","");
@@ -121,21 +122,33 @@ public class NavigationDrawerMain {
                 }
 
                 case NAVMENU_CARDS: {
-                    activity.startActivity(new Intent(activity, CardsActivity.class));
+                    Intent intent = new Intent(activity, CardsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    activity.startActivity(intent);
                     break;
                 }
 
                 case NAVMENU_FILTER_SETTINGS: {
-                    activity.startActivity(new Intent(activity, FilterSettingsActivity.class));
+                    Intent intent = new Intent(activity, FilterSettingsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    activity.startActivity(intent);
                     break;
                 }
 
                 case NAVMENU_FAQ: {
-                    activity.startActivity(new Intent(activity, FavouriteCardsActivity.class));
+                    Intent intent = new Intent(activity, FavouriteCardsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    activity.startActivity(intent);
                     break;
                 }
                 case 7:{
-                    activity.startActivity(new Intent(activity, LanguageDialogActivity.class));
+                    Intent intent = new Intent(activity, LanguageDialogActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    activity.startActivity(intent);
                     break;
                 }
             }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,14 +31,14 @@ import leontrans.leontranstm.utils.SystemServicesUtils;
 
 
 public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
-    private CardsActivity activity;
+    private AppCompatActivity activity;
     private LayoutInflater inflater;
     private ArrayList<AdvertisementInfo> advertisementInfoList;
     public  ImageView icon_asterisk;
     public static DBHelper dbHelper;
     Typeface type;
 
-    public AdvertisementAdapter(CardsActivity activity, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
+    public AdvertisementAdapter(AppCompatActivity activity, int resource, ArrayList<AdvertisementInfo> advertisementInfoList) {
         super(activity, resource, advertisementInfoList);
         this.advertisementInfoList = advertisementInfoList;
         this.activity = activity;
@@ -140,7 +141,7 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             public void onClick(View view) {
                 Intent intent = new Intent(activity,UserCardOwenerProfile.class);
                 intent.putExtra("userID",Integer.parseInt(advertisementInfoList.get(position).getUserid_creator()));
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent, 1);
             }
         });
 
