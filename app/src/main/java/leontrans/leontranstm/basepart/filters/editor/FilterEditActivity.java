@@ -375,7 +375,10 @@ public class FilterEditActivity extends AppCompatActivity {
 
     private void returnToFilterSettingActivity(){
         Intent intent = new Intent(FilterEditActivity.this, FilterSettingsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
+
     }
 
     private class SentFilterInfo extends AsyncTask<Void,Void,Void> {

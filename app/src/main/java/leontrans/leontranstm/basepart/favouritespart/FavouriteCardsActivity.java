@@ -137,39 +137,435 @@ public class FavouriteCardsActivity extends AppCompatActivity {
             JSONObject userCreatorEmploeeOwner;
             String result = "";
 
-            switch (advertisementOwnerInfo.getString("person_type")){
-                case "individual":{
-                    result = advertisementOwnerInfo.getString("full_name");
-                    break;
-                }
-                case "entity":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + "\n" +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "fop":{
-                    result = advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
-                    break;
-                }
-                case "employee":{
-                    userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
 
-                    result = "(" + userCreatorEmploeeOwner.getString("full_name")+ userCreatorEmploeeOwner.getString("nomination_prefix")+ " " +userCreatorEmploeeOwner.getString("nomination_name")
-                            + ")\n " + advertisementOwnerInfo.getString("full_name")+ advertisementOwnerInfo.getString("nomination_prefix") + " " +advertisementOwnerInfo.getString("nomination_name");
+            if (advertisementOwnerInfo.getString("person_type").equals("employee")){
+                userCreatorEmploeeOwner = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id=" + advertisementOwnerInfo.getString("employee_owner"));
 
-                    break;
+                if (userCreatorEmploeeOwner.getString("full_name").equals("")){
+                    result = "(" + nominationPrefixTranslation(userCreatorEmploeeOwner.getString("nomination_prefix"))+ " " +userCreatorEmploeeOwner.getString("nomination_name")
+                            + ")\n" + getFullOrNomName(advertisementOwnerInfo);
                 }
+                else result = "(" + userCreatorEmploeeOwner.getString("full_name") + ")\n" + getFullOrNomName(advertisementOwnerInfo);
             }
+            else {
+                result = getFullOrNomName(advertisementOwnerInfo);
+            }
+
             return result;
         }
-    }
 
-    private View.OnClickListener getUpButtonClickListener(){
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                advertisementListView.setSelectionAfterHeaderView();
+        private String getFullOrNomName(JSONObject jsonObject) throws JSONException{
+            String result = "";
+
+            if (jsonObject.getString("full_name").equals("")){
+                result = nominationPrefixTranslation(jsonObject.getString("nomination_prefix")) + " " +jsonObject.getString("nomination_name");
             }
-        };
+            else result = jsonObject.getString("full_name");
+
+            return result;
+        }
+
+        private String nominationPrefixTranslation(String nominationPrefix){
+            switch(nominationPrefix){
+                case "ag":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ag));
+                }
+                case "apop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.apop));
+                }
+                case "apf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.apf));
+                }
+                case "at":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.at));
+                }
+                case "atzt":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.atzt));
+                }
+                case "atov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.atov));
+                }
+                case "bkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.bkp));
+                }
+                case "bsok":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.bsok));
+                }
+
+                case "by":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.by));
+                }
+
+                case "bf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.bf));
+                }
+
+
+                case "b-kpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.b_kpp));
+                }
+
+                case "b-kpf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.b_kpf));
+                }
+
+                case "b-tp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.b_tp));
+                }
+
+                case "wat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.wat));
+                }
+
+                case "vk":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vk));
+                }
+
+
+                case "vkkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vkkp));
+                }
+
+                case "vkoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vkoop));
+                }
+
+                case "vkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vkp));
+                }
+
+                case "vktov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vktov));
+                }
+
+                case "vkf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vkf));
+                }
+
+                case "vo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vo));
+                }
+
+                case "vsp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vsp));
+                }
+
+                case "vtzov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vtzov));
+                }
+
+                case "vtf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vtf));
+                }
+
+                case "vf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.vf));
+                }
+
+                case "go":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.go));
+                }
+                case "gtzov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.gtzov));
+                }
+
+                case "dat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dat));
+                }
+
+                case "dahk":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dahk));
+                }
+
+                case "dvat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dvat));
+                }
+
+                case "dip":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dip));
+                }
+
+                case "dp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dp));
+                }
+
+                case "dp2":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dp2));
+                }
+
+                case "dpzd":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dpzd));
+                }
+
+                case "dpmoy":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dpmoy));
+                }
+
+                case "dsp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dsp));
+                }
+
+                case "dpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dpp));
+                }
+
+                case "dtgo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dtgo));
+                }
+
+                case "dtep":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dtep));
+                }
+
+                case "dchp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.dchp));
+                }
+
+                case "jbk":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.jbk));
+                }
+
+                case "zat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.zat));
+                }
+                case "zogo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.zogo));
+                }
+
+                case "zp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.zp));
+                }
+
+                case "iaa":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.iaa));
+                }
+
+                case "kmp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.kmp));
+                }
+
+                case "ip":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ip));
+                }
+
+                case "knvmp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.knvmp));
+                }
+
+                case "knvo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.knvo));
+                }
+
+                case "komp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.komp));
+                }
+
+                case "concern":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.concern));
+                }
+
+                case "koop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.koop));
+                }
+
+                case "koopp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.koopp));
+                }
+                case "corp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.corp));
+                }case "kp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.kp));
+                }case "kt":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.kt));
+                }case "kfg":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.kfg));
+                }case "mbf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mbf));
+                }case "mbkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mbkp));
+                }case "mp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mp));
+                }case "mpzov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mpzov));
+                }case "mpvkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mpvkp));
+                }case "mpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mpp));
+                }case "mspp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.mspp));
+                }case "nva":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.nva));
+                }
+                case "nvo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.nvo));
+                }
+                case "nvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.nvp));
+                }case "nvpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.nvpp));
+                }case "nnvpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.nnvpp));
+                }case "ntyy":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ntyy));
+                }case "ob":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ob));
+                }case "okoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.okoop));
+                }case "ooo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ooo));
+                }case "pii":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pii));
+                }case "pop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pop));
+                }case "pap":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pap));
+                }case "pat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pat));
+                }case "paf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.paf));
+                }case "pbk":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pbk));
+                }case "pbmp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pbmp));
+                }
+                case "pbp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pbp));
+                }
+                case "pvkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvkp));
+                }case "pvkf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvkf));
+                }case "pvtp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvtp));
+                }case "pvtf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvtf));
+                }case "pvgp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvgp));
+                }case "pvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvp));
+                }case "pvf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pvf));
+                }case "pgo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pgo));
+                }case "pz":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pz));
+                }case "pzvkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pzvkp));
+                }case "pzii":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pzii));
+                }case "prid":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.prid));
+                }case "pkvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pkvp));
+                }case "pmp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pmp));
+                }case "pnvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pnvp));
+                }case "pnvf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pnvf));
+                }case "po":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.po));
+                }case "posp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.posp));
+                }case "pog":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pog));
+                }case "pp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pp));
+                }case "ppbf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ppbf));
+                }case "ppf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ppf));
+                }case "prat":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.prat));
+                }case "prbp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.prbp));
+                }case "predst":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.predst));
+                }case "prsp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.prsp));
+                }case "psp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.psp));
+                }case "ptep":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ptep));
+                }case "ptvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ptvp));
+                }case "ptmp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ptmp));
+                }case "ptp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ptp));
+                }case "pyfsi":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pyfsi));
+                }case "pf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pf));
+                }case "pbkoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.pbkoop));
+                }case "svkoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.svkoop));
+                }case "svf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.svf));
+                }case "sg":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sg));
+                }case "sgpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sgpp));
+                }case "smpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.smpp));
+                }case "sokoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sokoop));
+                }case "sp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sp));
+                }case "spzii":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.spzii));
+                }case "sskoop":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sskoop));
+                }case "st":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.st));
+                }case "stov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.stov));
+                }case "sfg":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.sfg));
+                }case "tepp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tepp));
+                }case "tvkp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tvkp));
+                }case "tvo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tvo));
+                }case "tdv":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tdv));
+                }case "tov":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tov));
+                }case "tovzii":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tovzii));
+                }case "tpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.tpp));
+                }case "ttpp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ttpp));
+                }case "ttpf":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ttpf));
+                }case "yvp":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.yvp));
+                }case "ydppz":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.ydppz));
+                }case "fg":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.fg));
+                }case "fgvs":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.fgvs));
+                }case "fili":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.fili));
+                }case "firm":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.firm));
+                }case "fo":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.fo));
+                }case "hk":{
+                    return splitStrings(FavouriteCardsActivity.this.getResources().getString(R.string.hk));
+                }
+                default: return "";
+            }
+        }
+
+        private String splitStrings(String string){
+            if (string.indexOf("(") > 0) return string.substring(0,string.indexOf("("));
+            else return string;
+        }
     }
 
     public void onBackPressed(){

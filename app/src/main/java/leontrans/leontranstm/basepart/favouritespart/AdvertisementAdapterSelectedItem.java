@@ -76,14 +76,14 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
             goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getGoods()+" "+advertisementInfoList.get(position).getTrans_weight()+"т " +advertisementInfoList.get(position).getTrans_capacity()+"м3 ");
         }
 
-        if(!advertisementInfoList.get(position).getTrans_height().equals("0")){
+        if(!advertisementInfoList.get(position).getTrans_height().equals("") && !advertisementInfoList.get(position).getTrans_height().equals("0")){
             goods.setText(goods.getText()+" "+ advertisementInfoList.get(position).getTrans_height()+"м");
         }
 
-        if(!advertisementInfoList.get(position).getTrans_length().equals("0")){
+        if(!advertisementInfoList.get(position).getTrans_length().equals("") && !advertisementInfoList.get(position).getTrans_length().equals("0")){
             goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_length()+"м");
         }
-        if(!advertisementInfoList.get(position).getTrans_width().equals("0")){
+        if(!advertisementInfoList.get(position).getTrans_width().equals("") && !advertisementInfoList.get(position).getTrans_width().equals("0")){
             goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_width()+"м");
         }
 
@@ -103,8 +103,8 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
         country_from_ru.setText(advertisementInfoList.get(position).getCountry_from());
         country_to_ru.setText(advertisementInfoList.get(position).getCountry_to());
 
-        city_from_ru.setText(advertisementInfoList.get(position).getCity_from());
-        city_to_ru.setText(advertisementInfoList.get(position).getCity_to());
+        city_from_ru.setText(getCityInfo(advertisementInfoList.get(position).getCity_from(), advertisementInfoList.get(position).getRegion_from()));
+        city_to_ru.setText(getCityInfo(advertisementInfoList.get(position).getCity_to(), advertisementInfoList.get(position).getRegion_to()));
 
 
         Button name = (Button) view.findViewById(R.id.name);
@@ -176,4 +176,12 @@ public class AdvertisementAdapterSelectedItem extends ArrayAdapter<Advertisement
         notifyDataSetChanged();
     }
 
+    private String getCityInfo(String city, String region){
+        if (region.isEmpty()){
+            return city;
+        }
+        else{
+            return city + "\n(" + region + ")";
+        }
+    }
 }
