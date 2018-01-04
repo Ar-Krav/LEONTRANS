@@ -154,7 +154,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
                 result = getFullOrNomName(advertisementOwnerInfo);
             }
 
-            return result;
+            return result.replace("&quot;", "\"");
         }
 
         private String getFullOrNomName(JSONObject jsonObject) throws JSONException{

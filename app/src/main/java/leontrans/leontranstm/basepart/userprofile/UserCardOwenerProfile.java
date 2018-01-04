@@ -180,9 +180,11 @@ public class UserCardOwenerProfile extends AppCompatActivity{
 
         private String getFullName(JSONObject advertisementOwnerInfo) throws JSONException {
             if (advertisementOwnerInfo.getString("full_name").equals("")){
-                return nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
+                String result = nominationPrefixTranslation(advertisementOwnerInfo.getString("nomination_prefix")) + " " +advertisementOwnerInfo.getString("nomination_name");
+                return result.replace("&quot;", "\"");
+
             }
-            else return advertisementOwnerInfo.getString("full_name");
+            else return advertisementOwnerInfo.getString("full_name").replace("&quot;", "\"");
         }
 
         private String getUserOwnerName(JSONObject advertisementOwnerInfo) throws JSONException{
