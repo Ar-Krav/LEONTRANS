@@ -67,14 +67,21 @@ public class LanguageDialogActivity extends AppCompatActivity {
 
                 isLanguageChanged = true;
                 finish();
-                startActivity(new Intent(LanguageDialogActivity.this, CardsActivity.class));
+                Intent intent = new Intent(LanguageDialogActivity.this, CardsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }
 
     @Override
     protected void onDestroy() {
-        if(!isLanguageChanged) startActivity(new Intent(LanguageDialogActivity.this, CardsActivity.class));
+        if(!isLanguageChanged){
+            Intent intent = new Intent(LanguageDialogActivity.this, CardsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
         super.onDestroy();
     }
 }

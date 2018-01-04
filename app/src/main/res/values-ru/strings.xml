@@ -369,6 +369,6 @@
     <string name="trade">Торговля</string>
     <string name="services">Услуги</string>
 
-    <string name="back_pressed">Для выхода нажмите есчё раз!</string>
+    <string name="back_pressed">Для выхода нажмите еще раз!</string>
     <string name="refresh">Обновить</string>
 </resources>

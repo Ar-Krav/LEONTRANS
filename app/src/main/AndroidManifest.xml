@@ -14,7 +14,9 @@
         <activity
             android:name=".launching.LauncherActivity"
             android:noHistory="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,37 +25,59 @@
         </activity>
         <activity
             android:name=".basepart.userprofile.UserProfileActivity"
-            android:noHistory="true" />
-        <activity android:name=".basepart.cardpart.CardsActivity" />
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".basepart.cardpart.CardsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".basepart.favouritespart.FavouriteCardsActivity"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".basepart.filters.FilterSettingsActivity"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity android:name=".basepart.userprofile.UserCardOwenerProfile"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".utils.LanguageDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".basepart.filters.FilterSwitcherDialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity android:name=".basepart.filters.editor.FilterEditActivity"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".basepart.filters.editor.DocsSelectorDialog"
-            android:theme="@style/Theme.AppCompat.Dialog">
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".basepart.filters.editor.LoadTypeSelectorDialog"
-            android:theme="@style/Theme.AppCompat.Dialog">
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity android:name=".basepart.filters.editor.AdrSelectorDialog"
-            android:theme="@style/Theme.AppCompat.Dialog">
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
         </activity>
 

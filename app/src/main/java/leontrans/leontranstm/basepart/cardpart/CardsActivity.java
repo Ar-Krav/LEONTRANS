@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -47,7 +48,6 @@ public class CardsActivity extends AppCompatActivity {
     private ProgressBar loaderView;
     private LinearLayout contentArea;
     LinearLayout.LayoutParams listViewParams;
-    LinearLayout footerLinear;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
@@ -88,8 +88,6 @@ public class CardsActivity extends AppCompatActivity {
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
         contentArea = (LinearLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
-
-        footerLinear = (LinearLayout) findViewById(R.id.footer_layout);
 
         siteDataUtils = new SiteDataParseUtils();
         adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListAdvertisement);
@@ -155,6 +153,23 @@ public class CardsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             adapter.notifyDataSetChanged();
+
+            loadNewCardsBtn.setText(R.string.app_name);
+            loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));
+            loadNewCardsBtn.setClickable(false);
+
+            btnToUp.setText(R.string.go_up_to_list);
+            btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
+
+            advertisementListView.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                        return false; // Indicates that this has been handled by you and will not be forwarded further.
+                    }
+                    return true;
+                }
+            });
 
             loaderView.setVisibility(View.GONE);
             contentArea.setVisibility(View.VISIBLE);
@@ -630,6 +645,18 @@ public class CardsActivity extends AppCompatActivity {
                     Toast.makeText(CardsActivity.this, CardsActivity.this.getResources().getString(R.string.internet_dialog_message), Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                loadNewCardsBtn.setClickable(false);
+                advertisementListView.setOnTouchListener(new View.OnTouchListener() {
+
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                            return true; // Indicates that this has been handled by you and will not be forwarded further.
+                        }
+                        return false;
+                    }
+                });
+
                 numbOfAdvertisement += 10;
                 new LoadCards().execute(numbOfAdvertisement-10);
             }
