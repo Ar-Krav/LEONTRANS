@@ -161,16 +161,6 @@ public class CardsActivity extends AppCompatActivity {
             btnToUp.setText(R.string.go_up_to_list);
             btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
 
-            advertisementListView.setOnTouchListener(new View.OnTouchListener() {
-
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        return false; // Indicates that this has been handled by you and will not be forwarded further.
-                    }
-                    return true;
-                }
-            });
-
             loaderView.setVisibility(View.GONE);
             contentArea.setVisibility(View.VISIBLE);
         }
@@ -614,7 +604,6 @@ public class CardsActivity extends AppCompatActivity {
         return new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-
             }
 
             @Override
@@ -647,15 +636,6 @@ public class CardsActivity extends AppCompatActivity {
                 }
 
                 loadNewCardsBtn.setClickable(false);
-                advertisementListView.setOnTouchListener(new View.OnTouchListener() {
-
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                            return true; // Indicates that this has been handled by you and will not be forwarded further.
-                        }
-                        return false;
-                    }
-                });
 
                 numbOfAdvertisement += 10;
                 new LoadCards().execute(numbOfAdvertisement-10);
