@@ -92,15 +92,25 @@ public class AdvertisementAdapter extends ArrayAdapter<AdvertisementInfo> {
             goods.setText(advertisementInfoList.get(position).getGoods_load_type()+" "+advertisementInfoList.get(position).getGoods()+" "+advertisementInfoList.get(position).getTrans_weight()+"т " +advertisementInfoList.get(position).getTrans_capacity()+"м3 ");
         }
 
+
+        if(!advertisementInfoList.get(position).getDocs().equals("")){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getDocs());
+        }
+
+        if(!advertisementInfoList.get(position).getADR().equals("")){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getADR().equals(""));
+        }
+
+        if(!advertisementInfoList.get(position).getTrans_width().equals("") && !advertisementInfoList.get(position).getTrans_width().equals("0")){
+            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_width()+"м");
+        }
+
         if(!advertisementInfoList.get(position).getTrans_height().equals("") && !advertisementInfoList.get(position).getTrans_height().equals("0")){
             goods.setText(goods.getText()+" "+ advertisementInfoList.get(position).getTrans_height()+"м");
         }
 
         if(!advertisementInfoList.get(position).getTrans_length().equals("") && !advertisementInfoList.get(position).getTrans_length().equals("0")){
             goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_length()+"м");
-        }
-        if(!advertisementInfoList.get(position).getTrans_width().equals("") && !advertisementInfoList.get(position).getTrans_width().equals("0")){
-            goods.setText(goods.getText()+" "+advertisementInfoList.get(position).getTrans_width()+"м");
         }
 
         if(!advertisementInfoList.get(position).getTrans_trailer().isEmpty()){

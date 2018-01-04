@@ -74,7 +74,16 @@ public class SiteDataParseUtils {
         JSONObject dataJsonObj = null;
 
         try {
-            dataJsonObj = new JSONObject(getSiteRequestResult(urlRequest));
+            String siteResult = getSiteRequestResult(urlRequest);
+            if (siteResult.equals("null")){
+                dataJsonObj = null;
+            }
+            else{
+                dataJsonObj = new JSONObject(getSiteRequestResult(urlRequest));
+                if (!dataJsonObj.getString("status").equals("")){
+                    dataJsonObj = null;
+                }
+            }
         }
         catch (JSONException e) {
             e.printStackTrace();

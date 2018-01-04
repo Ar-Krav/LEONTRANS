@@ -108,7 +108,9 @@ public class FavouriteCardsActivity extends AppCompatActivity {
         protected Void doInBackground(Integer... integers) {
             try {
                 for(int i = 0 ; i < informationList.size();i++){
-                    arrayListJsonObjectAdvertisement.add(i,siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_bid&id=" + informationList.get(i).getId_selected_item()));
+                    JSONObject jsonObject = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_bid&id=" + informationList.get(i).getId_selected_item());
+                    if (jsonObject == null) continue;
+                    arrayListJsonObjectAdvertisement.add(i, jsonObject);
                 }
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){

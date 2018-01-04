@@ -48,6 +48,8 @@ public class AdvertisementInfo {
     private String region_from;
     private String region_to;
     private String distance;
+    private String docs;
+    private String ADR;
 
     private RoutPointsCoordinates routPointsCoordinates;
 
@@ -86,6 +88,25 @@ public class AdvertisementInfo {
         this.region_from = getDestinationPoint(list.getString("region_from_ru"),list.getString("region_from_ua"),list.getString("region_from_en"),locale);
         this.region_to = getDestinationPoint(list.getString("region_to_ru"),list.getString("region_to_ua"),list.getString("region_to_en"),locale);
         this.distance = list.getString("distance");
+
+        this.docs = getDocsType(list.getString("goods_docs"));
+        this.ADR = getAdrType(list.getString("goods_adr"));
+    }
+
+    public String getDocs() {
+        return docs;
+    }
+
+    public void setDocs(String docs) {
+        this.docs = docs;
+    }
+
+    public String getADR() {
+        return ADR;
+    }
+
+    public void setADR(String ADR) {
+        this.ADR = ADR;
     }
 
     public String getDistance() {
@@ -230,6 +251,92 @@ public class AdvertisementInfo {
         else if(pay_price.equals("0")){
             return"";
         }else return pay_price+" "+pay_currency;
+    }
+
+    private String getDocsType(String docsType){
+        String res = "";
+        switch (docsType){
+            case "tir":{
+                res = context.getString(R.string.tir);
+                break;
+            }
+            case "cmr":{
+                res = context.getString(R.string.cmr);
+                break;
+            }
+            case "ekmt":{
+                res = context.getString(R.string.ekmt);
+                break;
+            }
+            case "t1":{
+                res = context.getString(R.string.t1);
+                break;
+            }
+            case "mbook":{
+                res = context.getString(R.string.mbook);
+                break;
+            }
+            case "customscontrol":{
+                res = context.getString(R.string.customscontrol);
+                break;
+            }
+        }
+        return res;
+    }
+
+    private String getAdrType(String docsType){
+        String res = "";
+        switch (docsType){
+            case "dangerous":{
+                res = context.getString(R.string.dangerous);
+                break;
+            }
+            case "undangerous":{
+                res = context.getString(R.string.undangerous);
+                break;
+            }
+            case "adr1":{
+                res = context.getString(R.string.adr1);
+                break;
+            }
+            case "adr2":{
+                res = context.getString(R.string.adr2);
+                break;
+            }
+            case "adr3":{
+                res = context.getString(R.string.adr3);
+                break;
+            }
+            case "adr4":{
+                res = context.getString(R.string.adr4);
+                break;
+            }
+            case "adr5":{
+                res = context.getString(R.string.adr5);
+                break;
+            }
+            case "adr6":{
+                res = context.getString(R.string.adr6);
+                break;
+            }
+            case "adr7":{
+                res = context.getString(R.string.adr7);
+                break;
+            }
+            case "adr8":{
+                res = context.getString(R.string.adr8);
+                break;
+            }
+            case "adr9":{
+                res = context.getString(R.string.adr9);
+                break;
+            }
+            case "adr10":{
+                res = context.getString(R.string.adr10);
+                break;
+            }
+        }
+        return res;
     }
 
     private String getTrans_trailer(String trans_trailer){
@@ -486,6 +593,9 @@ public class AdvertisementInfo {
     public RoutPointsCoordinates getRoutPointsCoordinates() {
         return routPointsCoordinates;
     }
+
+
+
 
     private String checkData(String date_from, String date_to) throws JSONException{
         if (date_from.equals("") || date_to.equals("")){
