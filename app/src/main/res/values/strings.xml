@@ -374,5 +374,7 @@
     <string name="back_pressed">Press once again to exit!</string>
 
     <string name="refresh">Refresh</string>
+    <string name="empty_text">No bids by your filter</string>
+    <string name="empty_favourite_text">No favourite bids</string>
 
 </resources>

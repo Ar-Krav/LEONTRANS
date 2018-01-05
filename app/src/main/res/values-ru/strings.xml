@@ -371,4 +371,7 @@
 
     <string name="back_pressed">Для выхода нажмите еще раз!</string>
     <string name="refresh">Обновить</string>
+
+    <string name="empty_text">По вашому фильтру нету объявлений</string>
+    <string name="empty_favourite_text">Нету избранных объявлений</string>
 </resources>

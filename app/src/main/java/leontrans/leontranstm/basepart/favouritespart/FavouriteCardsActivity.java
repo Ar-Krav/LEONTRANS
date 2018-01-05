@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.mikepenz.materialdrawer.Drawer;
 
@@ -41,7 +43,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
     private Drawer.Result mainNavigationDrawer;
 
     private ProgressBar loaderView;
-    private ConstraintLayout contentArea;
+    private LinearLayout contentArea;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
 
@@ -76,7 +78,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
         mainNavigationDrawer = new NavigationDrawerMain(this, toolbar, Constants.NAVMENU_FAQ).getMainNavigationDrawer();
 
         loaderView = (ProgressBar) findViewById(R.id.loading_spinner);
-        contentArea = (ConstraintLayout) findViewById(R.id.content_area);
+        contentArea = (LinearLayout) findViewById(R.id.content_area);
         contentArea.setVisibility(View.GONE);
 
         siteDataUtils = new SiteDataParseUtils();
@@ -84,6 +86,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
 
         advertisementListView = (ListView)findViewById(R.id.listView);
         advertisementListView.setAdapter(selected_item_adapter);
+        advertisementListView.setEmptyView((TextView) findViewById(R.id.empty));
         if(arrayListSelectedItem.isEmpty()){
             informationList = dbHelper.getAllTODOLIST();
             new LoadCards().execute(0);

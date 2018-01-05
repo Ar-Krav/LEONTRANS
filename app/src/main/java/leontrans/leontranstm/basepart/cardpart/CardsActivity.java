@@ -21,12 +21,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -99,6 +101,7 @@ public class CardsActivity extends AppCompatActivity {
         advertisementListView = (ListView)findViewById(R.id.listView);
             advertisementListView.setAdapter(adapter);
             advertisementListView.setOnScrollListener(getListScrollListener());
+            advertisementListView.setEmptyView((TextView) findViewById(R.id.empty));
 
         loadNewCardsBtn.setText(R.string.app_name);
         loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));

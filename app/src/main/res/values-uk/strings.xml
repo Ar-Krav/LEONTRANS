@@ -377,4 +377,7 @@
     <string name="back_pressed">Натисніть ще раз для виходу!</string>
     <string name="refresh">Оновити</string>
 
+    <string name="empty_text">Жодних оголошень за вашим фільтром</string>
+    <string name="empty_favourite_text">Немає обраних оголошень</string>
+
 </resources>
