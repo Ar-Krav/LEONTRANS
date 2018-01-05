@@ -55,8 +55,15 @@ public class SiteDataParseUtils {
         JSONArray dataJsonArr = null ;
         ArrayList<JSONObject> resultArray = new ArrayList<>();
 
+        String siteResult = getSiteRequestResult(urlRequest);
+
         try{
-            dataJsonArr = new JSONArray(getSiteRequestResult(urlRequest));
+            if (siteResult.equals("null")){
+                Log.d("STRING_TEST_TAG", "getCardsInformation: " + siteResult);
+                return resultArray;
+            }
+
+            dataJsonArr = new JSONArray(siteResult);
             Log.d("LENGTH_TEST", "getCardsInformation: " + dataJsonArr.length());
             for(int i = 0 ; i < dataJsonArr.length() ; i++){
                 dataJsonObj = dataJsonArr.getJSONObject(i);

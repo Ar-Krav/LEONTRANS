@@ -128,14 +128,27 @@ public class CardsActivity extends AppCompatActivity {
 
                 arrayListJsonObjectAdvertisement = siteDataUtils.getCardsInformation("https://leon-trans.com/api/ver1/login.php?action=get_bids&limit=" + numbOfAdvertisement + "&user=" + userID, numbOfAdvertisement);
 
-                SharedPreferences lastCardId = getSharedPreferences("lastCardInfo", MODE_PRIVATE);
-                lastCardId.edit().putInt("idLastCard", Integer.parseInt(arrayListJsonObjectAdvertisement.get(0).getString("id"))).commit();
+                if (arrayListJsonObjectAdvertisement == null){
+                    arrayListJsonObjectAdvertisement = new ArrayList<>();
+                    Log.d("SOME_TEST_TAG_F", "doInBackground: ");
+                    return null;
+                }
+
+                Log.d("SOME_TEST_TAG_F", "doInBackground: after if");
+
+                if (arrayListJsonObjectAdvertisement.size() > 0){
+                    SharedPreferences lastCardId = getSharedPreferences("lastCardInfo", MODE_PRIVATE);
+                    lastCardId.edit().putInt("idLastCard", Integer.parseInt(arrayListJsonObjectAdvertisement.get(0).getString("id"))).commit();
+                }
+
+                Log.d("SOME_TEST_TAG_F", "doInBackground: " + arrayListJsonObjectAdvertisement.size());
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
-                    Log.d("SOME_TEST_TAG", "id: " + arrayListJsonObjectAdvertisement.get(i).getString("id"));
 
                     JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="
                             +arrayListJsonObjectAdvertisement.get(i).getString("userid_creator"));
+
+                    if (advertisementOwnerInfoJSON == null) continue;
 
                     AdvertisementOwnerInfo advertisementOwnerInfo = new AdvertisementOwnerInfo(advertisementOwnerInfoJSON.getString("phones"), advertisementOwnerInfoJSON.getString("person_type"), getFullName(advertisementOwnerInfoJSON));
                     arrayListAdvertisement.add(i,new AdvertisementInfo(arrayListJsonObjectAdvertisement.get(i), advertisementOwnerInfo ,getApplicationContext(),locale));
@@ -149,7 +162,9 @@ public class CardsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            Log.d("SOME_TEST_TAG_F", "onPostExecute: before notify");
             adapter.notifyDataSetChanged();
+            Log.d("SOME_TEST_TAG_F", "onPostExecute: after");
 
             loadNewCardsBtn.setText(R.string.app_name);
             loadNewCardsBtn.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_grey));
