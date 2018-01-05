@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,7 +50,7 @@ public class FavouriteCardsActivity extends AppCompatActivity {
 
     private ListView advertisementListView;
 
-    public AdvertisementAdapter selected_item_adapter;
+    public AdvertisementSelectedAdapter selected_item_adapter;
     public ArrayList<AdvertisementInfo> arrayListSelectedItem = new ArrayList<>();
     private ArrayList<DBinformation> informationList;
 
@@ -82,11 +83,12 @@ public class FavouriteCardsActivity extends AppCompatActivity {
         contentArea.setVisibility(View.GONE);
 
         siteDataUtils = new SiteDataParseUtils();
-        selected_item_adapter = new AdvertisementAdapter(this,R.layout.list_item_layout,arrayListSelectedItem);
+        selected_item_adapter = new AdvertisementSelectedAdapter(this,R.layout.list_item_layout,arrayListSelectedItem);
 
         advertisementListView = (ListView)findViewById(R.id.listView);
         advertisementListView.setAdapter(selected_item_adapter);
-        advertisementListView.setEmptyView((TextView) findViewById(R.id.empty));
+        advertisementListView.setEmptyView((TextView) findViewById(R.id.empty_favourite));
+
         if(arrayListSelectedItem.isEmpty()){
             informationList = dbHelper.getAllTODOLIST();
             new LoadCards().execute(0);
@@ -116,6 +118,8 @@ public class FavouriteCardsActivity extends AppCompatActivity {
                     if (jsonObject == null) continue;
                     arrayListJsonObjectAdvertisement.add(i, jsonObject);
                 }
+
+                Log.d("TEST_SIZE_WORK", "doInBackground: " + arrayListJsonObjectAdvertisement.size());
 
                 for(int i = integers[0]; i < arrayListJsonObjectAdvertisement.size() ; i ++){
                     JSONObject advertisementOwnerInfoJSON = siteDataUtils.getCardUserId("https://leon-trans.com/api/ver1/login.php?action=get_user&id="

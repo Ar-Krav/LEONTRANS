@@ -20,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -35,6 +37,10 @@ public class FilterEditActivity extends AppCompatActivity {
     private final int REQUEST_CODE_LOAD_TYPE = 1;
     private final int REQUEST_CODE_DOCS = 2;
     private final int REQUEST_CODE_ADR = 3;
+
+    Button adrButton;
+    Button loadTypeButton;
+    Button docsButton;
 
     private Toolbar toolbar;
     String notifyId;
@@ -77,30 +83,47 @@ public class FilterEditActivity extends AppCompatActivity {
         loadTypeArrayList = new ArrayList<>();
         adrArrayList = new ArrayList<>();
 
-        ((Button) findViewById(R.id.docs_btn)).setOnClickListener(new View.OnClickListener() {
+        docsButton = (Button) findViewById(R.id.docs_btn);
+        adrButton = (Button) findViewById(R.id.adr_btn);
+        loadTypeButton = (Button) findViewById(R.id.load_type_btn);
+
+
+        docsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FilterEditActivity.this, DocsSelectorDialog.class);
                 intent.putStringArrayListExtra("docsArray",docsArrayList);
                 startActivityForResult(intent, REQUEST_CODE_DOCS);
+
+                adrButton.setClickable(false);
+                docsButton.setClickable(false);
+                loadTypeButton.setClickable(false);
             }
         });
 
-        ((Button) findViewById(R.id.load_type_btn)).setOnClickListener(new View.OnClickListener() {
+        loadTypeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FilterEditActivity.this, LoadTypeSelectorDialog.class);
                 intent.putStringArrayListExtra("loadTypeArray",loadTypeArrayList);
                 startActivityForResult(intent, REQUEST_CODE_LOAD_TYPE);
+
+                adrButton.setClickable(false);
+                docsButton.setClickable(false);
+                loadTypeButton.setClickable(false);
             }
         });
 
-        ((Button) findViewById(R.id.adr_btn)).setOnClickListener(new View.OnClickListener() {
+        adrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FilterEditActivity.this, AdrSelectorDialog.class);
                 intent.putStringArrayListExtra("adrArray",adrArrayList);
                 startActivityForResult(intent, REQUEST_CODE_ADR);
+
+                adrButton.setClickable(false);
+                docsButton.setClickable(false);
+                loadTypeButton.setClickable(false);
             }
         });
 
@@ -366,6 +389,10 @@ public class FilterEditActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        adrButton.setClickable(true);
+        docsButton.setClickable(true);
+        loadTypeButton.setClickable(true);
     }
 
     @Override
@@ -492,13 +519,6 @@ public class FilterEditActivity extends AppCompatActivity {
             }
         }
 
-        private String getEmptyStringIfNotSelected(Spinner spinner){
-            if (spinner.getSelectedItemId() == 0){
-                return "";
-            }
-            else return (String) spinner.getSelectedItem();
-        }
-
         private String joinArrayStrings(ArrayList<String> arrayList){
             String arrayJoinText = "";
             for (int i = 0; i < arrayList.size(); i++){
@@ -506,7 +526,8 @@ public class FilterEditActivity extends AppCompatActivity {
                 arrayJoinText += ",";
             }
 
-            return arrayJoinText.substring(0, arrayJoinText.length() - 1);
+            if (arrayList.size() > 0) return arrayJoinText.substring(0, arrayJoinText.length() - 1);
+            else return arrayJoinText;
         }
     }
 

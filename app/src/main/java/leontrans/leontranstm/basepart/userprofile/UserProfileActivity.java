@@ -29,7 +29,11 @@ public class UserProfileActivity extends UserCardOwenerProfile {
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            startActivity(new Intent(UserProfileActivity.this, CardsActivity.class));
+            Intent intent = new Intent(UserProfileActivity.this, CardsActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
         }
     }
 }

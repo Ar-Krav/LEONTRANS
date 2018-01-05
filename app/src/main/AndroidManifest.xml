@@ -55,6 +55,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity android:name=".basepart.filters.editor.FilterEditActivity"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity

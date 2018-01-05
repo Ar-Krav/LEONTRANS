@@ -20,8 +20,7 @@
             android:id="@+id/content_area"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="0dp">
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/listView"
@@ -32,7 +31,7 @@
                 android:dividerHeight="10.0sp" />
 
             <TextView
-                android:id="@+id/empty"
+                android:id="@+id/empty_favourite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"

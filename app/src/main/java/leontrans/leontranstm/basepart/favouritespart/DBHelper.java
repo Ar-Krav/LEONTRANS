@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final int DB_Version = 1;
-    public static final String DATABASE_NAME = "LEONTRANS.db";
+    public static final String DATABASE_NAME = "LEONTRANS.database";
     public static final String MY_TABLE_TO_DO_LIST = "selected_list_item";
     public static final String TO_DO_LIST_COLUMN_ID = "id";
     public static final String TO_DO_LIST_COLUMN_NAME = "id_selected_item";
