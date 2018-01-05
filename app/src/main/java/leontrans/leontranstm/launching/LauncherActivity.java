@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.backgraund.CheckNewCardsService;
@@ -21,13 +24,16 @@ public class LauncherActivity extends AppCompatActivity {
 
     private AsyncTask<String,Void,Integer> syncObject;
 
+    private FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_launcher);
+
+        frameLayout = (FrameLayout) findViewById(R.id.content_area_id);
+        frameLayout.setVisibility(View.GONE);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -95,6 +101,7 @@ public class LauncherActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             else{
+                frameLayout.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new SignInFragment()).commit();
             }
         }
@@ -103,6 +110,9 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         syncObject.cancel(true);
+        if (syncObject.isCancelled()){
+            Log.d("TEST_CANCEL_LOG", "onBackPressed: cancel");
+        }
         super.onBackPressed();
     }
 }

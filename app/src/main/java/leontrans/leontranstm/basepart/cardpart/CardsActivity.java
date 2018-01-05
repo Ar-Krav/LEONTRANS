@@ -738,7 +738,8 @@ public class CardsActivity extends AppCompatActivity {
         else{
             if (backPressed + 2000 > System.currentTimeMillis()) {
                 loadCardsAsync.cancel(true);
-                super.onBackPressed();
+                CardsActivity.this.finish();
+                System.exit(0);
             } else {
                 Toast.makeText(getBaseContext(), getBaseContext().getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
             }
