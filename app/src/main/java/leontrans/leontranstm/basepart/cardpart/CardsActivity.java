@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.basepart.filters.FilterSwitcherDialogActivity;
@@ -47,7 +46,6 @@ public class CardsActivity extends AppCompatActivity {
 
     private ProgressBar loaderView;
     private LinearLayout contentArea;
-    LinearLayout.LayoutParams listViewParams;
 
     private ArrayList<JSONObject> arrayListJsonObjectAdvertisement = new ArrayList<>();
     private ArrayList<AdvertisementInfo> arrayListAdvertisement = new ArrayList<>();
