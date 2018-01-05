@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 
 import leontrans.leontranstm.R;
 import leontrans.leontranstm.backgraund.CheckNewCardsService;
@@ -17,9 +19,14 @@ import leontrans.leontranstm.utils.SiteDataParseUtils;
 
 public class LauncherActivity extends AppCompatActivity {
 
+    private AsyncTask<String,Void,Integer> syncObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_launcher);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -65,7 +72,7 @@ public class LauncherActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new SignInFragment()).commit();
         }
         else{
-            new Sync().execute(userPassword);
+            syncObject = new Sync().execute(userPassword);
         }
     }
 
@@ -91,5 +98,11 @@ public class LauncherActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_area, new SignInFragment()).commit();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        syncObject.cancel(true);
+        super.onBackPressed();
     }
 }

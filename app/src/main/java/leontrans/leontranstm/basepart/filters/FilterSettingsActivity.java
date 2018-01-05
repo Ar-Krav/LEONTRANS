@@ -51,7 +51,10 @@ public class FilterSettingsActivity extends AppCompatActivity implements View.On
             mainNavigationDrawer.closeDrawer();
         }
         else{
-            startActivity(new Intent(FilterSettingsActivity.this, CardsActivity.class));
+            Intent intent = new Intent(FilterSettingsActivity.this, CardsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
         }
     }
 

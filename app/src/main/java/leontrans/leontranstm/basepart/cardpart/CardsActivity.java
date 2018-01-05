@@ -59,6 +59,8 @@ public class CardsActivity extends AppCompatActivity {
     private AdvertisementAdapter adapter;
     private static long backPressed;
 
+    private AsyncTask<Integer, Void, Void> loadCardsAsync;
+
     private Locale locale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,7 @@ public class CardsActivity extends AppCompatActivity {
         btnToUp.setText(R.string.go_up_to_list);
         btnToUp.setBackgroundColor(CardsActivity.this.getResources().getColor(R.color.leon_green));
 
-        new LoadCards().execute(0);
+        loadCardsAsync = new LoadCards().execute(0);
     }
 
     private class LoadCards extends AsyncTask<Integer, Void, Void> {
@@ -735,6 +737,7 @@ public class CardsActivity extends AppCompatActivity {
         }
         else{
             if (backPressed + 2000 > System.currentTimeMillis()) {
+                loadCardsAsync.cancel(true);
                 super.onBackPressed();
             } else {
                 Toast.makeText(getBaseContext(), getBaseContext().getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
